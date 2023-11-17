@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import Image from 'next/image'
 import { GetNotionFreeHero } from './components/Buttons'
@@ -15,6 +14,7 @@ const MarketingPage = () => {
         <GetNotionFreeHero/>
       </div>
       <aside className='mt-10'>
+        
         <Image
           src={heroblack} 
           alt="img"

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const MarketingLayout = ({ children } : { children: React.ReactNode }) => {
     return(
-        <html>
+        <html data-theme="light">
             <body>
                 <Navbar/>
                 <div className="container mx-auto">

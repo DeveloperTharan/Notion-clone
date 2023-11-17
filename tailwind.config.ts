@@ -1,6 +1,6 @@
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
+import withMT from "@material-tailwind/react/utils/withMT";
+ 
+module.exports = withMT({
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -22,8 +22,7 @@ const config: Config = {
     },
   },
   daisyui: {
-    themes: ["light", "black"]
+    themes: ["light"]
   },
   plugins: [require("daisyui")],
-}
-export default config
+});
