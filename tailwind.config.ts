@@ -8,13 +8,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      screens: {
+        "xs": "325px",
+        "sm": "375px",
+        "md": "425px",
+        "lg": "660px",
+        "xl": "768px",
+        "2xl": "991px",
+        "3xl": "1024px",
+        "4xl": "1180px",
+        "5xl": "1268px"
+      }
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: ["light", "black"]
+  },
+  plugins: [require("daisyui")],
 }
 export default config
