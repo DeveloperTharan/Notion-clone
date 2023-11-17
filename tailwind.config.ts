@@ -17,7 +17,8 @@ module.exports = withMT({
         "2xl": "991px",
         "3xl": "1024px",
         "4xl": "1180px",
-        "5xl": "1268px"
+        "5xl": "1268px",
+        "6xl": "1568px",
       }
     },
   },

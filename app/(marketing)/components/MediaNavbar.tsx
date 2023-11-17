@@ -2,12 +2,7 @@
 
 import React, { useState } from 'react'
 import { IoIosMenu, IoMdClose } from "react-icons/io";
-import {
-    Accordion,
-    AccordionHeader,
-    AccordionBody,
-} from "@material-tailwind/react";
-import { GetNotionFree, Getnotionlogin } from './Buttons';
+import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
 
 function Icon({ id, open }: { id: number, open: number }) {
     return (
@@ -21,7 +16,7 @@ function Icon({ id, open }: { id: number, open: number }) {
         >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
-    ); 
+    );
 }
 
 function MediaNavbar() {
@@ -32,10 +27,10 @@ function MediaNavbar() {
 
     return (
         <div className='4xl:hidden'>
-            {!isOpen ? (<button className='me-4' onClick={() => setIsOpen(true)}>
+            {!isOpen ? (<button className='xl:me-4' onClick={() => setIsOpen(true)}>
                 <IoIosMenu className='text-[26px] text-base-content' />
             </button>) :
-                (<button className='me-4' onClick={() => setIsOpen(false)}>
+                (<button className='xl:me-4' onClick={() => setIsOpen(false)}>
                     <IoMdClose className='text-[26px] text-base-content' />
                 </button>)}
             {isOpen ? <div className='absolute left-0 top-[62px] w-full h-full bg-base-100 max-h-max px-3'>
@@ -43,9 +38,10 @@ function MediaNavbar() {
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(1)}>Products</AccordionHeader>
                     <AccordionBody>
                         <ul tabIndex={1} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
-                            <li><a className='text-base-content'>Homepage</a></li>
-                            <li><a className='text-base-content'>Portfolio</a></li>
-                            <li><a className='text-base-content'>About</a></li>
+                            <li><a className='text-base-content'>Wikis</a></li>
+                            <li><a className='text-base-content'>Projects</a></li>
+                            <li><a className='text-base-content'>Docs</a></li>
+                            <li><a className='text-base-content'>Notion AI</a></li>
                         </ul>
                     </AccordionBody>
                 </Accordion>
@@ -53,9 +49,9 @@ function MediaNavbar() {
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(2)}>Solutions</AccordionHeader>
                     <AccordionBody>
                         <ul tabIndex={2} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
-                            <li><a className='text-base-content'>Homepage</a></li>
-                            <li><a className='text-base-content'>Portfolio</a></li>
-                            <li><a className='text-base-content'>About</a></li>
+                            <li><a className='text-base-content'>Enterprise</a></li>
+                            <li><a className='text-base-content'>Small Buisness</a></li>
+                            <li><a className='text-base-content'>Personal</a></li>
                         </ul>
                     </AccordionBody>
                 </Accordion>
@@ -63,9 +59,13 @@ function MediaNavbar() {
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(3)}>Resources</AccordionHeader>
                     <AccordionBody>
                         <ul tabIndex={3} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
-                            <li><a className='text-base-content'>Homepage</a></li>
-                            <li><a className='text-base-content'>Portfolio</a></li>
-                            <li><a className='text-base-content'>About</a></li>
+                            <li><a className='text-base-content'>Blogs</a></li>
+                            <li><a className='text-base-content'>Guids & Tutorial</a></li>
+                            <li><a className='text-base-content'>Webinar</a></li>
+                            <li><a className='text-base-content'>Help Center</a></li>
+                            <li><a className='text-base-content'>API Docs</a></li>
+                            <li><a className='text-base-content'>Community</a></li>
+                            <li><a className='text-base-content'>Find a Consultant</a></li>
                         </ul>
                     </AccordionBody>
                 </Accordion>
@@ -73,9 +73,9 @@ function MediaNavbar() {
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(4)}>Downlode</AccordionHeader>
                     <AccordionBody>
                         <ul tabIndex={4} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
-                            <li><a className='text-base-content'>Homepage</a></li>
-                            <li><a className='text-base-content'>Portfolio</a></li>
-                            <li><a className='text-base-content'>About</a></li>
+                            <li><a className='text-base-content'>IOS & Android</a></li>
+                            <li><a className='text-base-content'>Mac & Windows</a></li>
+                            <li><a className='text-base-content'>Web Clipper</a></li>
                         </ul>
                     </AccordionBody>
                 </Accordion>

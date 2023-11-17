@@ -7,7 +7,7 @@ import { GetDemo, GetNotionFree, GetPricing, Getnotionlogin } from './Buttons'
 
 function Navbar() {
   return (
-    <div className="navbar bg-transparent px-2 5xl:px-4">
+    <div className="navbar bg-transparent px-2 5xl:px-4 6xl:container 6xl:mx-auto">
       <div className="navbar-start">
         <div className='flex gap-2 me-5'>
           <Image src={logo} alt="logo/img" width={40} height={40} />
@@ -22,10 +22,11 @@ function Navbar() {
                 <FaAngleUp className='hidden group-hover:block text-base-content text-[12px]' />
               </span>
             </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-base-300 rounded-md w-52">
-              <li><a className='text-base-content'>Homepage</a></li>
-              <li><a className='text-base-content'>Portfolio</a></li>
-              <li><a className='text-base-content'>About</a></li>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-white rounded-md w-52">
+              <li><a className='text-base-content'>Wikis</a></li>
+              <li><a className='text-base-content'>Projects</a></li>
+              <li><a className='text-base-content'>Docs</a></li>
+              <li><a className='text-base-content'>Notion AI</a></li>
             </ul>
           </div>
         </div>
@@ -38,10 +39,10 @@ function Navbar() {
                 <FaAngleUp className='hidden group-hover:block text-base-content text-[12px]' />
               </span>
             </label>
-            <ul tabIndex={1} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-base-300 rounded-md w-52">
-              <li><a className='text-base-content'>Homepage</a></li>
-              <li><a className='text-base-content'>Portfolio</a></li>
-              <li><a className='text-base-content'>About</a></li>
+            <ul tabIndex={1} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-white rounded-md w-52">
+              <li><a className='text-base-content'>IOS & Android</a></li>
+              <li><a className='text-base-content'>Mac & Windows</a></li>
+              <li><a className='text-base-content'>Web Clipper</a></li>
             </ul>
           </div>
         </div>
@@ -54,10 +55,10 @@ function Navbar() {
                 <FaAngleUp className='hidden group-hover:block text-base-content text-[12px]' />
               </span>
             </label>
-            <ul tabIndex={2} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-base-300 rounded-md w-52">
-              <li><a className='text-base-content'>Homepage</a></li>
-              <li><a className='text-base-content'>Portfolio</a></li>
-              <li><a className='text-base-content'>About</a></li>
+            <ul tabIndex={2} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-white rounded-md w-52">
+              <li><a className='text-base-content'>Enterprise</a></li>
+              <li><a className='text-base-content'>Small Buisness</a></li>
+              <li><a className='text-base-content'>Personal</a></li>
             </ul>
           </div>
         </div>
@@ -70,10 +71,14 @@ function Navbar() {
                 <FaAngleUp className='hidden group-hover:block text-base-content text-[12px]' />
               </span>
             </label>
-            <ul tabIndex={3} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-base-300 rounded-md w-52">
-              <li><a className='text-base-content'>Homepage</a></li>
-              <li><a className='text-base-content'>Portfolio</a></li>
-              <li><a className='text-base-content'>About</a></li>
+            <ul tabIndex={3} className="menu menu-sm dropdown-content mt-[2px] z-[1] p-2 shadow bg-white rounded-md w-52">
+              <li><a className='text-base-content'>Blogs</a></li>
+              <li><a className='text-base-content'>Guids & Tutorial</a></li>
+              <li><a className='text-base-content'>Webinar</a></li>
+              <li><a className='text-base-content'>Help Center</a></li>
+              <li><a className='text-base-content'>API Docs</a></li>
+              <li><a className='text-base-content'>Community</a></li>
+              <li><a className='text-base-content'>Find a Consultant</a></li>
             </ul>
           </div>
         </div>
