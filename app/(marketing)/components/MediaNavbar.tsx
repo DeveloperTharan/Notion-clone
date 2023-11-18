@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react'
 import { IoIosMenu, IoMdClose } from "react-icons/io";
-import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
+import {
+    Accordion,
+    AccordionHeader,
+    AccordionBody,
+} from "@material-tailwind/react";
 
 function Icon({ id, open }: { id: number, open: number }) {
     return (
@@ -27,13 +31,13 @@ function MediaNavbar() {
 
     return (
         <div className='4xl:hidden'>
-            {!isOpen ? (<button className='xl:me-4' onClick={() => setIsOpen(true)}>
+            {!isOpen ? (<button className='me-2 lg:me-4' onClick={() => setIsOpen(true)}>
                 <IoIosMenu className='text-[26px] text-base-content' />
             </button>) :
-                (<button className='xl:me-4' onClick={() => setIsOpen(false)}>
+                (<button className='me-2 lg:me-4' onClick={() => setIsOpen(false)}>
                     <IoMdClose className='text-[26px] text-base-content' />
                 </button>)}
-            {isOpen ? <div className='absolute left-0 top-[62px] w-full h-full bg-base-100 max-h-max px-3'>
+            {isOpen ? <div className='absolute left-0 top-[62px] w-full bg-base-100 min-h-full h-full px-3'>
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(1)}>Products</AccordionHeader>
                     <AccordionBody>
@@ -80,16 +84,16 @@ function MediaNavbar() {
                     </AccordionBody>
                 </Accordion>
                 <div className='border-t-[1px] border-base-300'>
-                    <button className='my-4 font-bold text-sm w-full min-w-full text-start'>Pricing</button>
+                    <button className='text-sm text-base-content font-bold my-4'>Pricing</button>
                 </div>
-                <div className='border-t-[1px] border-b-[1px] border-base-300'>
-                    <button className='my-4 font-bold text-sm w-full min-w-full text-start'>Request a Demo</button>
+                <div className='border-y-[1px] border-base-300'>
+                    <button className='text-sm text-base-content font-bold my-4'>Request a demo</button>
                 </div>
-                <div className='mt-7'>
-                    <button className='w-full min-w-full bg-base-content text-sm font-bold text-base-100 py-2 rounded-md cursor-pointer'>Get Notion Free</button>
+                <div className='mt-6'>
+                    <button className='text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md'>Get Notion free</button>
                 </div>
-                <div className='mt-4'>
-                    <button className='w-full min-w-full border border-gray-500 text-sm font-bold text-base-content py-2 rounded-md cursor-pointer'>Login</button>
+                <div className='mt-3'>
+                    <button className='text-sm text-base-content font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md'>Login</button>
                 </div>
             </div> : null}
         </div>

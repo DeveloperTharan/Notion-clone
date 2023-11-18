@@ -7,11 +7,11 @@ import about from '../../public/about.svg'
 
 const MarketingPage = () => {
   return (
-    <div className='px-16 3xl:px-52'>
+    <div className='px-3 xl:px-16 3xl:px-52'>
       <div className='text-center mt-10'>
-        <h1 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>Write, plan, share.</h1>
-        <h1 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>With AI at your side.</h1>
-        <p className='text-sm md:text-xl lg:text-2xl font-semibold mt-4'>Notion is the connected workspace where better, faster work happens.</p>
+        <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>Write, plan, share.</h1>
+        <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>With AI at your side.</h1>
+        <p className='text-sm md:text-ms lg:text-xl font-semibold mt-4'>Notion is the connected workspace where better, faster work happens.</p>
         <GetNotionFreeHero />
       </div>
       <aside className='mt-10'>
@@ -22,8 +22,8 @@ const MarketingPage = () => {
         />
       </aside>
       <div className='mt-32'>
-        <h1 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>A story of tools and the future of work</h1>
-        <div className='grid grid-cols-2 gap-20'>
+        <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>A story of tools and the future of work</h1>
+        <div className='grid grid-cols-2 gap-10 lg:gap-20'>
           <aside className='mt-10'>
             <Image
               src={about}
@@ -35,7 +35,7 @@ const MarketingPage = () => {
         </div>
       </div>
       <div className='text-center mt-32'>
-        <h1 className='text-xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>Get started for free.</h1>
+        <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>Get started for free.</h1>
         <p className='text-sm md:text-md lg:text-lg font-medium mt-4'>Play around with it first. Pay and add your team later.</p>
         <div className='flex justify-center items-center mt-5 gap-8'>
           <TryNotion />
