@@ -14,3 +14,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.MediaNavAccor {
+  @apply text-sm text-base-content bg-base-100 font-bold border-t-[1px] border-base-300 border-b-0;
+}

@@ -37,11 +37,11 @@ function MediaNavbar() {
                 (<button onClick={() => setIsOpen(false)}>
                     <IoMdClose className='text-[26px] text-base-content' />
                 </button>)}
-            {isOpen ? <div className='absolute left-0 top-[62px] w-full bg-white max-h-fit h-full px-3 z-50'>
+            {isOpen ? <div className='absolute left-0 top-[62px] w-full bg-base-100 h-[100vh] overflow-scroll pb-20 px-3 z-50'>
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(1)}>Products</AccordionHeader>
                     <AccordionBody>
-                        <ul tabIndex={1} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
+                        <ul tabIndex={1} className="menu menu-sm z-[1] -mt-5 -mb-5 bg-base-100 w-full min-w-full">
                             <li><a className='text-base-content'>Wikis</a></li>
                             <li><a className='text-base-content'>Projects</a></li>
                             <li><a className='text-base-content'>Docs</a></li>
@@ -52,7 +52,7 @@ function MediaNavbar() {
                 <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(2)}>Solutions</AccordionHeader>
                     <AccordionBody>
-                        <ul tabIndex={2} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
+                        <ul tabIndex={2} className="menu menu-sm z-[1] -mt-5 -mb-5 bg-base-100 w-full min-w-full">
                             <li><a className='text-base-content'>Enterprise</a></li>
                             <li><a className='text-base-content'>Small Buisness</a></li>
                             <li><a className='text-base-content'>Personal</a></li>
@@ -62,7 +62,7 @@ function MediaNavbar() {
                 <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(3)}>Resources</AccordionHeader>
                     <AccordionBody>
-                        <ul tabIndex={3} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
+                        <ul tabIndex={3} className="menu menu-sm z-[1] -mt-5 -mb-5 bg-base-100 w-full min-w-full">
                             <li><a className='text-base-content'>Blogs</a></li>
                             <li><a className='text-base-content'>Guids & Tutorial</a></li>
                             <li><a className='text-base-content'>Webinar</a></li>
@@ -76,23 +76,23 @@ function MediaNavbar() {
                 <Accordion open={open === 4} icon={<Icon id={4} open={open} />}>
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(4)}>Downlode</AccordionHeader>
                     <AccordionBody>
-                        <ul tabIndex={4} className="menu menu-sm z-[1] -mt-5 bg-transparent w-full min-w-full">
+                        <ul tabIndex={4} className="menu menu-sm z-[1] -mt-5 -mb-5 bg-base-100 w-full min-w-full">
                             <li><a className='text-base-content'>IOS & Android</a></li>
                             <li><a className='text-base-content'>Mac & Windows</a></li>
                             <li><a className='text-base-content'>Web Clipper</a></li>
                         </ul>
                     </AccordionBody>
                 </Accordion>
-                <div className='border-t-[1px] border-base-300'>
+                <div className='border-t-[1px] border-base-300 bg-base-100'>
                     <button className='text-sm text-base-content font-bold my-4'>Pricing</button>
                 </div>
-                <div className='border-y-[1px] border-base-300'>
+                <div className='border-y-[1px] border-base-300 bg-base-100'>
                     <button className='text-sm text-base-content font-bold my-4'>Request a demo</button>
                 </div>
-                <div className='mt-6'>
+                <div className='pt-6 bg-base-100'>
                     <button className='text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md'>Get Notion free</button>
                 </div>
-                <div className='mt-3'>
+                <div className='pt-3 bg-base-100'>
                     <button className='text-sm text-base-content bg-white font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md'>Login</button>
                 </div>
             </div> : null}
