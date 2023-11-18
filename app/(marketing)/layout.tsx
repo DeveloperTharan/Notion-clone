@@ -1,5 +1,3 @@
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,13 +7,11 @@ export const metadata: Metadata = {
 
 const MarketingLayout = ({ children } : { children: React.ReactNode }) => {
     return(
-        <html data-theme="light">
-            <body>
-                <Navbar/>
+        <html>
+            <body>   
                 <div className="container mx-auto">
                     {children}
                 </div>
-                <Footer/>
             </body>
         </html>
     )

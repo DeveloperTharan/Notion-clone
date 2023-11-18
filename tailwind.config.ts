@@ -18,12 +18,14 @@ module.exports = withMT({
         "3xl": "1024px",
         "4xl": "1180px",
         "5xl": "1268px",
-        "6xl": "1568px",
       }
     },
   },
   daisyui: {
     themes: ["light"]
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require('tailwind-scrollbar-hide')
+  ],
 });

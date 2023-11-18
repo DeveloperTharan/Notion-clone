@@ -15,11 +15,6 @@ body {
   padding: 0;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
-}
-
 .MediaNavAccor{
   @apply border-b-0 border-t-[1px] border-base-300 text-sm text-base-content hover:text-base-content;
 }

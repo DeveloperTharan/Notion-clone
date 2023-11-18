@@ -7,7 +7,7 @@ import { GetDemo, GetNotionFree, GetPricing, Getnotionlogin } from './Buttons'
 
 function Navbar() {
   return (
-    <div className="navbar bg-transparent px-2 5xl:px-4 6xl:container 6xl:mx-auto">
+    <div className="navbar bg-transparent px-2 5xl:px-4">
       <div className="navbar-start">
         <div className='flex gap-2 me-5'>
           <Image src={logo} alt="logo/img" width={40} height={40} />

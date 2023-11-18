@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import {
     Accordion,
-    AccordionHeader,
+    AccordionHeader, 
     AccordionBody,
 } from "@material-tailwind/react";
 
@@ -31,13 +31,13 @@ function MediaNavbar() {
 
     return (
         <div className='4xl:hidden'>
-            {!isOpen ? (<button className='me-2 lg:me-4' onClick={() => setIsOpen(true)}>
+            {!isOpen ? (<button onClick={() => setIsOpen(true)}>
                 <IoIosMenu className='text-[26px] text-base-content' />
             </button>) :
-                (<button className='me-2 lg:me-4' onClick={() => setIsOpen(false)}>
+                (<button onClick={() => setIsOpen(false)}>
                     <IoMdClose className='text-[26px] text-base-content' />
                 </button>)}
-            {isOpen ? <div className='absolute left-0 top-[62px] w-full bg-base-100 min-h-full h-full px-3'>
+            {isOpen ? <div className='absolute left-0 top-[62px] w-full bg-white max-h-fit h-full px-3 z-50'>
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
                     <AccordionHeader className='MediaNavAccor' onClick={() => handleOpen(1)}>Products</AccordionHeader>
                     <AccordionBody>
@@ -93,7 +93,7 @@ function MediaNavbar() {
                     <button className='text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md'>Get Notion free</button>
                 </div>
                 <div className='mt-3'>
-                    <button className='text-sm text-base-content font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md'>Login</button>
+                    <button className='text-sm text-base-content bg-white font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md'>Login</button>
                 </div>
             </div> : null}
         </div>
