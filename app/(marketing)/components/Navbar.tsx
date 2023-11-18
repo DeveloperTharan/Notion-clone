@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import logo from '../../../public/logo.png'
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
@@ -6,8 +8,23 @@ import MediaNavbar from './MediaNavbar'
 import { GetDemo, GetNotionFree, GetPricing, Getnotionlogin } from './Buttons'
 
 function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="navbar bg-transparent px-2 5xl:px-4">
+    <div className={`navbar bg-base-100 fixed top-0 z-50 px-2 5xl:px-4 6xl:container 6xl:mx-auto ${scrolled && 'border-b-[1px] border-b-base-300 shadow-sm'}`}>
       <div className="navbar-start">
         <div className='flex gap-2 me-5'>
           <Image src={logo} alt="logo/img" width={40} height={40} />
@@ -82,25 +99,29 @@ function Navbar() {
             </ul>
           </div>
         </div>
-        <GetPricing/>
+        <GetPricing />
       </div>
       <div className="navbar-end">
         <div className='hidden 4xl:block'>
           <div className='flex gap-1'>
             <div className='flex gap-4'>
-              <GetDemo/>
+              <GetDemo />
               <div className=' text-xl text-base-content font-extralight mt-1'>|</div>
               <div className='flex gap-1'>
-                <Getnotionlogin/>
-                <GetNotionFree/>
+                <Getnotionlogin />
+                <GetNotionFree />
               </div>
             </div>
           </div>
         </div>
-        <MediaNavbar /> 
+        <MediaNavbar />
       </div>
     </div>
   )
 }
 
 export default Navbar
+
+function useNavScrollEffect() {
+  throw new Error('Function not implemented.')
+}

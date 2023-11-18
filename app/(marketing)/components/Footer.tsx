@@ -8,7 +8,7 @@ import { IoLogoFacebook, IoLogoYoutube } from "react-icons/io5";
 function Footer() {
   return (
     <>
-      <footer className="footer py-10 px-24 xl:px-44 bg-base-100 text-base-content border-t-[1px] border-base-content">
+      <footer className="footer py-10 px-24 xl:px-44 bg-base-100 text-base-content border-t-[1px] border-base-content 6xl:container 6xl:mx-auto">
         <aside>
           <div className='flex gap-2'>
             <Image src={logo} alt="logo/img" width={40} height={40} />

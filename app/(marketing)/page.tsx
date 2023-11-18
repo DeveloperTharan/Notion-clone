@@ -4,15 +4,12 @@ import { GetNotionFreeHero, TryNotion, RequestNotion } from './components/Button
 import heroblack from '../../public/home-hero.svg'
 import NotionParade from '../../public/notion-parade.svg'
 import MarketingCard from './components/MarketingCard'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
 import MarketingSlide from './components/MarketingSlide'
 
 const MarketingPage = () => {
   return (
     <>
-      <Navbar />
-      <div className='px-3 xl:px-16 3xl:px-44'>
+      <div className='px-3 xl:px-16 3xl:px-44 mt-20'>
         <div className='text-center mt-10'>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>Write, plan, share.</h1>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>With AI at your side.</h1>
@@ -44,7 +41,6 @@ const MarketingPage = () => {
           />
         </aside>
       </div>
-      <Footer />
     </>
   )
 }
