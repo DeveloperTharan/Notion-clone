@@ -8,7 +8,7 @@ function MarketingCard() {
             <div className="w-full max-w-fit gap-3 flex items-center">
                 <div className="card w-full max-w-fit bg-base-300/60">
                     <div>
-                        <div className="card-body p-5 group">
+                        <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ function MarketingCard() {
                 </div>
                 <div className="card w-full max-w-fit bg-base-300/60">
                     <div>
-                        <div className="card-body p-5 group">
+                        <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@ function MarketingCard() {
                 </div>
                 <div className="card w-full max-w-fit bg-base-300/60">
                     <div>
-                        <div className="card-body p-5 group">
+                        <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ function MarketingCard() {
                 </div>
                 <div className="card w-full max-w-fit bg-base-300/60">
                     <div>
-                        <div className="card-body p-5 group">
+                        <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
