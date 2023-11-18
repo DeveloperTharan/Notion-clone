@@ -3,10 +3,10 @@ import Image from 'next/image'
 import { GetNotionFreeHero, TryNotion, RequestNotion } from './components/Buttons'
 import heroblack from '../../public/home-hero.svg'
 import NotionParade from '../../public/notion-parade.svg'
-import about from '../../public/about.svg'
 import MarketingCard from './components/MarketingCard'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import MarketingSlide from './components/MarketingSlide'
 
 const MarketingPage = () => {
   return (
@@ -27,19 +27,7 @@ const MarketingPage = () => {
           />
         </aside>
         <MarketingCard />
-        <div className='mt-32'>
-          <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>A story of tools and the future of work</h1>
-          <div className='grid grid-cols-2 gap-10 lg:gap-20'>
-            <aside className='mt-10'>
-              <Image
-                src={about}
-                alt="img"
-                className='m-auto block h-auto w-full object-contain'
-              />
-            </aside>
-            <p className='text-[12px] md:text-sm lg:text-md font-medium mt-4'>Hi there! If you're reading this, you're probably like me—spending most of your days in your office, in front of a computer.</p>
-          </div>
-        </div>
+        <MarketingSlide/>
         <div className='text-center mt-32'>
           <h1 className='text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold'>Get started for free.</h1>
           <p className='text-sm md:text-md lg:text-lg font-medium mt-4'>Play around with it first. Pay and add your team later.</p>

@@ -6,7 +6,7 @@ function MarketingCard() {
     return (
         <div className="w-full 3xl:max-w-fit h-full 3xl:max-h-fit overflow-x-scroll 3xl:overflow-hidden whitespace-nowrap 3xl:whitespace-normal scroll-smooth scrollbar-hide relative">
             <div className="w-full max-w-fit gap-3 flex items-center">
-                <div className="card w-full max-w-fit bg-base-300/60">
+                <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
                     <div>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
@@ -26,7 +26,7 @@ function MarketingCard() {
                         </div>
                     </div>
                 </div>
-                <div className="card w-full max-w-fit bg-base-300/60">
+                <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
                     <div>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
@@ -39,14 +39,14 @@ function MarketingCard() {
                                 </svg>
                                 Wikis
                             </div>
-                            <p className='text-sm'>Centralize your knowledge. No more hunting.</p>
-                            <div className='opacity-0 text-sm text-purple-700 group-hover:opacity-100'>
+                            <p className='text-sm'>Centralize your knowledge.</p>
+                            <div className='opacity-0 text-sm text-red-700 group-hover:opacity-100'>
                                 Learn more →
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="card w-full max-w-fit bg-base-300/60">
+                <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
                     <div>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
@@ -60,13 +60,13 @@ function MarketingCard() {
                                 Projects
                             </div>
                             <p className='text-sm'>Manage complex projects without the chaos.</p>
-                            <div className='opacity-0 text-sm text-purple-700 group-hover:opacity-100'>
+                            <div className='opacity-0 text-sm text-blue-700 group-hover:opacity-100'>
                                 Learn more →
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="card w-full max-w-fit bg-base-300/60">
+                <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
                     <div>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
@@ -79,8 +79,8 @@ function MarketingCard() {
                                 </svg>
                                 Docs
                             </div>
-                            <p className='text-sm'>Simple, powerful, beautiful. Next-gen notes & docs.</p>
-                            <div className='opacity-0 text-sm text-purple-700 group-hover:opacity-100'>
+                            <p className='text-sm'>Simple, powerful, beautiful Next-gen docs.</p>
+                            <div className='opacity-0 text-sm text-yellow-900 group-hover:opacity-100'>
                                 Learn more →
                             </div>
                         </div>
