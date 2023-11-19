@@ -1,13 +1,14 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 
 function MarketingCard() {
     return (
         <div className="w-full 3xl:max-w-fit h-full 3xl:max-h-fit overflow-x-scroll 3xl:overflow-hidden whitespace-nowrap 3xl:whitespace-normal scroll-smooth scrollbar-hide relative">
             <div className="w-full max-w-fit gap-3 flex items-center">
                 <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
-                    <div>
+                    <Link href=''>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
@@ -24,10 +25,10 @@ function MarketingCard() {
                                 Learn more →
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
-                    <div>
+                    <Link href=''>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
@@ -44,10 +45,10 @@ function MarketingCard() {
                                 Learn more →
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
-                    <div>
+                    <Link href=''>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
@@ -64,10 +65,10 @@ function MarketingCard() {
                                 Learn more →
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="card w-full max-w-fit bg-base-300/60 hover:bg-white border border-base-300">
-                    <div>
+                    <Link href=''>
                         <div className="card-body cursor-pointer p-5 group">
                             <div className="card-title">
                                 <svg
@@ -84,7 +85,7 @@ function MarketingCard() {
                                 Learn more →
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div >
