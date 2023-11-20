@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 
 const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div>
+        <>
             <Navbar />
-            <div className="container mx-auto">
+            <main className="container mx-auto">
                 {children}
-            </div>
+            </main>
             <Footer />
-        </div>
+        </>
     )
 }
 

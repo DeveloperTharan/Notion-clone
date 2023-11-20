@@ -7,12 +7,11 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import MediaNavbar from './MediaNavbar'
 import { useConvexAuth } from 'convex/react'
 import { SignUpButton, SignInButton, UserButton } from '@clerk/clerk-react'
-import { useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { isAuthenticated, isLoading } = useConvexAuth();
-  const navigate = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +23,7 @@ function Navbar() {
     };
     
     if(isAuthenticated){
-      navigate.push('/documents')
+      return redirect('/documents')
     }
 
     window.addEventListener("scroll", handleScroll);
