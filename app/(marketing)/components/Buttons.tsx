@@ -22,7 +22,7 @@ export function TryNotion() {
 export function RequestNotion() {
     return (
         <>
-            <button className="text-blue-600 hover:underline cursor-pointer flex gap-2">Request a demo <FaArrowRight className='mt-[6px] font-thin' /> </button>
+            <button className="text-blue-600 hover:underline cursor-pointer flex gap-2">Request a demo <FaArrowRight className='mt-[6px] font-thin' /></button>
         </>
     )
 }

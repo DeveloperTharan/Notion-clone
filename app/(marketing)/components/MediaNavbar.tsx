@@ -2,11 +2,7 @@
 
 import React, { useState } from 'react'
 import { IoIosMenu, IoMdClose } from "react-icons/io";
-import {
-    Accordion,
-    AccordionHeader,
-    AccordionBody,
-} from "@material-tailwind/react";
+import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
 import { useConvexAuth } from 'convex/react'
 import { SignUpButton, SignInButton } from '@clerk/clerk-react'
 
