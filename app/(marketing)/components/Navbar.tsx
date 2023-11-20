@@ -21,9 +21,9 @@ function Navbar() {
         setScrolled(false);
       }
     };
-    
-    if(isAuthenticated){
-      return redirect('/documents')
+
+    if (isAuthenticated) {
+      return redirect('/getting-start')
     }
 
     window.addEventListener("scroll", handleScroll);
@@ -114,9 +114,7 @@ function Navbar() {
             <div className='flex gap-4'>
               {isLoading && (
                 <div className='flex gap-5 justify-center items-center'>
-                  <button className='skeleton w-28 h-5'></button>
-                  <button className='skeleton w-12 h-5'></button>
-                  <button className='skeleton w-20 h-5'></button>
+                  <button className='skeleton w-20 h-5 rounded-md'></button>
                   <button className='skeleton w-10 h-10 rounded-full'></button>
                 </div>
               )}
@@ -138,7 +136,7 @@ function Navbar() {
               )}
               {isAuthenticated && !isLoading && (
                 <>
-                <UserButton afterSignOutUrl='/'/>
+                  <UserButton afterSignOutUrl='/' />
                 </>
               )}
             </div>
