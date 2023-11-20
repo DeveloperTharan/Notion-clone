@@ -6,11 +6,13 @@ import logo from '../../../public/logo.png'
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import MediaNavbar from './MediaNavbar'
 import { useConvexAuth } from 'convex/react'
-import { SignUpButton, SignInButton } from '@clerk/clerk-react'
+import { SignUpButton, SignInButton, UserButton } from '@clerk/clerk-react'
+import { useRouter } from 'next/navigation'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const { isAuthenticated, isLoading } = useConvexAuth()
+  const { isAuthenticated, isLoading } = useConvexAuth();
+  const navigate = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,10 +22,14 @@ function Navbar() {
         setScrolled(false);
       }
     };
+    
+    if(isAuthenticated){
+      navigate.push('/documents')
+    }
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <div className={`navbar bg-base-100 fixed top-0 z-50 px-2 5xl:px-4 6xl:container 6xl:mx-auto ${scrolled && 'border-b-[1px] border-b-base-300 shadow-sm'}`}>
@@ -108,10 +114,11 @@ function Navbar() {
           <div className='flex gap-1'>
             <div className='flex gap-4'>
               {isLoading && (
-                <div className='flex gap-5'>
-                <div className='skeleton w-28 h-5'></div>
-                <div className='skeleton w-12 h-5'></div>
-                <div className='skeleton w-20 h-5'></div>
+                <div className='flex gap-5 justify-center items-center'>
+                  <button className='skeleton w-28 h-5'></button>
+                  <button className='skeleton w-12 h-5'></button>
+                  <button className='skeleton w-20 h-5'></button>
+                  <button className='skeleton w-10 h-10 rounded-full'></button>
                 </div>
               )}
               {!isAuthenticated && !isLoading && (
@@ -128,6 +135,11 @@ function Navbar() {
                       <button className="bg-base-content text-sm text-base-100 px-3 py-1 rounded-md cursor-pointer mt-[1px]">Get Notion free</button>
                     </SignUpButton>
                   </div>
+                </>
+              )}
+              {isAuthenticated && !isLoading && (
+                <>
+                <UserButton afterSignOutUrl='/'/>
                 </>
               )}
             </div>

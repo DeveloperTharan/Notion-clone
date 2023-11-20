@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
 import { useConvexAuth } from 'convex/react'
-import { SignUpButton, SignInButton } from '@clerk/clerk-react'
+import { SignUpButton, SignInButton, UserButton } from '@clerk/clerk-react'
 
 function Icon({ id, open }: { id: number, open: number }) {
     return (
@@ -29,7 +29,12 @@ function MediaNavbar() {
     const handleOpen = (value: React.SetStateAction<number>) => setOpen(open === value ? 0 : value);
 
     return (
-        <div className='4xl:hidden'>
+        <div className='4xl:hidden flex gap-4 justify-center items-center'>
+            {isAuthenticated && !isLoading && (
+                <>
+                <UserButton afterSignOutUrl='/'/>
+                </>
+              )}
             {!isOpen ? (<button onClick={() => setIsOpen(true)}>
                 <IoIosMenu className='text-[26px] text-base-content' />
             </button>) :
@@ -87,9 +92,9 @@ function MediaNavbar() {
                 </div>
                 {isLoading && (
                     <>
-                        <div className='skeleton w-44 h-6 my-3'></div>
-                        <div className='skeleton w-full h-10 my-3'></div>
-                        <div className='skeleton w-full h-10 my-3'></div>
+                        <button className='skeleton w-44 h-6 my-3'></button>
+                        <button className='skeleton w-full h-8 my-3'></button>
+                        <button className='skeleton w-full h-8 my-3'></button>
                     </>
                 )}
                 {!isAuthenticated && !isLoading && (
