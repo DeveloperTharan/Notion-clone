@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.28.0",
     "@material-tailwind/react": "^2.1.4",
+    "convex": "^1.5.1",
     "next": "14.0.2",
     "react": "^18",
     "react-alice-carousel": "^2.8.0",

@@ -4,9 +4,11 @@ import React, { useState } from 'react'
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import {
     Accordion,
-    AccordionHeader, 
+    AccordionHeader,
     AccordionBody,
 } from "@material-tailwind/react";
+import { useConvexAuth } from 'convex/react'
+import { SignUpButton, SignInButton } from '@clerk/clerk-react'
 
 function Icon({ id, open }: { id: number, open: number }) {
     return (
@@ -26,6 +28,7 @@ function Icon({ id, open }: { id: number, open: number }) {
 function MediaNavbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [open, setOpen] = React.useState(0);
+    const { isAuthenticated, isLoading } = useConvexAuth();
 
     const handleOpen = (value: React.SetStateAction<number>) => setOpen(open === value ? 0 : value);
 
@@ -86,15 +89,26 @@ function MediaNavbar() {
                 <div className='border-t-[1px] border-base-300 bg-base-100'>
                     <button className='text-sm text-base-content font-bold my-4 w-full flex items-start justify-start'>Pricing</button>
                 </div>
-                <div className='border-y-[1px] border-base-300 bg-base-100'>
-                    <button className='text-sm text-base-content font-bold my-4 w-full flex items-start justify-start'>Request a demo</button>
-                </div>
-                <div className='pt-6 bg-base-100'>
-                    <button className='text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md'>Get Notion free</button>
-                </div>
-                <div className='pt-3 bg-base-100'>
-                    <button className='text-sm text-base-content bg-white font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md'>Login</button>
-                </div>
+                {isLoading && (
+                    <>
+                        <div className='skeleton w-44 h-6 my-3'></div>
+                        <div className='skeleton w-full h-10 my-3'></div>
+                        <div className='skeleton w-full h-10 my-3'></div>
+                    </>
+                )}
+                {!isAuthenticated && !isLoading && (
+                    <>
+                        <SignUpButton mode='redirect'>
+                            <button className='text-sm text-base-content font-bold my-4 w-full flex items-start justify-start border-y-[1px] border-base-300 bg-base-100 py-5'>Request a demo</button>
+                        </SignUpButton>
+                        <SignUpButton mode='redirect'>
+                            <button className='text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md mt-3'>Get Notion free</button>
+                        </SignUpButton>
+                        <SignInButton mode='redirect'>
+                            <button className='text-sm text-base-conten font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md mt-3 bg-base-100'>Login</button>
+                        </SignInButton>
+                    </>
+                )}
             </div> : null}
         </div>
     )

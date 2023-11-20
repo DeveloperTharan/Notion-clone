@@ -5,10 +5,12 @@ import Image from 'next/image'
 import logo from '../../../public/logo.png'
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6"
 import MediaNavbar from './MediaNavbar'
-import { GetDemo, GetNotionFree, GetPricing, Getnotionlogin } from './Buttons'
+import { useConvexAuth } from 'convex/react'
+import { SignUpButton, SignInButton } from '@clerk/clerk-react'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { isAuthenticated, isLoading } = useConvexAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,18 +101,35 @@ function Navbar() {
             </ul>
           </div>
         </div>
-        <GetPricing />
+        <button className="hover:bg-base-200 text-sm px-3 py-1 rounded-md cursor-pointer hidden 4xl:block">Pricing</button>
       </div>
       <div className="navbar-end">
         <div className='hidden 4xl:block'>
           <div className='flex gap-1'>
             <div className='flex gap-4'>
-              <GetDemo />
-              <div className=' text-xl text-base-content font-extralight mt-1'>|</div>
-              <div className='flex gap-1'>
-                <Getnotionlogin />
-                <GetNotionFree />
-              </div>
+              {isLoading && (
+                <div className='flex gap-5'>
+                <div className='skeleton w-28 h-5'></div>
+                <div className='skeleton w-12 h-5'></div>
+                <div className='skeleton w-20 h-5'></div>
+                </div>
+              )}
+              {!isAuthenticated && !isLoading && (
+                <>
+                  <SignUpButton mode='modal'>
+                    <button className="hover:bg-base-200 text-sm px-3 py-1 rounded-md cursor-pointer">Request a demo</button>
+                  </SignUpButton>
+                  <div className=' text-xl text-base-content font-extralight mt-1'>|</div>
+                  <div className='flex gap-1'>
+                    <SignInButton mode='modal'>
+                      <button className="hover:bg-base-200 text-sm px-3 py-1 rounded-md cursor-pointer">Login</button>
+                    </SignInButton>
+                    <SignUpButton mode='modal'>
+                      <button className="bg-base-content text-sm text-base-100 px-3 py-1 rounded-md cursor-pointer mt-[1px]">Get Notion free</button>
+                    </SignUpButton>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
