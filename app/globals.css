@@ -16,5 +16,5 @@ body {
 }
 
 .MediaNavAccor {
-  @apply text-sm text-base-content bg-base-100 font-bold border-t-[1px] border-base-300 border-b-0;
+  @apply text-sm text-base-content hover:text-base-content bg-base-100 font-bold border-t-[1px] border-base-300 border-b-0;
 }

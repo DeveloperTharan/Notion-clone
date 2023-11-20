@@ -84,10 +84,10 @@ function MediaNavbar() {
                     </AccordionBody>
                 </Accordion>
                 <div className='border-t-[1px] border-base-300 bg-base-100'>
-                    <button className='text-sm text-base-content font-bold my-4'>Pricing</button>
+                    <button className='text-sm text-base-content font-bold my-4 w-full flex items-start justify-start'>Pricing</button>
                 </div>
                 <div className='border-y-[1px] border-base-300 bg-base-100'>
-                    <button className='text-sm text-base-content font-bold my-4'>Request a demo</button>
+                    <button className='text-sm text-base-content font-bold my-4 w-full flex items-start justify-start'>Request a demo</button>
                 </div>
                 <div className='pt-6 bg-base-100'>
                     <button className='text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md'>Get Notion free</button>
