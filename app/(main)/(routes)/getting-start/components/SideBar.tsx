@@ -1,6 +1,7 @@
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import { RxDoubleArrowLeft} from "react-icons/rx";
+import { PiArrowsClockwiseThin } from "react-icons/pi";
 
 export default function sideBar() {
   const [open, setOpen] = useState(true);
@@ -25,7 +26,11 @@ export default function sideBar() {
           <div className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}>
             <UserButton afterSignOutUrl='/' />
           </div>
-          <span className={`cursor-pointer text-sm ${!open && "hidden"}`}>{descriptionhandeler(`${user!.fullName}`, 10)}</span>
+          <span className={`cursor-pointer text-sm ${!open && "hidden"}`}>{descriptionhandeler(`${user?.fullName}`, 13)}</span>
+          <PiArrowsClockwiseThin className={`cursor-pointer text-sm ${!open && "hidden"}`} />
+        </div>
+        <div className="">
+          
         </div>
       </div>
     </div>
