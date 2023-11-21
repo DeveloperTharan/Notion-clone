@@ -18,9 +18,10 @@ export default function WorkArea() {
     const promise = create({ title: "untitled" });
 
     toast.promise(promise, {
-      loading: "Creating a new Note.",
+      loading: "Creating a new Note...",
       success: "New note created.",
       error: "Failed to create a new note.",
+      duration: 1000,
     });
   };
 
@@ -37,7 +38,7 @@ export default function WorkArea() {
         onClick={onCreate}
       >
         <CiCirclePlus />
-        Create a note
+        Create a note 
       </button>
     </div>
   );

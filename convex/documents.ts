@@ -16,7 +16,7 @@ export const create = mutation({
 
     const userId = identity.subject;
 
-    const document = await ctx.db.insert("documents", {
+    const documents = await ctx.db.insert("documents", {
       title: args.title,
       parentDocument: args.parentDocument,
       userId,
@@ -24,6 +24,20 @@ export const create = mutation({
       isPublished: false,
     });
 
-    return document;
+    return documents;
   },
 });
+
+export const get = query({
+  handler:async ( ctx ) => {
+    const identity = await ctx.auth.getUserIdentity();
+    
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const documents = await ctx.db.query("documents").collect();
+
+    return documents;
+  }
+})
