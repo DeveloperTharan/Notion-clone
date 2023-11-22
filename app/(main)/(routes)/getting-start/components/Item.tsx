@@ -127,14 +127,14 @@ export default function Item({
                 <div className="ml-auto flex items-center gap-x-2">
                   <div
                     className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
-            hover:bg-base-300 p-1"
+                    hover:bg-base-300 p-1"
                     onClick={handelCreateInside}
                   >
                     <GoPlus className="h-4 w-4 shrink-0 text-gray-600" />
                   </div>
                   <div
                     className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
-            hover:bg-base-300 p-1"
+                    hover:bg-base-300 p-1"
                   >
                     <BsThreeDots className="h-4 w-4 shrink-0 text-gray-600" />
                   </div>

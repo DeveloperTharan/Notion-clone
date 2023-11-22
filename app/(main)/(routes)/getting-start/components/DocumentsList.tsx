@@ -69,14 +69,16 @@ export default function DocumentsList({
 
   return (
     <>
-      <p
-        style={{paddingLeft: level ? `${level * 12 + 25}px` : undefined,}}
-        className={`hidden text-[12px] font-medium text-gray-600
-        ${expanded && "last:block"}
-        ${level === 0 && "hidden"}`}
-      >
-        No pages inside
-      </p>
+      {level === 0 ? null : (
+        <p
+          style={{ paddingLeft: level ? `${level * 12 + 25}px` : undefined }}
+          className={`hidden text-[12px] font-medium text-gray-600
+          ${expanded && "last:block"} 
+        `}
+        >
+          No pages inside
+        </p>
+      )}
       {documents.map((document) => (
         <div key={document._id}>
           <Item
@@ -92,7 +94,11 @@ export default function DocumentsList({
             open={open}
           />
           {expanded[document._id] && (
-            <DocumentsList parentDocumentId={document._id} level={level + 1} open={open} />
+            <DocumentsList
+              parentDocumentId={document._id}
+              level={level + 1}
+              open={open}
+            />
           )}
         </div>
       ))}
