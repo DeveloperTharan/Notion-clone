@@ -22,13 +22,15 @@ function Navbar() {
       }
     };
 
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     if (isAuthenticated) {
       return redirect("/getting-start");
     }
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isAuthenticated]);
+  },[isAuthenticated])
 
   return (
     <div

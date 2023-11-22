@@ -38,7 +38,7 @@ export default function sideBar() {
         ${!open && "transition-all ease-in-out duration-700"}`}
       >
         <RxDoubleArrowLeft
-          className={`absolute cursor-pointer -right-4 top-[30px] w-7 border-dark-purple
+          className={`absolute cursor-pointer -right-4 top-[30px] w-7 border-gray-50
           border-2 rounded-full bg-base-100 hover:bg-base-300 ${
             !open && "rotate-180"
           }`}
