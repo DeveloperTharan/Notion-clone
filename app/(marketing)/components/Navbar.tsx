@@ -7,11 +7,13 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import MediaNavbar from "./MediaNavbar";
 import { useConvexAuth } from "convex/react";
 import { SignUpButton, SignInButton, UserButton } from "@clerk/clerk-react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { isAuthenticated, isLoading } = useConvexAuth();
+  const route = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +30,9 @@ function Navbar() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      return redirect("/getting-start");
+      return route.push("/getting-start");
     }
-  },[isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <div
@@ -39,10 +41,12 @@ function Navbar() {
       }`}
     >
       <div className="navbar-start">
-        <div className="flex gap-2 me-5">
-          <Image src={logo} alt="logo/img" width={40} height={40} />
-          <span className="capitalize font-bold text-md mt-2">notion</span>
-        </div>
+        <Link href={"/"}>
+          <div className="flex gap-2 me-5">
+            <Image src={logo} alt="logo/img" width={40} height={40} />
+            <span className="capitalize font-bold text-md mt-2">notion</span>
+          </div>
+        </Link>
         <div className="hidden 4xl:block">
           <div className="dropdown dropdown-hover">
             <label

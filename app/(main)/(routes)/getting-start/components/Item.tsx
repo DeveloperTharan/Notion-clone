@@ -119,27 +119,31 @@ export default function Item({
           px-1.5 text-[10px] font-medium text-gray-600 opacity-100"
         ></div>
       )}
-      {!!id && (
+      {open ? (
         <>
-          {open ? (
-            <div className="ml-auto flex items-center gap-x-2">
-              <div
-                className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
+          {!!id && (
+            <>
+              {open ? (
+                <div className="ml-auto flex items-center gap-x-2">
+                  <div
+                    className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
             hover:bg-base-300 p-1"
-                onClick={handelCreateInside}
-              >
-                <GoPlus className="h-4 w-4 shrink-0 text-gray-600" />
-              </div>
-              <div
-                className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
+                    onClick={handelCreateInside}
+                  >
+                    <GoPlus className="h-4 w-4 shrink-0 text-gray-600" />
+                  </div>
+                  <div
+                    className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
             hover:bg-base-300 p-1"
-              >
-                <BsThreeDots className="h-4 w-4 shrink-0 text-gray-600" />
-              </div>
-            </div>
-          ) : null}
+                  >
+                    <BsThreeDots className="h-4 w-4 shrink-0 text-gray-600" />
+                  </div>
+                </div>
+              ) : null}
+            </>
+          )}
         </>
-      )}
+      ) : null}
     </div>
   );
 }
