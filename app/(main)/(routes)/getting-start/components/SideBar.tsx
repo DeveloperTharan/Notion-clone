@@ -1,8 +1,7 @@
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import { RxDoubleArrowLeft } from "react-icons/rx";
-import { IoSearch } from "react-icons/io5";
-import { CiCirclePlus, CiClock2, CiSettings } from "react-icons/ci";
+import { CiCirclePlus, CiClock2, CiSettings, CiSearch } from "react-icons/ci";
 import { PiArrowsClockwiseThin } from "react-icons/pi";
 import Item from "./Item";
 import { useMutation, useQuery } from "convex/react";
@@ -66,7 +65,7 @@ export default function sideBar() {
             isSearch
             onClick={() => {}}
             open={open}
-            icon={IoSearch}
+            icon={CiSearch}
           />
           <Item label="Updates" open={open} icon={CiClock2} />
           <Item label="Settings" open={open} icon={CiSettings} />

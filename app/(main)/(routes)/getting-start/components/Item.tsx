@@ -37,7 +37,7 @@ export default function Item({
         paddingLeft: level ? `${level * 12 + 12}px` : "12px",
       }}
       className={`group min-h-[27px] text-sm py-[6px] pr-3 w-full hover:bg-base-200 flex items-center 
-      justify-start text-base-content font-medium gap-2 rounded-md mt-2 ${
+      justify-start text-base-content font-medium gap-2 rounded-md mt-1 ${
         active && "bg-base-300 text-gray-800"
       }`}
     >
@@ -61,13 +61,13 @@ export default function Item({
             <Icon className="h-5 w-5 shrink-0 text-gray-600 ms-2" />
           ) : (
             <div className="tooltip tooltip-right" data-tip={label}>
-              <Icon className="h-6 w-6 ms-0" />
+              <Icon className="h-5 w-5 ms-[3px]" />
             </div>
           )}
         </>
       )}
       <span
-        className={`truncate text-gray-600 font-medium text-sm ${
+        className={`truncate text-gray-600 font-medium text-[12px] ${
           !open && "hidden"
         }`}
       >
