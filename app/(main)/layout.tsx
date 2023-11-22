@@ -1,6 +1,5 @@
 "use client";
 
-import { UserButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import SideBar from "./(routes)/getting-start/components/SideBar";

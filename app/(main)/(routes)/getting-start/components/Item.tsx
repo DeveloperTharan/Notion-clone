@@ -1,3 +1,5 @@
+'use client'
+
 import { Id } from "@/convex/_generated/dataModel";
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";

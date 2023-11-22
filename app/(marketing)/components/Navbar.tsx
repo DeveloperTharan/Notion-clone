@@ -32,7 +32,7 @@ function Navbar() {
     if (isAuthenticated) {
       return route.push("/getting-start");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, route]);
 
   return (
     <div

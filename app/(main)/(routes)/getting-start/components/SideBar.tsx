@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import Item from "./Item";
@@ -16,7 +18,7 @@ import { PiArrowsClockwiseThin } from "react-icons/pi";
 import { TfiImport } from "react-icons/tfi";
 import { BsFillTrash2Fill } from "react-icons/bs";
 
-export default function sideBar() {
+export default function SideBar() {
   const [open, setOpen] = useState(true);
   const { user } = useUser();
 
