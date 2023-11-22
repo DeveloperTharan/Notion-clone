@@ -4,7 +4,7 @@ import React from "react";
 import empty from "@/public/empty.png";
 import Image from "next/image";
 import { useUser } from "@clerk/clerk-react";
-import { CiCirclePlus } from "react-icons/ci";
+import { FaCirclePlus } from "react-icons/fa6";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
@@ -37,7 +37,7 @@ export default function WorkArea() {
         className="btn bg-base-content text-base-100 hover:bg-base-content hover:text-base-100"
         onClick={onCreate}
       >
-        <CiCirclePlus />
+        <FaCirclePlus />
         Create a note 
       </button>
     </div>

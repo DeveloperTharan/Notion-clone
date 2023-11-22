@@ -1,17 +1,25 @@
-import { UserButton, useUser } from "@clerk/clerk-react";
 import { useState } from "react";
-import { RxDoubleArrowLeft } from "react-icons/rx";
-import { CiCirclePlus, CiClock2, CiSettings, CiSearch } from "react-icons/ci";
-import { PiArrowsClockwiseThin } from "react-icons/pi";
+import { UserButton, useUser } from "@clerk/clerk-react";
 import Item from "./Item";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import DocumentsList from "./DocumentsList";
+
+import { RxDoubleArrowLeft } from "react-icons/rx";
+import { IoSearchSharp, IoSettingsOutline } from "react-icons/io5";
+import { LuClock3 } from "react-icons/lu";
+import { AiOutlineTeam } from "react-icons/ai";
+import { TbTemplate  } from "react-icons/tb";
+import { FaCirclePlus } from "react-icons/fa6";
+import { PiArrowsClockwiseThin } from "react-icons/pi";
+import { TfiImport } from "react-icons/tfi";
+import { BsFillTrash2Fill } from "react-icons/bs";
 
 export default function sideBar() {
   const [open, setOpen] = useState(true);
   const { user } = useUser();
-  const documents = useQuery(api.documents.get);
+
   const create = useMutation(api.documents.create);
 
   const handelCreate = () => {
@@ -38,7 +46,7 @@ export default function sideBar() {
         ${!open && "transition-all ease-in-out duration-700"}`}
       >
         <RxDoubleArrowLeft
-          className={`absolute cursor-pointer -right-4 top-[30px] w-7 border-gray-50
+          className={`absolute cursor-pointer -right-4 top-[30px] w-7 border-base-200
           border-2 rounded-full bg-base-100 hover:bg-base-300 ${
             !open && "rotate-180"
           }`}
@@ -65,21 +73,25 @@ export default function sideBar() {
             isSearch
             onClick={() => {}}
             open={open}
-            icon={CiSearch}
+            icon={IoSearchSharp}
           />
-          <Item label="Updates" open={open} icon={CiClock2} />
-          <Item label="Settings" open={open} icon={CiSettings} />
+          <Item label="Updates" open={open} icon={LuClock3} />
+          <Item label="Settings" open={open} icon={IoSettingsOutline} />
           <Item
             onClick={handelCreate}
             label="New Page"
             open={open}
-            icon={CiCirclePlus}
+            icon={FaCirclePlus}
           />
         </div>
-        <div className="mt-2">
-          {documents?.map((document) => (
-            <p>{document.title}</p>
-          ))}
+        <div className="mt-4">
+          <DocumentsList open={open} />
+        </div>
+        <div className="mt-7">
+          <Item label="Create a Teamspace" open={open} icon={AiOutlineTeam} />
+          <Item label="Template" open={open} icon={TbTemplate} />
+          <Item label="Import" open={open} icon={TfiImport} />
+          <Item label="Trash" open={open} icon={BsFillTrash2Fill} />
         </div>
       </div>
     </div>
