@@ -13,7 +13,7 @@ import { IoSearchSharp, IoSettingsOutline } from "react-icons/io5";
 import { LuClock3 } from "react-icons/lu";
 import { AiOutlineTeam } from "react-icons/ai";
 import { TbTemplate  } from "react-icons/tb";
-import { FaCirclePlus } from "react-icons/fa6";
+import { FaCirclePlus, FaPlus } from "react-icons/fa6";
 import { PiArrowsClockwiseThin } from "react-icons/pi";
 import { TfiImport } from "react-icons/tfi";
 import { BsFillTrash2Fill } from "react-icons/bs";
@@ -62,7 +62,7 @@ export default function SideBar() {
           >
             <UserButton afterSignOutUrl="/" />
           </div>
-          <span className={`cursor-pointer text-sm ${!open && "hidden"}`}>
+          <span className={`cursor-pointer text-sm ${!open && "hidden transition ease-in-out duration-300"}`}>
             {descriptionhandeler(`${user?.fullName}`, 13)}
           </span>
           <PiArrowsClockwiseThin
@@ -86,8 +86,14 @@ export default function SideBar() {
             icon={FaCirclePlus}
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-5">
           <DocumentsList open={open} />
+          <Item
+            onClick={handelCreate}
+            label="Add a page"
+            open={open}
+            icon={FaPlus}
+          />
         </div>
         <div className="mt-7">
           <Item label="Create a Teamspace" open={open} icon={AiOutlineTeam} />
