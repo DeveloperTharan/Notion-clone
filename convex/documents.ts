@@ -12,7 +12,7 @@ export const create = mutation({
 
   //handeling user and files
   handler: async (ctx, args) => {
-    //geting user identity
+    //geting user identity 
     const identity = await ctx.auth.getUserIdentity();
 
     //validating
@@ -20,7 +20,7 @@ export const create = mutation({
       throw new Error("Not authenticated");
     }
 
-    //
+    //store the user identity
     const userId = identity.subject;
 
     //creating document
@@ -241,8 +241,30 @@ export const remove = mutation({
       throw new Error("Unauthorized");
     }
 
+    //delete all the child of that document
+    const recursiveDelete = async (documentId: Id<"documents">) => {
+      const children = await ctx.db
+        .query("documents")
+        .withIndex("by_user_parent", (q) =>
+          q.eq("userId", userId).eq("parentDocument", documentId)
+        )
+        .collect();
+
+      //for-loop for continue this for all the children
+      for (const child of children) {
+        await ctx.db.delete(child._id);
+
+        //it will create a loop and continue this.
+        //(check every single child and confirm deleted or not it will go at the end of the document childrens)
+        await recursiveDelete(child._id);
+      }
+    };
+
     //deleting that document
     const document = await ctx.db.delete(args.id);
+
+    //it will get all the documents recresively
+    recursiveDelete(args.id);
 
     return document;
   },

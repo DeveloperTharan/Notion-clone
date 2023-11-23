@@ -9,7 +9,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useUser } from "@clerk/clerk-react";
 
 import { MdArrowForwardIos } from "react-icons/md";
-import { GoPlus } from "react-icons/go";
+import { GoPlus } from "react-icons/go"; 
 import { BsThreeDots } from "react-icons/bs";
 import { IoStarOutline, IoTrashOutline } from "react-icons/io5";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";

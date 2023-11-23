@@ -53,55 +53,56 @@ export default function DocumentsList({
     );
   }
 
-  if (documents === undefined) {
-    return (
-      <>
-        <ItemSkeleton level={level} />
-        {level === 0 && (
-          <>
-            <ItemSkeleton level={level} />
-            <ItemSkeleton level={level} />
-          </>
-        )}
-      </>
-    );
-  }
-
   return (
     <>
-      {level === 0 ? null : (
-        <p
-          style={{ paddingLeft: level ? `${level * 12 + 25}px` : undefined }}
-          className={`hidden text-[12px] font-medium text-gray-600
-          ${expanded && "last:block"} 
-        `}
-        >
-          No pages inside
-        </p>
-      )}
-      {documents.map((document) => (
-        <div key={document._id}>
-          <Item
-            id={document._id}
-            onClick={() => onRedirect(document._id)}
-            label={document.title}
-            icon={IoDocumentTextOutline}
-            documentIcon={document.icon}
-            active={params.documentId === document._id}
-            level={level}
-            onExpand={() => onExpand(document._id)}
-            expanded={expanded[document._id]}
-            open={open}
-          />
-          {expanded[document._id] && (
-            <DocumentsList
-              parentDocumentId={document._id}
-              level={level + 1}
-              open={open}
-            />
+      {documents === undefined ? (
+        <>
+          <ItemSkeleton level={level} />
+          {level === 0 && (
+            <>
+              <ItemSkeleton level={level} />
+              <ItemSkeleton level={level} />
+            </>
           )}
-        </div>
-      ))}
+        </>
+      ) : (
+        <>
+          {level === 0 ? null : (
+            <p
+              style={{
+                paddingLeft: level ? `${level * 12 + 25}px` : undefined,
+              }}
+              className={`hidden text-[12px] font-medium text-gray-600
+              ${expanded && "last:block"} `}
+            >
+              No pages inside
+            </p>
+          )}
+          {documents.map((document) => (
+            <div key={document._id}>
+              <Item
+                id={document._id}
+                onClick={() => onRedirect(document._id)}
+                label={document.title}
+                icon={IoDocumentTextOutline}
+                documentIcon={document.icon}
+                active={params.documentId === document._id}
+                level={level}
+                onExpand={() => onExpand(document._id)}
+                expanded={expanded[document._id]}
+                open={open}
+              />
+              {expanded[document._id] && (
+                <DocumentsList
+                  parentDocumentId={document._id}
+                  level={level + 1}
+                  open={open}
+                />
+              )}
+            </div>
+          ))}
+        </>
+      )}
     </>
   );
 }

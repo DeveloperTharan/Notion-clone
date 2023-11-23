@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import { UserButton, useUser } from "@clerk/clerk-react";
@@ -12,11 +12,12 @@ import { RxDoubleArrowLeft } from "react-icons/rx";
 import { IoSearchSharp, IoSettingsOutline } from "react-icons/io5";
 import { LuClock3 } from "react-icons/lu";
 import { AiOutlineTeam } from "react-icons/ai";
-import { TbTemplate  } from "react-icons/tb";
+import { TbTemplate } from "react-icons/tb";
 import { FaCirclePlus, FaPlus } from "react-icons/fa6";
 import { PiArrowsClockwiseThin } from "react-icons/pi";
 import { TfiImport } from "react-icons/tfi";
 import { BsFillTrash2Fill } from "react-icons/bs";
+import TrashBox from "./TrashBox";
 
 export default function SideBar() {
   const [open, setOpen] = useState(true);
@@ -62,7 +63,11 @@ export default function SideBar() {
           >
             <UserButton afterSignOutUrl="/" />
           </div>
-          <span className={`cursor-pointer text-sm ${!open && "hidden transition ease-in-out duration-300"}`}>
+          <span
+            className={`cursor-pointer text-sm ${
+              !open && "hidden transition ease-in-out duration-300"
+            }`}
+          >
             {descriptionhandeler(`${user?.fullName}`, 13)}
           </span>
           <PiArrowsClockwiseThin
@@ -99,7 +104,17 @@ export default function SideBar() {
           <Item label="Create a Teamspace" open={open} icon={AiOutlineTeam} />
           <Item label="Template" open={open} icon={TbTemplate} />
           <Item label="Import" open={open} icon={TfiImport} />
-          <Item label="Trash" open={open} icon={BsFillTrash2Fill} />
+          <div className="dropdown dropdown-right w-full">
+            <label tabIndex={0} className="">
+              <Item label="Trash" open={open} icon={BsFillTrash2Fill} />
+            </label>
+            <div
+              tabIndex={0}
+              className="dropdown-content z-50 menu p-1 shadow bg-base-200 w-64"
+            >
+              <TrashBox />
+            </div>
+          </div>
         </div>
       </div>
     </div>
