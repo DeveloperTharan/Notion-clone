@@ -17,12 +17,7 @@ export default function TrashBox() {
   const documents = useQuery(api.documents.getTrash);
   const restore = useMutation(api.documents.restore);
   const remove = useMutation(api.documents.remove);
-  const [search, setSearch] = useState("");
-  const [modelOpen, setModelOpen] = useState(false);
-
-  const fiterdocument = documents?.filter((document) => {
-    return document.title.toLowerCase().includes(search.toLowerCase());
-  });
+  const [searchDocument, setSearchDocument] = useState("");
 
   const handleClick = (docunmentId: string) => {
     return router.push(`/getting-start/${docunmentId}`);
@@ -70,8 +65,7 @@ export default function TrashBox() {
           <div className="flex items-center gap-x-1 p-2">
             <IoSearchSharp className="h-4 w-4 shrink-0 text-gray-600" />
             <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => setSearchDocument(e.target.value)}
               className="h-7 px-2 focus-visible:ring-transparent bg-base-300 outline-none"
               placeholder="Filter by page title..."
             />
@@ -80,33 +74,37 @@ export default function TrashBox() {
             <p className="hidden last:block text-xs text-center text-gray-600 pb-2">
               No documents found.
             </p>
-            {fiterdocument?.map((document) => (
-              <div
-                key={document._id}
-                role="button"
-                onClick={() => handleClick(document._id)}
-                className="text-sm rounded-sm w-full flex items-center text-gray-600 justify-between"
-              >
-                <span className="truncate pl-2">{document.title}</span>
-                <div className="flex items-center">
-                  <div
-                    onClick={(e) => handleRestore(e, document._id)}
-                    role="button"
-                    className="rounded-sm p-2 hover:bg-gray-300"
-                  >
-                    <LuUndo2 className="h-4 w-4 shrink-0 text-gray-600" />
-                  </div>
-                  <DeleteModel onConfirm={() => handleRemove(document._id)}>
+            {documents?.filter((document) => {
+                return searchDocument.toLowerCase() === ""
+                  ? document
+                  : document.title.toLowerCase().includes(searchDocument);
+              }).map((document) => (
+                <div
+                  key={document._id}
+                  role="button"
+                  onClick={() => handleClick(document._id)}
+                  className="text-sm rounded-sm w-full flex items-center text-gray-600 justify-between"
+                >
+                  <span className="truncate pl-2">{document.title}</span>
+                  <div className="flex items-center">
                     <div
+                      onClick={(e) => handleRestore(e, document._id)}
                       role="button"
-                      className="rounded-sm p-2 hover:bg-base-300"
+                      className="rounded-sm p-2 hover:bg-gray-300"
                     >
-                      <IoTrashOutline className="h-4 w-4 shrink-0 text-gray-600" />
+                      <LuUndo2 className="h-4 w-4 shrink-0 text-gray-600" />
                     </div>
-                  </DeleteModel>
+                    <DeleteModel onConfirm={() => handleRemove(document._id)}>
+                      <div
+                        role="button"
+                        className="rounded-sm p-2 hover:bg-base-300"
+                      >
+                        <IoTrashOutline className="h-4 w-4 shrink-0 text-gray-600" />
+                      </div>
+                    </DeleteModel>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       )}

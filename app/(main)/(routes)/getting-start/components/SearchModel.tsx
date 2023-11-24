@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import { useUser } from "@clerk/clerk-react";
@@ -16,6 +18,7 @@ export default function SearchModel({
   const { user } = useUser();
   const router = useRouter();
   const documents = useQuery(api.documents.getSearch);
+  const [searchDocument, setSearchDocument] = useState("");
 
   const handleSelect = (id: string) => {
     router.push(`/getting-start/${id}`);
@@ -42,6 +45,7 @@ export default function SearchModel({
             <input
               className="h-7 px-2 focus-visible:ring-transparent outline-none w-full text-[16px] font-thin"
               placeholder={`Search ${user?.fullName}'s Notion...`}
+              onChange={(e) => setSearchDocument(e.target.value)}
             />
           </div>
         </DialogHeader>
@@ -49,22 +53,26 @@ export default function SearchModel({
           <p className="hidden last:block text-sm text-center text- pb-2">
             No results found.
           </p>
-          {documents?.map((document) => (
-            <div
-              key={document._id}
-              title={document.title}
-              onClick={() => handleSelect(document._id)}
-              className="flex gap-x-2 items-center justify-start cursor-pointer hover:bg-gray-200 
+          {documents?.filter((document) => {
+              return searchDocument.toLowerCase() === ""
+                ? document
+                : document.title.toLowerCase().includes(searchDocument);
+            }).map((document) => (
+              <div
+                key={document._id}
+                title={document.title}
+                onClick={() => handleSelect(document._id)}
+                className="flex gap-x-2 items-center justify-start cursor-pointer hover:bg-gray-200 
               w-full px-4 rounded-md py-1 mt-2"
-            >
-              {document.icon ? (
-                <p className="mr-2 text-[18px]">{document.icon}</p>
-              ) : (
-                <IoDocumentTextOutline className="h-4 w-4" />
-              )}
-              <h5>{document.title}</h5>
-            </div>
-          ))}
+              >
+                {document.icon ? (
+                  <p className="mr-2 text-[18px]">{document.icon}</p>
+                ) : (
+                  <IoDocumentTextOutline className="h-4 w-4" />
+                )}
+                <h5>{document.title}</h5>
+              </div>
+            ))}
         </DialogBody>
       </Dialog>
     </>
