@@ -51,7 +51,7 @@ export default function Title({ initialData } : TitleProps) {
       {!!initialData.icon && <p>{initialData.icon}</p>}
       {isEditing ? (
         <input 
-          className='h-7 px-2 focus-visible:ring-transparent outline-none' 
+          className='h-5 w-20 px-2 focus-visible:ring-transparent outline-base-200' 
           ref={inputRef}
           onClick={handleEnableInput}
           onBlur={handleDisableInput}
