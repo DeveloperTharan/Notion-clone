@@ -77,7 +77,7 @@ export default function TrashBox() {
             />
           </div>
           <div className="mt-2 px-1 pb-1">
-            <p className="hidden last:block text-xs text-center text-muted-foreground pb-2">
+            <p className="hidden last:block text-xs text-center text-gray-600 pb-2">
               No documents found.
             </p>
             {fiterdocument?.map((document) => (
@@ -85,21 +85,21 @@ export default function TrashBox() {
                 key={document._id}
                 role="button"
                 onClick={() => handleClick(document._id)}
-                className="text-sm rounded-sm w-full hover:bg-primary/5 flex items-center text-primary justify-between"
+                className="text-sm rounded-sm w-full flex items-center text-gray-600 justify-between"
               >
                 <span className="truncate pl-2">{document.title}</span>
                 <div className="flex items-center">
                   <div
                     onClick={(e) => handleRestore(e, document._id)}
                     role="button"
-                    className="rounded-sm p-2 hover:bg-neutral-200"
+                    className="rounded-sm p-2 hover:bg-gray-300"
                   >
                     <LuUndo2 className="h-4 w-4 shrink-0 text-gray-600" />
                   </div>
                   <DeleteModel onConfirm={() => handleRemove(document._id)}>
                     <div
                       role="button"
-                      className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                      className="rounded-sm p-2 hover:bg-base-300"
                     >
                       <IoTrashOutline className="h-4 w-4 shrink-0 text-gray-600" />
                     </div>

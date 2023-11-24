@@ -7,6 +7,8 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import DocumentsList from "./DocumentsList";
+import TrashBox from "./TrashBox";
+import SearchModel from "./SearchModel";
 
 import { RxDoubleArrowLeft } from "react-icons/rx";
 import { IoSearchSharp, IoSettingsOutline } from "react-icons/io5";
@@ -17,7 +19,6 @@ import { FaCirclePlus, FaPlus } from "react-icons/fa6";
 import { PiArrowsClockwiseThin } from "react-icons/pi";
 import { TfiImport } from "react-icons/tfi";
 import { BsFillTrash2Fill } from "react-icons/bs";
-import TrashBox from "./TrashBox";
 
 export default function SideBar() {
   const [open, setOpen] = useState(true);
@@ -75,13 +76,13 @@ export default function SideBar() {
           />
         </div>
         <div className="mt-2">
-          <Item
-            label="Search"
-            isSearch
-            onClick={() => {}}
-            open={open}
-            icon={IoSearchSharp}
-          />
+          <SearchModel>
+            <Item
+              label="Search"
+              open={open}
+              icon={IoSearchSharp}
+            />
+          </SearchModel>
           <Item label="Updates" open={open} icon={LuClock3} />
           <Item label="Settings" open={open} icon={IoSettingsOutline} />
           <Item

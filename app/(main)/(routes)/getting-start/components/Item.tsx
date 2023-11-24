@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Id } from "@/convex/_generated/dataModel";
 import { useUser } from "@clerk/clerk-react";
-
+ 
 import { MdArrowForwardIos } from "react-icons/md";
 import { GoPlus } from "react-icons/go"; 
 import { BsThreeDots } from "react-icons/bs";
@@ -24,7 +24,6 @@ interface itemProp {
   documentIcon?: string;
   active?: boolean;
   expanded?: boolean;
-  isSearch?: boolean;
   level?: number;
   onExpand?: () => void;
 }
@@ -38,7 +37,6 @@ export default function Item({
   documentIcon,
   active,
   expanded,
-  isSearch,
   level,
   onExpand,
 }: itemProp) {
@@ -148,12 +146,6 @@ export default function Item({
       >
         {label}
       </span>
-      {isSearch && (
-        <div
-          className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 
-          px-1.5 text-[10px] font-medium text-gray-600 opacity-100"
-        ></div>
-      )}
       {open ? (
         <>
           {!!id && (

@@ -12,7 +12,7 @@ export const create = mutation({
 
   //handeling user and files
   handler: async (ctx, args) => {
-    //geting user identity 
+    //geting user identity
     const identity = await ctx.auth.getUserIdentity();
 
     //validating
@@ -267,5 +267,27 @@ export const remove = mutation({
     recursiveDelete(args.id);
 
     return document;
+  },
+});
+
+//search documents
+export const getSearch = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (query) => query.eq("userId", userId))
+      .filter((query) => query.eq(query.field("isArchived"), false))
+      .order("desc")
+      .collect();
+
+    return documents;
   },
 });

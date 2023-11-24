@@ -1,10 +1,8 @@
 "use client";
 
-import React, { Children } from "react";
+import React from "react";
 import {
-  Button,
   Dialog,
-  DialogHeader,
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
