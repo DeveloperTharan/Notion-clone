@@ -51,8 +51,7 @@ export default function Title({ initialData }: TitleProps) {
       {!!initialData.icon && <p>{initialData.icon}</p>}
       {isEditing ? (
         <input
-          className="h-5 px-2 focus-visible:ring-transparent outline-none 
-          border-b-[1px] border-b-base-300 text-sm"
+          className="h-5 px-2 focus-visible:ring-transparent text-sm mt-[12px]"
           ref={inputRef}
           onClick={handleEnableInput}
           onBlur={handleDisableInput}
@@ -65,7 +64,7 @@ export default function Title({ initialData }: TitleProps) {
           className="bg-transparent hover:bg-base-200 font-normal h-auto py-1 px-3 rounded-md"
           onClick={handleEnableInput}
         >
-          <span className="truncate text-sm font-medium text-gray-600">
+          <span className="text-sm text-base-content">
             {titlehandeler(`${initialData?.title}`, 12)}
           </span>
         </button>

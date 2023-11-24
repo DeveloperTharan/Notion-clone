@@ -20,9 +20,11 @@ export default function NavBar() {
   return (
     <>
     {document === undefined ? (
-        <nav className='navbar max-h-fit py-1'>
-            <div className='me-auto skeleton w-16 h-4 ms-5' />
-            <div className='ms-auto flex gap-3 me-2'>
+        <nav className='navbar max-h-fit min-h-0 py-1'>
+            <div className='navbar-start ms-2'>
+                <div className='skeleton w-16 h-4'/>
+            </div>
+            <div className='navbar-end gap-3 me-2'>
                 <div className='skeleton w-8 h-4' />
                 <div className='skeleton w-5 h-5 rounded-full' />
                 <div className='skeleton w-5 h-5 rounded-full' />
@@ -31,9 +33,12 @@ export default function NavBar() {
             </div>
         </nav>
     ) : (
-        <nav className='navbar max-h-fit py-1'>
-            <div className="navbar-start ms-5">
+        <nav className='navbar max-h-fit min-h-0 py-1'>
+            <div className="navbar-start ms-2">
                 <Title initialData={document}/>
+            </div>
+            <div className="navbar-end me-2">
+                
             </div>
         </nav>
     )}
