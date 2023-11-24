@@ -21,7 +21,7 @@ export default function SearchModel({
   const [searchDocument, setSearchDocument] = useState("");
 
   const handleSelect = (id: string) => {
-    router.push(`/getting-start/${id}`);
+    router.push(`/workspace/${id}`);
     handleOpen();
   };
 

@@ -36,7 +36,7 @@ export default function DocumentsList({
   });
 
   const onRedirect = (documentId: string) => {
-    router.push(`/getting-start/${documentId}`);
+    router.push(`/workspace/${documentId}`);
   };
 
   function ItemSkeleton({ level }: { level?: number }) {

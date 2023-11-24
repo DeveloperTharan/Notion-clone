@@ -30,7 +30,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      return route.push("/getting-start");
+      return route.push("/workspace");
     }
   }, [isAuthenticated, route]);
 

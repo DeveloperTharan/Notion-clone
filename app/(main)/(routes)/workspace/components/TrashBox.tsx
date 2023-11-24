@@ -20,7 +20,7 @@ export default function TrashBox() {
   const [searchDocument, setSearchDocument] = useState("");
 
   const handleClick = (docunmentId: string) => {
-    return router.push(`/getting-start/${docunmentId}`);
+    return router.push(`/workspace/${docunmentId}`);
   };
 
   const handleRestore = (
@@ -50,7 +50,7 @@ export default function TrashBox() {
     });
 
     if (params.documentId === docunmentId) {
-      return router.push("/getting-start");
+      return router.push("/workspace");
     }
   };
 

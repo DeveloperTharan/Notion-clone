@@ -81,7 +81,7 @@ export const archive = mutation({
 
     const userId = identity.subject;
 
-    //getting existing document (attempt to get the parent document)
+    //fetching existing document
     const existingDocuments = await ctx.db.get(args.id);
 
     if (!existingDocuments) {
@@ -161,7 +161,7 @@ export const restore = mutation({
 
     const userId = identity.subject;
 
-    //getting existing documents
+    //fetching existing document
     const existingDocument = await ctx.db.get(args.id);
 
     if (!existingDocument) {
@@ -230,7 +230,7 @@ export const remove = mutation({
 
     const userId = identity.subject;
 
-    //getting existing document
+    //fetching existing document
     const existingDocument = await ctx.db.get(args.id);
 
     if (!existingDocument) {
@@ -325,4 +325,45 @@ export const getById = query({
 
     return document;
   }
+});
+
+//update document
+export const update = mutation({
+  args: {
+    id: v.id("documents"),
+    title: v.optional(v.string()),
+    content: v.optional(v.string()),
+    coverImage: v.optional(v.string()),
+    icon: v.optional(v.string()),
+    isPublished: v.optional(v.boolean())
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthenticated");
+    }
+
+    const userId = identity.subject;
+
+    //get Id and rest of all are copy because Id is static we change rest of all things
+    const { id, ...rest } = args;
+
+    //fetching existing document
+    const existingDocument = await ctx.db.get(args.id);
+
+    if (!existingDocument) {
+      throw new Error("Not found");
+    }
+
+    if (existingDocument.userId !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    const document = await ctx.db.patch(args.id, {
+      ...rest,
+    });
+
+    return document;
+  },
 });

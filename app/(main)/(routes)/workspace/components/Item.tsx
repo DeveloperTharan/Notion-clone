@@ -67,7 +67,7 @@ export default function Item({
           onExpand?.();
         }
 
-        router.push(`/getting-start/${documentId}`);
+        router.push(`/workspace/${documentId}`);
       }
     );
 
@@ -88,7 +88,7 @@ export default function Item({
       return;
     }
 
-    const promise = archive({ id }).then(() => router.push("/getting-start"));
+    const promise = archive({ id }).then(() => router.push("/workspace"));
 
     toast.promise(promise, {
       loading: "Moving to trash...",

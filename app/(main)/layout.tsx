@@ -2,7 +2,7 @@
 
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
-import SideBar from "./(routes)/getting-start/components/SideBar";
+import SideBar from "./(routes)/workspace/components/SideBar";
 
 const Main = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
