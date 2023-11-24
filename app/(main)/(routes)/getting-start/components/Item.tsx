@@ -109,7 +109,7 @@ export default function Item({
       flex items-center justify-start text-base-content font-medium gap-2 rounded-md
       ${active && "bg-base-300 text-gray-800"} ${!open && "mt-2"}`}
     >
-      {!!id && (
+      {!!id && ( //string into boolean
         <>
           {open ? (
             <div

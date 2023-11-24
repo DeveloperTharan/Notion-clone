@@ -291,3 +291,38 @@ export const getSearch = query({
     return documents;
   },
 });
+
+//getting document as a client and see it
+export const getById = query({
+  args: { documentId: v.id("documents") },
+  
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    //getting documnet
+    const document = await ctx.db.get(args.documentId);
+
+    //checking is valid
+    if (!document) {
+      throw new Error("Not found");
+    }
+
+    //cheking is published and also it not be deleted
+    if (document.isPublished && !document.isArchived) {
+      return document;
+    }
+
+    //these are for user
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    if (document.userId !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    return document;
+  }
+});

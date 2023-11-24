@@ -10,7 +10,7 @@ import { SignUpButton, SignInButton, UserButton } from "@clerk/clerk-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function Navbar() {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { isAuthenticated, isLoading } = useConvexAuth();
   const route = useRouter();
@@ -35,7 +35,7 @@ function Navbar() {
   }, [isAuthenticated, route]);
 
   return (
-    <div
+    <nav
       className={`navbar bg-base-100 fixed top-0 z-50 px-2 5xl:px-4 6xl:container 6xl:mx-auto ${
         scrolled && "border-b-[1px] border-b-base-300 shadow-sm"
       }`}
@@ -222,12 +222,6 @@ function Navbar() {
         </div>
         <MediaNavbar />
       </div>
-    </div>
+    </nav>
   );
-}
-
-export default Navbar;
-
-function useNavScrollEffect() {
-  throw new Error("Function not implemented.");
 }

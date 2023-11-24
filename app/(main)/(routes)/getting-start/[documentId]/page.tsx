@@ -1,9 +1,11 @@
 import React from 'react'
+import NavBar from '../components/NavBar'
 
-function page() {
+export default function page() {
   return (
+    <> 
+    <NavBar />
     <div>page</div>
-  )
+    </>
+    )
 }
-
-export default page

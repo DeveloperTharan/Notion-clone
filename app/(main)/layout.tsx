@@ -3,7 +3,6 @@
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import SideBar from "./(routes)/getting-start/components/SideBar";
-import NavBar from "./(routes)/getting-start/components/NavBar";
 
 const Main = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -15,15 +14,15 @@ const Main = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {isLoading && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 loading loading-spinner loading-md text-gray-500"></div>
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        loading loading-spinner loading-md text-gray-500"
+        />
       )}
       {isAuthenticated && !isLoading && (
         <div className="flex h-full">
           <SideBar />
-          <main className="flex-1 h-full">
-            <NavBar />
-            {children}
-          </main>
+          <main className="flex-1 h-full w-[cal]">{children}</main>
         </div>
       )}
     </>
