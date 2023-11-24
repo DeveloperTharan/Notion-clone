@@ -21,17 +21,17 @@ export default function NavBar() {
     <>
     {document === undefined ? (
         <nav className='navbar max-h-fit py-1'>
-            <div className='navbar-start skeleton w-28 h-6' />
-            <div className='navbar-end'>
-                <div className='skeleton w-12 h-6' />
-                <div className='skeleton w-6 h-6 rounded-full' />
-                <div className='skeleton w-6 h-6 rounded-full' />
-                <div className='skeleton w-6 h-6 rounded-full' />
-                <div className='skeleton w-6 h-6 rounded-full' />
+            <div className='me-auto skeleton w-16 h-4 ms-5' />
+            <div className='ms-auto flex gap-3 me-2'>
+                <div className='skeleton w-8 h-4' />
+                <div className='skeleton w-5 h-5 rounded-full' />
+                <div className='skeleton w-5 h-5 rounded-full' />
+                <div className='skeleton w-5 h-5 rounded-full' />
+                <div className='skeleton w-5 h-5 rounded-full' />
             </div>
         </nav>
     ) : (
-        <nav className='navbar'>
+        <nav className='navbar max-h-fit py-1'>
             <div className="navbar-start ms-5">
                 <Title initialData={document}/>
             </div>
