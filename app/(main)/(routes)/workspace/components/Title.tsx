@@ -46,12 +46,17 @@ export default function Title({ initialData } : TitleProps) {
     }
   };
 
+  const titlehandeler = (string: string, n: number) => {
+    return string?.length > n ? string.substr(0, n - 1) + "..." : string;
+  };
+
   return (
     <div className='flex items-center gap-x-1'>
       {!!initialData.icon && <p>{initialData.icon}</p>}
       {isEditing ? (
         <input 
-          className='h-5 w-20 px-2 focus-visible:ring-transparent outline-base-200' 
+          className='h-5 px-2 focus-visible:ring-transparent outline-none 
+          border-b-[1px] border-b-base-300 text-sm' 
           ref={inputRef}
           onClick={handleEnableInput}
           onBlur={handleDisableInput}
@@ -64,8 +69,8 @@ export default function Title({ initialData } : TitleProps) {
           className='bg-transparent hover:bg-base-200 font-normal h-auto py-1 px-3 rounded-md'
           onClick={handleEnableInput}
         >
-          <span className='truncate text-md font-medium'>
-            {initialData?.title}
+          <span className='truncate text-sm font-medium text-gray-600'>
+            {titlehandeler(`${initialData?.title}`,12)}
           </span>
         </button>
       )}
