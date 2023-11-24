@@ -9,7 +9,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 
-export default function WorkArea() {
+export default function DefaultSpace() {
   const { user } = useUser();
 
   const create = useMutation(api.documents.create);
@@ -38,7 +38,7 @@ export default function WorkArea() {
         onClick={onCreate}
       >
         <FaCirclePlus />
-        Create a note 
+        Create a note
       </button>
     </div>
   );

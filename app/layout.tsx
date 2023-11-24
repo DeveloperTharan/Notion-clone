@@ -7,7 +7,10 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Getting Started",
+  title: {
+    default: 'Workspace | Notion',
+    template: '%s | Notion'
+  },
   description: "Getting Started | Notion",
   icons: {
     icon: [
