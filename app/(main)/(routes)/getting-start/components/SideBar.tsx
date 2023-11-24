@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import DocumentsList from "./DocumentsList";
 import TrashBox from "./TrashBox";
 import SearchModel from "./SearchModel";
+import UpdateModel from "./UpdateModel";
 
 import { RxDoubleArrowLeft } from "react-icons/rx";
 import { IoSearchSharp, IoSettingsOutline } from "react-icons/io5";
@@ -77,13 +78,11 @@ export default function SideBar() {
         </div>
         <div className="mt-2">
           <SearchModel>
-            <Item
-              label="Search"
-              open={open}
-              icon={IoSearchSharp}
-            />
+            <Item label="Search" open={open} icon={IoSearchSharp} />
           </SearchModel>
-          <Item label="Updates" open={open} icon={LuClock3} />
+          <UpdateModel>
+            <Item label="Updates" open={open} icon={LuClock3} />
+          </UpdateModel>
           <Item label="Settings" open={open} icon={IoSettingsOutline} />
           <Item
             onClick={handelCreate}
