@@ -6,14 +6,10 @@ import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Id } from "@/convex/_generated/dataModel";
-import { useUser } from "@clerk/clerk-react";
+import Menu from "./Menu";
  
 import { MdArrowForwardIos } from "react-icons/md";
-import { GoPlus } from "react-icons/go"; 
-import { BsThreeDots } from "react-icons/bs";
-import { IoStarOutline, IoTrashOutline } from "react-icons/io5";
-import { HiOutlineDocumentDuplicate } from "react-icons/hi";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { GoPlus } from "react-icons/go";
 
 interface itemProp {
   onClick?: () => void;
@@ -40,10 +36,8 @@ export default function Item({
   level,
   onExpand,
 }: itemProp) {
-  const { user } = useUser();
   const create = useMutation(api.documents.create);
   const router = useRouter();
-  const archive = useMutation(api.documents.archive);
 
   const handleExpand = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -75,25 +69,6 @@ export default function Item({
       loading: "Creating a new note...",
       success: "New note created!",
       error: "Failed to create a new note.",
-      duration: 1000,
-    });
-  };
-
-  const handelArchive = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    event.stopPropagation();
-
-    if (!id) {
-      return;
-    }
-
-    const promise = archive({ id }).then(() => router.push("/workspace"));
-
-    toast.promise(promise, {
-      loading: "Moving to trash...",
-      success: "Note moved to trash!",
-      error: "Failed to archive note.",
       duration: 1000,
     });
   };
@@ -159,64 +134,7 @@ export default function Item({
                   >
                     <GoPlus className="h-4 w-4 shrink-0 text-gray-600" />
                   </div>
-                  <div className="dropdown dropdown-bottom">
-                    <label tabIndex={0}>
-                      <div
-                        className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
-                        hover:bg-base-300 p-1"
-                      >
-                        <BsThreeDots className="h-4 w-4 shrink-0 text-gray-600" />
-                      </div>
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content z-50 menu p-1 shadow bg-base-200 w-64 mt-[6px]"
-                    >
-                      <li>
-                        <div
-                          className="flex gap-x-2 justify-start items-center"
-                          onClick={handelArchive}
-                        >
-                          <IoTrashOutline className="h-4 w-4 shrink-0 text-gray-600" />
-                          <h6 className="font-medium text-[12px] text-gray-600">
-                            Delete
-                          </h6>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="flex gap-x-2 justify-start items-center">
-                          <IoStarOutline className="h-4 w-4 shrink-0 text-gray-600" />
-                          <h6 className="font-medium text-[12px] text-gray-600">
-                            Add to favorite
-                          </h6>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="flex gap-x-2 justify-start items-center">
-                          <HiOutlineDocumentDuplicate className="h-4 w-4 shrink-0 text-gray-600" />
-                          <h6 className="font-medium text-[12px] text-gray-600">
-                            Dupliate
-                          </h6>
-                        </div>
-                      </li>
-                      <li>
-                        <div
-                          className="flex gap-x-2 justify-start items-center"
-                          onClick={() => {}}
-                        >
-                          <MdOutlineDriveFileRenameOutline className="h-4 w-4 shrink-0 text-gray-600" />
-                          <h6 className="font-medium text-[12px] text-gray-600">
-                            Rename
-                          </h6>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="text-xs text-gray-600 font-medium p-2">
-                          Last edited by: {user?.fullName}
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                  <Menu id={id}/>
                 </div>
               ) : null}
             </>
