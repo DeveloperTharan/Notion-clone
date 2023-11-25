@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "next/navigation";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 import Title from "./Title";
 import Notification from "./Notification";
 
@@ -12,8 +12,14 @@ import { TbMessage } from "react-icons/tb";
 import { FaRegClock } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
+import { toast } from "sonner";
 
-export default function NavBar() {
+interface NavBarProps {
+  id: Id<"documents">;
+  initialData: Doc<"documents">
+}
+
+export default function NavBar({ id, initialData }: NavBarProps) {
   const params = useParams();
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
@@ -64,13 +70,13 @@ export default function NavBar() {
               <FaRegClock className="h-5 w-5 shrink-0 text-gray-600" />
             </button>
             <button
-              className="text-gray-600 font-medium text-sm hover:bg-base-200 px-2 
+                className="text-gray-600 font-medium text-sm hover:bg-base-200 px-2 
               py-1 rounded-md tooltip tooltip-bottom"
-              onClick={() => {}}
-              data-tip="Add to favorites"
-            >
-              <FaRegStar className="h-5 w-5 shrink-0 text-gray-600" />
-            </button>
+                onClick={() => {}}
+                data-tip="Add to favorites"
+              >
+                <FaRegStar className="h-5 w-5 shrink-0 text-gray-600" />
+              </button>
             <button
               className="text-gray-600 font-medium text-sm hover:bg-base-200 px-2 
               py-1 rounded-md tooltip tooltip-bottom"

@@ -30,6 +30,7 @@ export const create = mutation({
       userId,
       isArchived: false,
       isPublished: false,
+      isFavorite: false,
     });
 
     return documents;
@@ -336,6 +337,7 @@ export const update = mutation({
     coverImage: v.optional(v.string()),
     icon: v.optional(v.string()),
     isPublished: v.optional(v.boolean()),
+    isFavorite: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -367,3 +369,91 @@ export const update = mutation({
     return document;
   },
 });
+
+// Adding a document to favorites
+export const addToFavorites = mutation({
+  args: {
+    id: v.id("documents"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const existingDocument = await ctx.db.get(args.id);
+
+    if (!existingDocument) {
+      throw new Error("Document not found");
+    }
+
+    if (existingDocument.userId !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    const updatedDocument = await ctx.db.patch(args.id, {
+      isFavorite: true,
+    });
+
+    return updatedDocument;
+  },
+});
+
+// Removing a document from favorites
+export const removeFromFavorites = mutation({
+  args: {
+    id: v.id("documents"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const existingDocument = await ctx.db.get(args.id);
+
+    if (!existingDocument) {
+      throw new Error("Document not found");
+    }
+
+    if (existingDocument.userId !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    const updatedDocument = await ctx.db.patch(args.id, {
+      isFavorite: false,
+    });
+
+    return updatedDocument;
+  },
+});
+
+export const getFavorites = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    // Get favorite documents list
+    const favoriteDocuments = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (query) => query.eq("userId", userId))
+      .filter((query) => query.eq(query.field("isFavorite"), true)) // Filter only where isFavorite is true
+      .order("desc") // Order by descending
+      .collect();
+
+    return favoriteDocuments;
+  },
+});
+
+

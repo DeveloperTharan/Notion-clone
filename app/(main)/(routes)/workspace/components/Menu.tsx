@@ -6,7 +6,7 @@ import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Id } from "@/convex/_generated/dataModel";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 
 import { BsThreeDots } from "react-icons/bs";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
@@ -14,25 +14,25 @@ import { IoStarOutline, IoTrashOutline } from "react-icons/io5";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
 interface MenuProps {
-  documentId: string;
   id: Id<"documents">;
+  initialData: Doc<"documents">;
 }
 
-export default function Menu({ id, documentId }: MenuProps) {
+export default function Menu({ id, initialData }: MenuProps) {
   const { user } = useUser();
-  const archive = useMutation(api.documents.archive);
   const router = useRouter();
+  const archive = useMutation(api.documents.archive);
 
-  const handelArchive = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handelArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
 
     if (!id) {
       return;
     }
 
-    const promise = archive({ id }).then(() => router.push("/workspace"));
+    const promise = archive({ id }).then(() => {
+      router.push("/workspace");
+    });
 
     toast.promise(promise, {
       loading: "Moving to trash...",
@@ -67,10 +67,7 @@ export default function Menu({ id, documentId }: MenuProps) {
             </div>
           </li>
           <li>
-            <div
-              className="flex gap-x-2 justify-start items-center"
-              onClick={() => {}}
-            >
+            <div className="flex gap-x-2 justify-start items-center">
               <IoStarOutline className={`h-4 w-4 shrink-0 text-gray-600`} />
               <h6 className="font-medium text-[12px] text-gray-600">
                 Add to favorite
