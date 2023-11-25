@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 interface TitleProps {
   initialData: Doc<"documents">;
@@ -14,6 +15,7 @@ export default function Title({ initialData }: TitleProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(initialData.title || "Untitled");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleEnableInput = () => {
     setTitle(initialData.title);
@@ -26,6 +28,7 @@ export default function Title({ initialData }: TitleProps) {
 
   const handleDisableInput = () => {
     setIsEditing(false);
+    setIsOpen(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +42,7 @@ export default function Title({ initialData }: TitleProps) {
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleDisableInput();
+      setIsOpen(false);
     }
   };
 
@@ -47,18 +51,64 @@ export default function Title({ initialData }: TitleProps) {
   };
 
   return (
-    <div className="flex items-center gap-x-1">
-      {!!initialData.icon && <p>{initialData.icon}</p>}
-      {isEditing ? (
-        <input
-          className="h-5 px-2 focus-visible:ring-transparent text-sm mt-[12px]"
-          ref={inputRef}
-          onClick={handleEnableInput}
-          onBlur={handleDisableInput}
-          onChange={handleChange}
-          onKeyDown={handleOnKeyDown}
-          value={title}
-        />
+    <>
+      {!isOpen ? (
+        <>
+          <div
+            className="flex items-center gap-x-1 bg-transparent hover:bg-base-200 rounded-md py-1 px-2"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {initialData.icon ? (
+              <>{!!initialData.icon && <p>{initialData.icon}</p>}</>
+            ) : (
+              <IoDocumentTextOutline className="h-7 w-7 p-1 text-sm outline-none rounded-md" />
+            )}
+            <button
+              className="font-normal h-auto"
+              onClick={handleEnableInput}
+            >
+              <span className="text-sm text-base-content">
+                {titlehandeler(`${initialData?.title}`, 12)}
+              </span>
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="absolute top-12 px-3 py-2 border flex gap-2 bg-white shadow-2xl border-base-300 rounded-xl">
+            {initialData.icon ? (
+              <input
+                type="text"
+                className="h-7 w-7 p-1 border border-base-300 text-sm outline-none rounded-md"
+              />
+            ) : (
+              <IoDocumentTextOutline className="h-7 w-7 p-1 border border-base-300 text-sm outline-none rounded-md" />
+            )}
+            <input
+              className="h-7 w-64 p-2 border border-base-300 text-sm outline-none rounded-md"
+              ref={inputRef}
+              onBlur={handleDisableInput}
+              onChange={handleChange}
+              onKeyDown={handleOnKeyDown}
+              value={title}
+            />
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+/* {isEditing ? (
+        <div className="mt-[12px] p-1 bg-base-200 absolute">
+          <input
+            className="h-5 px-2 text-sm outline-none"
+            ref={inputRef}
+            onBlur={handleDisableInput}
+            onChange={handleChange}
+            onKeyDown={handleOnKeyDown}
+            value={title}
+          />
+        </div>
       ) : (
         <button
           className="bg-transparent hover:bg-base-200 font-normal h-auto py-1 px-3 rounded-md"
@@ -68,7 +118,4 @@ export default function Title({ initialData }: TitleProps) {
             {titlehandeler(`${initialData?.title}`, 12)}
           </span>
         </button>
-      )}
-    </div>
-  );
-}
+      )} */
