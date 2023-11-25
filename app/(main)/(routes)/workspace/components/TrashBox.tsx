@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Id } from "@/convex/_generated/dataModel";
 import { toast } from "sonner";
 
@@ -13,14 +13,13 @@ import { DeleteModel } from "./DeleteModel";
 
 export default function TrashBox() {
   const router = useRouter();
-  const params = useParams();
   const documents = useQuery(api.documents.getTrash);
   const restore = useMutation(api.documents.restore);
   const remove = useMutation(api.documents.remove);
   const [searchDocument, setSearchDocument] = useState("");
 
-  const handleClick = (docunmentId: string) => {
-    return router.push(`/workspace/${docunmentId}`);
+  const handleClick = (documentId: string) => {
+    return router.push(`/workspace/${documentId}`);
   };
 
   const handleRestore = (

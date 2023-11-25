@@ -295,7 +295,7 @@ export const getSearch = query({
 //getting document as a client and see it
 export const getById = query({
   args: { documentId: v.id("documents") },
-  
+
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
@@ -324,7 +324,7 @@ export const getById = query({
     }
 
     return document;
-  }
+  },
 });
 
 //update document
@@ -335,7 +335,7 @@ export const update = mutation({
     content: v.optional(v.string()),
     coverImage: v.optional(v.string()),
     icon: v.optional(v.string()),
-    isPublished: v.optional(v.boolean())
+    isPublished: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();

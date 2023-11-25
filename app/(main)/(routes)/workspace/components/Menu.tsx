@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
@@ -13,15 +13,20 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { IoStarOutline, IoTrashOutline } from "react-icons/io5";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
-export default function Menu({ id }: { id: Id<"documents"> }) {
+interface MenuProps {
+  documentId: string;
+  id: Id<"documents">;
+}
+
+export default function Menu({ id, documentId }: MenuProps) {
   const { user } = useUser();
   const archive = useMutation(api.documents.archive);
   const router = useRouter();
 
   const handelArchive = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    event.stopPropagation();
+    e.stopPropagation();
 
     if (!id) {
       return;
@@ -43,7 +48,7 @@ export default function Menu({ id }: { id: Id<"documents"> }) {
         <label tabIndex={0}>
           <div
             className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-md 
-                        hover:bg-base-300 p-1"
+            hover:bg-base-300 p-1"
           >
             <BsThreeDots className="h-4 w-4 shrink-0 text-gray-600" />
           </div>
@@ -62,8 +67,11 @@ export default function Menu({ id }: { id: Id<"documents"> }) {
             </div>
           </li>
           <li>
-            <div className="flex gap-x-2 justify-start items-center">
-              <IoStarOutline className="h-4 w-4 shrink-0 text-gray-600" />
+            <div
+              className="flex gap-x-2 justify-start items-center"
+              onClick={() => {}}
+            >
+              <IoStarOutline className={`h-4 w-4 shrink-0 text-gray-600`} />
               <h6 className="font-medium text-[12px] text-gray-600">
                 Add to favorite
               </h6>

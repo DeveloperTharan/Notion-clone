@@ -91,7 +91,11 @@ export default function SideBar() {
             icon={FaCirclePlus}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-3">
+          {/* <Favorite open={open} id={undefined} /> */}
+        </div>
+        <div className="mt-3">
+        {/* <h6 className={`text-[12px] text-gray-500 ms-[16px] ${!open && 'ms-[6px]'}`}>Private</h6> */}
           <DocumentsList open={open} />
           <Item
             onClick={handelCreate}

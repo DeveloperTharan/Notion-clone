@@ -95,7 +95,7 @@ export default function Item({
                 className={`h-3 w-3 shrink-0 text-gray-600
             ${expanded ? "rotate-90" : "rotate-0"}`}
               />
-            </div>
+            </div> 
           ) : null}
         </>
       )}
@@ -134,7 +134,7 @@ export default function Item({
                   >
                     <GoPlus className="h-4 w-4 shrink-0 text-gray-600" />
                   </div>
-                  <Menu id={id}/>
+                  <Menu id={id} documentId={""}/>
                 </div>
               ) : null}
             </>
