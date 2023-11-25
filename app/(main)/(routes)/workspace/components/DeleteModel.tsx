@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  Dialog,
-  DialogBody,
-  DialogFooter,
-} from "@material-tailwind/react";
+import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 
 interface DeleteModelProp {
   children: React.ReactNode;

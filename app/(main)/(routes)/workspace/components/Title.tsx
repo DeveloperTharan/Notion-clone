@@ -12,14 +12,12 @@ interface TitleProps {
 
 export default function Title({ initialData }: TitleProps) {
   const updateDocument = useMutation(api.documents.update);
-  const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(initialData.title || "Untitled");
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleEnableInput = () => {
     setTitle(initialData.title);
-    setIsEditing(true);
     setTimeout(() => {
       inputRef.current?.focus();
       inputRef.current?.setSelectionRange(0, inputRef.current.value.length);
@@ -27,7 +25,6 @@ export default function Title({ initialData }: TitleProps) {
   };
 
   const handleDisableInput = () => {
-    setIsEditing(false);
     setIsOpen(false);
   };
 
@@ -72,7 +69,10 @@ export default function Title({ initialData }: TitleProps) {
         </>
       ) : (
         <>
-          <div className="absolute top-12 px-3 py-2 border flex gap-2 bg-white shadow-2xl border-base-300 rounded-xl">
+          <div 
+            className="absolute top-16 px-3 py-2 border flex gap-2 bg-white shadow-2xl 
+            border-base-300 rounded-xl left-44"
+          >
             {initialData.icon ? (
               <input
                 type="text"

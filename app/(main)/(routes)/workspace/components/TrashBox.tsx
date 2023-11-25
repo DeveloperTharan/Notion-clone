@@ -49,9 +49,7 @@ export default function TrashBox() {
       duration: 1000,
     });
 
-    if (params.documentId === docunmentId) {
-      return router.push("/workspace");
-    }
+    router.push("/workspace");
   };
 
   return (

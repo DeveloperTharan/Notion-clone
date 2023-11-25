@@ -11,6 +11,7 @@ import { TbMessage } from "react-icons/tb";
 import { FaRegClock } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
+import Notification from "./Notification";
 
 export default function NavBar() {
   const params = useParams();
@@ -82,6 +83,9 @@ export default function NavBar() {
             </button>
           </div>
         </nav>
+      )}
+      {document?.isArchived && (
+        <Notification documentId={document._id} />
       )}
     </>
   );
