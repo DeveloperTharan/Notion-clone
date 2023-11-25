@@ -13,7 +13,7 @@ import { FaRegClock } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 
-export default function NavBar({ id }: { id: Id<"documents"> }) {
+export default function NavBar() {
   const params = useParams();
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
