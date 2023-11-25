@@ -63,10 +63,7 @@ export default function Title({ initialData }: TitleProps) {
             ) : (
               <IoDocumentTextOutline className="h-7 w-7 p-1 text-sm outline-none rounded-md" />
             )}
-            <button
-              className="font-normal h-auto"
-              onClick={handleEnableInput}
-            >
+            <button className="font-normal h-auto" onClick={handleEnableInput}>
               <span className="text-sm text-base-content">
                 {titlehandeler(`${initialData?.title}`, 12)}
               </span>
@@ -95,27 +92,21 @@ export default function Title({ initialData }: TitleProps) {
           </div>
         </>
       )}
-    </>
-  );
-}
-/* {isEditing ? (
-        <div className="mt-[12px] p-1 bg-base-200 absolute">
-          <input
-            className="h-5 px-2 text-sm outline-none"
-            ref={inputRef}
-            onBlur={handleDisableInput}
-            onChange={handleChange}
-            onKeyDown={handleOnKeyDown}
-            value={title}
-          />
-        </div>
-      ) : (
-        <button
-          className="bg-transparent hover:bg-base-200 font-normal h-auto py-1 px-3 rounded-md"
-          onClick={handleEnableInput}
-        >
+      <div
+        className={`flex items-center gap-x-1 bg-transparent hover:bg-base-200 rounded-md py-1 px-2
+        ${!isOpen && 'hidden'}`}
+      >
+        {initialData.icon ? (
+          <>{!!initialData.icon && <p>{initialData.icon}</p>}</>
+        ) : (
+          <IoDocumentTextOutline className="h-7 w-7 p-1 text-sm outline-none rounded-md" />
+        )}
+        <button className="font-normal h-auto" onClick={handleEnableInput}>
           <span className="text-sm text-base-content">
             {titlehandeler(`${initialData?.title}`, 12)}
           </span>
         </button>
-      )} */
+      </div>
+    </>
+  );
+}
