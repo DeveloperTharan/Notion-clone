@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import { UserButton, useUser } from "@clerk/clerk-react";
-import Item from "./Item";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import Item from "./Item";
 import DocumentsList from "./DocumentsList";
 import TrashBox from "./TrashBox";
 import SearchModel from "./SearchModel";
 import UpdateModel from "./UpdateModel";
+import FavoriteDocList from "./FavoriteDocList";
 
 import { RxDoubleArrowLeft } from "react-icons/rx";
 import { IoSearchSharp, IoSettingsOutline } from "react-icons/io5";
@@ -91,7 +92,10 @@ export default function SideBar() {
             icon={FaCirclePlus}
           />
         </div>
-        <div className="mt-3">
+        <div className="mt-6">
+          <FavoriteDocList open={open} />
+        </div>
+        <div className="mt-5">
           <DocumentsList open={open} />
           <Item
             onClick={handelCreate}

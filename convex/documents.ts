@@ -435,7 +435,11 @@ export const removeFromFavorites = mutation({
 });
 
 export const getFavorites = query({
-  handler: async (ctx) => {
+  args: {
+    parentDocument: v.optional(v.id("documents")),
+  },
+
+  handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
     if (!identity) {
@@ -444,16 +448,18 @@ export const getFavorites = query({
 
     const userId = identity.subject;
 
-    // Get favorite documents list
-    const favoriteDocuments = await ctx.db
+    //getting document through userId and filter then get that specific document
+    const documents = await ctx.db
       .query("documents")
-      .withIndex("by_user", (query) => query.eq("userId", userId))
-      .filter((query) => query.eq(query.field("isFavorite"), true)) // Filter only where isFavorite is true
-      .order("desc") // Order by descending
+      .withIndex("by_user_parent", (query) =>
+        query.eq("userId", userId).eq("parentDocument", args.parentDocument)
+      )
+      //this filter only show the document is not archived(deleted)
+      .filter((query) => query.eq(query.field("isFavorite"), true))
+      .filter((query) => query.eq(query.field("isArchived"), false))
+      .order("desc") //order by decending
       .collect();
 
-    return favoriteDocuments;
+    return documents;
   },
 });
-
-
