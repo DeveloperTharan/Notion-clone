@@ -80,7 +80,8 @@ export default function TrashBox() {
                   key={document._id}
                   role="button"
                   onClick={() => handleClick(document._id)}
-                  className="text-sm rounded-sm w-full flex items-center text-gray-600 justify-between"
+                  className="text-sm rounded-sm w-full flex items-center text-gray-600 justify-between
+                  hover:bg-base-300"
                 >
                   <span className="truncate pl-2">{document.title}</span>
                   <div className="flex items-center">

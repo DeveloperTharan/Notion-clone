@@ -15,10 +15,9 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
 interface MenuProps {
   id: Id<"documents">;
-  initialData: Doc<"documents">;
 }
 
-export default function Menu({ id, initialData }: MenuProps) {
+export default function Menu({ id }: MenuProps) {
   const { user } = useUser();
   const router = useRouter();
   const archive = useMutation(api.documents.archive);
