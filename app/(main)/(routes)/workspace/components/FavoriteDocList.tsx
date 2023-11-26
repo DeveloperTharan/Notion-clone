@@ -47,7 +47,7 @@ export default function FavoriteDocList({
                   }`}
                   onClick={() => handleClick(document._id)}
                 >
-                  <div className="flex items-center gap-2 ml-10 ">
+                  <div className={`flex items-center gap-2 ml-10  ${!open && 'ml-[12px]'}`}>
                     {document.icon ? (
                       <div className="shrink-0 mr-2 text-[18px] text-gray-600 font-thin">
                         {document.icon}
