@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Doc, Id } from "@/convex/_generated/dataModel";
+import { Id } from "@/convex/_generated/dataModel";
 import Title from "./Title";
 import Notification from "./Notification";
 
@@ -12,14 +12,8 @@ import { TbMessage } from "react-icons/tb";
 import { FaRegClock } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
-import { toast } from "sonner";
 
-interface NavBarProps {
-  id: Id<"documents">;
-  initialData: Doc<"documents">
-}
-
-export default function NavBar({ id, initialData }: NavBarProps) {
+export default function NavBar() {
   const params = useParams();
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
