@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "next/navigation";
-import { useMutation, useQuery } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import Title from "./Title";
 import Notification from "./Notification";
 
 import { TbMessage } from "react-icons/tb";
-import { FaRegClock } from "react-icons/fa6";
-import { FaRegStar } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
+import HandleFavorite from "./HandleFavorite";
 
 export default function NavBar() {
   const params = useParams();
@@ -57,19 +56,11 @@ export default function NavBar() {
               <TbMessage className="h-5 w-5 shrink-0 text-gray-600" />
             </button>
             <button
-              className="text-gray-600 font-medium text-sm hover:bg-base-200 px-2 
-              py-1 rounded-md tooltip tooltip-bottom"
-              data-tip="View all Update"
-            >
-              <FaRegClock className="h-5 w-5 shrink-0 text-gray-600" />
-            </button>
-            <button
                 className="text-gray-600 font-medium text-sm hover:bg-base-200 px-2 
               py-1 rounded-md tooltip tooltip-bottom"
-                onClick={() => {}}
                 data-tip="Add to favorites"
               >
-                <FaRegStar className="h-5 w-5 shrink-0 text-gray-600" />
+                <HandleFavorite initialData={document} />
               </button>
             <button
               className="text-gray-600 font-medium text-sm hover:bg-base-200 px-2 

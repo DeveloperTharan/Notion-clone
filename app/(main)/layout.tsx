@@ -7,9 +7,9 @@ import SideBar from "./(routes)/workspace/components/SideBar";
 const Main = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
 
-  if(!isAuthenticated){
+  /* if(!isAuthenticated){
         return redirect('/') 
-    }
+    } */
 
   return (
     <>
