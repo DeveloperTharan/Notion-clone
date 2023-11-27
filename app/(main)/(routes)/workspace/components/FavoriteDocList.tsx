@@ -26,6 +26,10 @@ export default function FavoriteDocList({
     return router.push(`/workspace/${documentId}`);
   };
 
+  const titlehandeler = (string: string, n: number) => {
+    return string?.length > n ? string.substr(0, n - 1) + "..." : string;
+  };
+
   return (
     <>
       {documents === undefined ? (
@@ -71,7 +75,7 @@ export default function FavoriteDocList({
                         !open && "hidden"
                       }`}
                     >
-                      {document.title}
+                      {titlehandeler(`${document.title}`,12)}
                     </span>
                   </div>
                 </div>
