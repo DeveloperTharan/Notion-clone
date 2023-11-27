@@ -9,9 +9,7 @@ import { toast } from "sonner";
 import { Doc, Id } from "@/convex/_generated/dataModel";
 
 import { BsThreeDots } from "react-icons/bs";
-import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { IoStarOutline, IoTrashOutline } from "react-icons/io5";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
 
 interface MenuProps {
@@ -27,7 +25,6 @@ export default function Menu({ id }: MenuProps) {
   const document = useQuery(api.documents.getAllDocuments);
 
   const [isFavoriteDoc, setIsFavoriteDoc] = useState<boolean | null>(null);
-
   useEffect(() => {
     if (document) {
       const initialData = document.find(doc => doc._id === id);
@@ -134,29 +131,12 @@ export default function Menu({ id }: MenuProps) {
                 </h6>
               </div>
             )}
-          </li>
-          <li>
-            <div className="flex gap-x-2 justify-start items-center">
-              <HiOutlineDocumentDuplicate className="h-4 w-4 shrink-0 text-gray-600" />
-              <h6 className="font-medium text-[12px] text-gray-600">
-                Dupliate
-              </h6>
-            </div>
-          </li>
-          <li>
-            <div
-              className="flex gap-x-2 justify-start items-center"
-              onClick={() => {}}
-            >
-              <MdOutlineDriveFileRenameOutline className="h-4 w-4 shrink-0 text-gray-600" />
-              <h6 className="font-medium text-[12px] text-gray-600">Rename</h6>
-            </div>
-          </li>
-          <li>
+          </li>    
+          <div className="py-2 px-1 border-t-[1px] border-t-base-300 mt-2">
             <div className="text-xs text-gray-600 font-medium p-2">
               Last edited by: {user?.fullName}
             </div>
-          </li>
+          </div>
         </ul>
       </div>
     </>
