@@ -34,7 +34,7 @@ export default function FavoriteDocList({
     <>
       {documents === undefined ? (
         <>
-          <div className="skeleton w-20 h-[12px]" />
+          <div className="skeleton w-20 h-[12px] ml-10" />
         </>
       ) : (
         <>
