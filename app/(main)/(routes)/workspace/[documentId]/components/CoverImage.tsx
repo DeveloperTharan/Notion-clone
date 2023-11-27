@@ -27,16 +27,16 @@ export default function CoverImage({ url, preview }: CoverImageProps) {
 
   return (
     <div
-      className={`relative w-full h-[35vh] group/cover ${
-        !url && "h-[12vh]"
-      } ${url && "bg-base-200"}`}
+      className={`relative w-full group/cover ${
+        !url && "h-[20vh]"
+      } ${url && "bg-base-200 h-[35vh]"}`}
     >
       {!!url && (
         <Image
           src={url}
           alt="cover/image"
           fill
-          className="object-cover object-left-top -z-10"
+          className="object-cover object-left-top"
         />
       )}
       {url && !preview && (

@@ -39,7 +39,7 @@ export default function page({ params }: DocumentIdPageProps) {
               <NavBar />
               <div className="pb-40">
                 <CoverImage url={document.coverImage} />
-                <div className="max-w-xl lg:max-w-2xl xl:mxa-w-3xl 2xl:max-w-4xl mx-auto relative -mt-6">
+                <div className="max-w-xl lg:max-w-2xl xl:mxa-w-3xl 2xl:max-w-4xl mx-auto relative -mt-6 z-30">
                  <ToolBar initialData={document}/> 
                 </div>
               </div>
