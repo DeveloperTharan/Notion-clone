@@ -14,7 +14,7 @@ export default function HandleFavorite({
   initialData: Doc<"documents">;
 }) {
   const updateDocument = useMutation(api.documents.update);
-  const [isFavoriteDoc, setisFavoriteDoc] = useState(initialData.isFavorite);
+  const [isFavoriteDoc, setisFavoriteDoc] = useState<Boolean>(initialData.isFavorite);
 
   const handleAddToFavorite = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

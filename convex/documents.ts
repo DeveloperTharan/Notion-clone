@@ -463,3 +463,26 @@ export const getFavorites = query({
     return documents;
   },
 });
+
+// Define a function to fetch all non-archived documents for the initial page
+export const getAllDocuments = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    // Fetch all non-archived documents for the user
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (query) => query.eq("userId", userId))
+      .filter((query) => query.eq(query.field("isArchived"), false))
+      .order("desc") // Order as needed
+      .collect();
+
+    return documents;
+  },
+});
