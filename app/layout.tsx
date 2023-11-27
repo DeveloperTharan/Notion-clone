@@ -3,13 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "@/providers/convex-provider";
 import { Toaster } from "sonner";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Workspace | Notion',
-    template: '%s | Notion'
+    default: "Workspace | Notion",
+    template: "%s | Notion",
   },
   description: "Getting Started | Notion",
   icons: {
@@ -31,8 +32,10 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body className={inter.className}>
         <ConvexClientProvider>
-          <Toaster position="top-center" />
-          {children}
+          <EdgeStoreProvider>
+            <Toaster position="top-center" />
+            {children}
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>

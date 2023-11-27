@@ -53,7 +53,7 @@ export default function SideBar() {
       >
         <RxDoubleArrowLeft
           className={`absolute cursor-pointer -right-4 top-[30px] w-7 border-base-200
-          border-2 rounded-full bg-base-100 hover:bg-base-300 ${
+          border-2 rounded-full bg-base-100 hover:bg-base-300 z-40 ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}

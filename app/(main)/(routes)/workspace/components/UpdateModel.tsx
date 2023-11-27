@@ -1,5 +1,5 @@
-import { Dialog, DialogBody, DialogHeader } from "@material-tailwind/react";
 import React, { useState } from "react";
+import { Dialog, DialogBody, DialogHeader } from "@material-tailwind/react";
 
 export default function UpdateModel({
   children,

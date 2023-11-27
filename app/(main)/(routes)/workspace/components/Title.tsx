@@ -80,7 +80,7 @@ export default function Title({ initialData }: TitleProps) {
         <>
           <div
             className="absolute top-16 px-3 py-2 border flex gap-2 bg-white shadow-2xl 
-            border-base-300 rounded-xl left-44"
+            border-base-300 rounded-xl left-44 z-50"
           >
             <div className="h-7 w-7 p-1 border border-base-300 text-sm outline-none rounded-md flex justify-center items-center">
               <IconPicker onChange={handleOnIconSelect}>
