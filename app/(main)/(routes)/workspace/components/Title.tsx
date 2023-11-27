@@ -5,6 +5,8 @@ import { Doc } from "@/convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import IconPicker from "../[documentId]/components/IconPicker";
+import { CiFaceSmile } from "react-icons/ci";
 
 interface TitleProps {
   initialData: Doc<"documents">;
@@ -43,6 +45,13 @@ export default function Title({ initialData }: TitleProps) {
     }
   };
 
+  const handleOnIconSelect = (icon: string) => {
+    updateDocument({
+      id: initialData._id,
+      icon,
+    });
+  };
+
   const titlehandeler = (string: string, n: number) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
   };
@@ -69,18 +78,15 @@ export default function Title({ initialData }: TitleProps) {
         </>
       ) : (
         <>
-          <div 
+          <div
             className="absolute top-16 px-3 py-2 border flex gap-2 bg-white shadow-2xl 
             border-base-300 rounded-xl left-44"
           >
-            {initialData.icon ? (
-              <input
-                type="text"
-                className="h-7 w-7 p-1 border border-base-300 text-sm outline-none rounded-md"
-              />
-            ) : (
-              <IoDocumentTextOutline className="h-7 w-7 p-1 border border-base-300 text-sm outline-none rounded-md" />
-            )}
+            <div className="h-7 w-7 p-1 border border-base-300 text-sm outline-none rounded-md flex justify-center items-center">
+              <IconPicker onChange={handleOnIconSelect}>
+                <IoDocumentTextOutline className="h-5 w-5 text-gray-500" />
+              </IconPicker>
+            </div>
             <input
               className="h-7 w-64 p-2 border border-base-300 text-sm outline-none rounded-md"
               ref={inputRef}
@@ -94,7 +100,7 @@ export default function Title({ initialData }: TitleProps) {
       )}
       <div
         className={`flex items-center gap-x-1 bg-transparent hover:bg-base-200 rounded-md py-1 px-2
-        ${!isOpen && 'hidden'}`}
+        ${!isOpen && "hidden"}`}
       >
         {initialData.icon ? (
           <>{!!initialData.icon && <p>{initialData.icon}</p>}</>

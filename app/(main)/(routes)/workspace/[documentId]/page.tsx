@@ -30,12 +30,14 @@ export default function page({ params }: DocumentIdPageProps) {
       ) : (
         <>
           {document === undefined ? (
-            <div>Loding...</div>
+            <div className="mt-32">
+              <div className="skeleton max-w-xl lg:max-w-2xl xl:mxa-w-3xl 2xl:max-w-4xl mx-auto h-8" />
+            </div>
           ) : (
             <>
               <NavBar />
               <div className="pb-40">
-                <div className="h-[15vh]" />
+                <div className="h-[12vh]" />
                 <div className="max-w-xl lg:max-w-2xl xl:mxa-w-3xl 2xl:max-w-4xl mx-auto">
                  <ToolBar initialData={document}/> 
                 </div>

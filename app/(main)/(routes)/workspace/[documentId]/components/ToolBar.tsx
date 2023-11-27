@@ -18,6 +18,7 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
   const [value, setValue] = useState(initialData.title);
 
   const update = useMutation(api.documents.update);
+  const removeIcon = useMutation(api.documents.removeIcon);
 
   const handleEnableInput = () => {
     if (preview) return;
@@ -53,19 +54,24 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
     });
   };
 
+  const handleOnRemoveIcon = () => {
+    removeIcon({
+      id: initialData._id
+    })
+  }
+
   return (
     <div className="group relative">
       {!!initialData.icon && !preview && (
-        <div className="flex items-center gap-x-2 group/icon pt-6">
-          <IconPicker onChange={() => {}}>
+        <div className="flex items-center gap-x-2 group/icon mb-2">
+          <IconPicker onChange={handleOnIconSelect}>
             <p className="text-6xl hover:opacity-75 transition">
               {initialData.icon}
             </p>
           </IconPicker>
           <button
-            className="h-4 w-4 rounded-full opacity-0 group-hover/icon:opacity-100 text-base-content
-            border border-base-300 hover:bg-base-200 hover:border-0 px-3 py-1"
-            onClick={() => {}}
+            className="btn btn-ghost rounded-full opacity-0 group-hover/icon:opacity-100 text-base-content"
+            onClick={handleOnRemoveIcon}
           >
             ✕
           </button>
@@ -76,10 +82,9 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
       )}
       <div className="opacity-0 group-hover:opacity-100 flex items-center gap-x-1 py-1">
         {!initialData.icon && !preview && (
-          <IconPicker onChange={() => {}}>
+          <IconPicker onChange={handleOnIconSelect}>
             <button
-              className="text-gray-500 text-xs flex items-center border border-gray-300 hover:bg-base-200 
-              px-2 py-1 rounded-md"
+              className="text-gray-500 text-xs flex items-center hover:bg-base-200 px-2 py-1 rounded-md"
             >
               <CiFaceSmile className="h-4 w-4 mr-2 text-gray-500" />
               Add icon
@@ -89,8 +94,7 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
         {!initialData.coverImage && !preview && (
           <button
             onClick={() => {}}
-            className="text-gray-500 text-xs flex items-center border border-gray-300 hover:bg-base-200 
-            px-2 py-1 rounded-md"
+            className="text-gray-500 text-xs flex items-center hover:bg-base-200 px-2 py-1 rounded-md"
           >
             <CiImageOn className="h-4 w-4 mr-2 text-gray-500" />
             Add cover
@@ -99,6 +103,8 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
       </div>
       {isEditing && !preview ? (
         <input
+          type="text"
+          placeholder="Untitled"
           ref={inputRef}
           onBlur={handleDisableInput}
           onKeyDown={onKeyDown}
@@ -109,7 +115,7 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
       ) : (
         <div
           onClick={handleEnableInput}
-          className="pb-[11.5px] text-[40px] font-bold truncate outline-none text-[#3F3F3F]"
+          className="pb-[11.5px] text-[40px] font-bold truncate outline-none text-[#3F3F3F] w-full"
         >
           {initialData.title}
         </div>
