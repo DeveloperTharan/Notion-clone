@@ -22,7 +22,7 @@ const Main = ({ children }: { children: React.ReactNode }) => {
       {isAuthenticated && !isLoading && (
         <div className="flex h-full overflow-x-hidden">
           <SideBar />
-          <main className="flex-1 h-full w-[cal]">{children}</main>
+          <main className="flex-1 h-full w-full">{children}</main>
         </div>
       )}
     </>
