@@ -12,11 +12,11 @@ interface EditorProps {
   editable?: boolean;
 }
 
-export default function Editor({
+const Editor = ({
   onChange,
   initialData,
   editable,
-}: EditorProps) {
+}: EditorProps) => {
   const { edgestore } = useEdgeStore();
 
   const handleUpload = async (file: File) => {
@@ -44,3 +44,5 @@ export default function Editor({
     </div>
   );
 }
+
+export default Editor 

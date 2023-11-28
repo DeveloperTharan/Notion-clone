@@ -4,9 +4,9 @@ import React from "react";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
-import NavBar from "../components/NavBar";
-import ToolBar from "./components/ToolBar";
-import CoverImage from "./components/CoverImage";
+import NavBar from "@/app/(main)/(routes)/workspace/components/NavBar";
+import ToolBar from "@/app/(main)/(routes)/workspace/[documentId]/components/ToolBar";
+import CoverImage from "@/app/(main)/(routes)/workspace/[documentId]/components/CoverImage";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
@@ -17,7 +17,17 @@ interface DocumentIdPageProps {
 }
 
 export default function DocumentIdPage({ params }: DocumentIdPageProps) {
-  const Editor = useMemo(() => dynamic(() => import("./components/Editor"), { ssr: false }) ,[]);
+  const Editor = useMemo(
+    () =>
+      dynamic(
+        () =>
+          import(
+            "@/app/(main)/(routes)/workspace/[documentId]/components/Editor"
+          ),
+        { ssr: false }
+      ),
+    []
+  );
 
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
@@ -49,12 +59,13 @@ export default function DocumentIdPage({ params }: DocumentIdPageProps) {
             </div>
           ) : (
             <>
-              <NavBar />
+              <NavBar preview />
               <div className="pb-40">
-                <CoverImage url={document.coverImage} />
+                <CoverImage preview url={document.coverImage} />
                 <div className="max-w-xl lg:max-w-2xl xl:mxa-w-3xl 2xl:max-w-4xl mx-auto relative -mt-6 z-30">
-                  <ToolBar initialData={document} />
+                  <ToolBar preview initialData={document} />
                   <Editor
+                    editable={false}
                     onChange={handleOnChange}
                     initialData={document.content}
                   />
