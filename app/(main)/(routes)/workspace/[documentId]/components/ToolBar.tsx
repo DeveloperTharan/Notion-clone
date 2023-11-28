@@ -84,7 +84,7 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
       <div className="opacity-0 group-hover:opacity-100 flex items-center gap-x-1 py-1">
         {!initialData.icon && !preview && (
           <IconPicker onChange={handleOnIconSelect}>
-            <button className="text-gray-500 text-xs flex items-center hover:bg-base-200 px-2 py-1 rounded-md">
+            <button className="text-gray-500 text-xs flex items-center hover:bg-base-200 px-2 py-1 rounded-md whitespace-nowrap">
               <CiFaceSmile className="h-4 w-4 mr-2 text-gray-500" />
               Add icon
             </button>
@@ -92,7 +92,7 @@ export default function ToolBar({ initialData, preview }: ToolBarProp) {
         )}
         {!initialData.coverImage && !preview && (
           <CoverImageModel>
-            <button className="text-gray-500 text-xs flex items-center hover:bg-base-200 px-2 py-1 rounded-md">
+            <button className="text-gray-500 text-xs flex items-center hover:bg-base-200 px-2 py-1 rounded-md whitespace-nowrap">
               <CiImageOn className="h-4 w-4 mr-2 text-gray-500" />
               Add cover
             </button>

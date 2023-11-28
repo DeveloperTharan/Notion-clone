@@ -10,9 +10,11 @@ import { Id } from "@/convex/_generated/dataModel";
 import { SingleImageDropzone } from "./SingleImageDropzone";
 
 export default function CoverImageModel({
-  children,
+  children, 
+  existingUrl,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode, 
+  existingUrl?: string,
 }) {
   const params = useParams();
   const [open, setOpen] = useState(false);
@@ -36,7 +38,12 @@ export default function CoverImageModel({
       setIsSubmitting(true);
       setFile(file);
 
-      const response = await edgestore.publicFiles.upload({ file });
+      const response = await edgestore.publicFiles.upload({
+        file,
+        options: {
+          replaceTargetUrl: existingUrl,
+        }
+      });
 
       await updateDocument({
         id: params.documentId as Id<"documents">,

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Id } from "@/convex/_generated/dataModel";
 import Menu from "./Menu";
- 
+
 import { MdArrowForwardIos } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
 
@@ -95,14 +95,23 @@ export default function Item({
                 className={`h-3 w-3 shrink-0 text-gray-600
             ${expanded ? "rotate-90" : "rotate-0"}`}
               />
-            </div> 
+            </div>
           ) : null}
         </>
       )}
       {documentIcon ? (
-        <div className="shrink-0 mr-2 text-[18px] text-gray-600 font-thin">
-          {documentIcon}
-        </div>
+        <>
+          {open ? (
+            <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
+          ) : (
+            <div
+              className="shrink-0 mr-2 text-[18px] tooltip tooltip-right"
+              data-tip={label}
+            >
+              {documentIcon}
+            </div>
+          )}
+        </>
       ) : (
         <>
           {open ? (
@@ -134,7 +143,7 @@ export default function Item({
                   >
                     <GoPlus className="h-4 w-4 shrink-0 text-gray-600" />
                   </div>
-                  <Menu id={id}/>
+                  <Menu id={id} />
                 </div>
               ) : null}
             </>
