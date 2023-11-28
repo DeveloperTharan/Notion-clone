@@ -15,7 +15,7 @@ interface DocumentIdPageProps {
   };
 }
 
-export default function page({ params }: DocumentIdPageProps) {
+export default function DocumentIdPage({ params }: DocumentIdPageProps) {
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
   });
