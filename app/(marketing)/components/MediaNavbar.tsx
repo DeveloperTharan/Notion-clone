@@ -182,17 +182,17 @@ function MediaNavbar() {
           )}
           {!isAuthenticated && !isLoading && (
             <>
-              <SignUpButton mode="redirect">
+              <SignUpButton mode="redirect" afterSignUpUrl="/workspace">
                 <button className="text-sm text-base-content font-bold my-4 w-full flex items-start justify-start border-y-[1px] border-base-300 bg-base-100 py-5">
                   Request a demo
                 </button>
               </SignUpButton>
-              <SignUpButton mode="redirect">
+              <SignUpButton mode="redirect" afterSignUpUrl="/workspace">
                 <button className="text-sm text-base-100 font-semibold py-2 bg-base-content w-full min-w-full rounded-md mt-3">
                   Get Notion free
                 </button>
               </SignUpButton>
-              <SignInButton mode="redirect">
+              <SignInButton mode="redirect" afterSignInUrl="/workspace">
                 <button className="text-sm text-base-conten font-semibold py-2 border-[1px] border-gray-500 w-full min-w-full rounded-md mt-3 bg-base-100">
                   Login
                 </button>

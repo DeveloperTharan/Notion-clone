@@ -28,11 +28,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      return route.push("/workspace");
-    }
-  }, [isAuthenticated, route]);
+  if (isAuthenticated) {
+    return route.push("/workspace");
+  }
 
   return (
     <nav
@@ -190,7 +188,7 @@ export default function Navbar() {
               )}
               {!isAuthenticated && !isLoading && (
                 <>
-                  <SignUpButton mode="modal">
+                  <SignUpButton mode="modal" afterSignUpUrl="/workspace">
                     <button className="hover:bg-base-200 text-sm px-3 py-1 rounded-md cursor-pointer">
                       Request a demo
                     </button>
@@ -199,12 +197,12 @@ export default function Navbar() {
                     |
                   </div>
                   <div className="flex gap-1">
-                    <SignInButton mode="modal">
+                    <SignInButton mode="modal" afterSignInUrl="/workspace">
                       <button className="hover:bg-base-200 text-sm px-3 py-1 rounded-md cursor-pointer">
                         Login
                       </button>
                     </SignInButton>
-                    <SignUpButton mode="modal">
+                    <SignUpButton mode="modal" afterSignUpUrl="/workspace">
                       <button className="bg-base-content text-sm text-base-100 px-3 py-1 rounded-md cursor-pointer mt-[1px]">
                         Get Notion free
                       </button>
