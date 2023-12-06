@@ -34,9 +34,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`navbar bg-base-100 fixed top-0 z-50 px-2 5xl:px-4 6xl:container 6xl:mx-auto ${
+      className={`navbar bg-base-100 fixed top-0 left-1/2 -translate-x-1/2 z-50 px-2 5xl:px-4 6xl:px-0 6xl:container 6xl:mx-auto ${
         scrolled && "border-b-[1px] border-b-base-300 shadow-sm"
-      }`}
+      }`} 
     >
       <div className="navbar-start">
         <Link href={"/"}>
