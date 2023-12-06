@@ -10,7 +10,7 @@ import { SignUpButton, SignInButton, UserButton } from "@clerk/clerk-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar(): JSX.Element {
   const [scrolled, setScrolled] = useState(false);
   const { isAuthenticated, isLoading } = useConvexAuth();
   const route = useRouter();
@@ -29,7 +29,7 @@ export default function Navbar() {
   }, []);
 
   if (isAuthenticated) {
-    return route.push("/workspace");
+    route.push("/workspace");
   }
 
   return (
