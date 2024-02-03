@@ -6,7 +6,7 @@ Notion clone websites, ensuring full functionality and highquality projects from
 
 * Implemented a robust authentication system for secure
   access.
-* Leveraged Next.js 14 and Tailwind CSS to achieve  
+* Leveraged Next.js 14 and Tailwind CSS to achieve   
   efficient rendering and a visually appealing UI.
 * Utilized Convex database for seamless data storage 
   andmanagement.
