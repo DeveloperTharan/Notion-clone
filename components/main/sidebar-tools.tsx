@@ -9,11 +9,17 @@ import { GoClock, GoPeople, GoPlusCircle } from "react-icons/go";
 import { HiOutlineTemplate } from "react-icons/hi";
 import { CiImport } from "react-icons/ci";
 import { BsFillTrash2Fill } from "react-icons/bs";
+import { Spinner } from "../ui/spinner";
 
 export const SideBarTools = () => {
   const { data } = useSession();
 
-  if (!data) return <div>Loading...</div>;
+  if (!data)
+    return (
+      <div className="h-full flex items-center justify-center">
+        <Spinner size={"lg"} />
+      </div>
+    );
 
   return (
     <div className="w-full h-full px-4 py-2 flex flex-col gap-3">
@@ -46,7 +52,7 @@ export const SideBarTools = () => {
       </div>
 
       <div className="mt-4">Documents</div>
-      
+
       <div className="w-full flex flex-col items-center gap-1 text-muted-foreground font-semibold">
         <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
           <GoPeople className="w-4 h-4" />
