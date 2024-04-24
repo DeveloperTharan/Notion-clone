@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
+import { SideBarTools } from "./sidebar-tools";
 
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
@@ -76,7 +77,7 @@ export const SideBar = () => {
       setIsCollapsed(false);
       setIsResetting(true);
 
-      sidebarRef.current.style.width = isMobile ? "240px" : "100%";
+      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
       navbarRef.current.style.setProperty(
         "width",
         isMobile ? "0" : "calc(100%-240px)"
@@ -105,7 +106,7 @@ export const SideBar = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
+          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col items-center justify-start z-[99999]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -120,9 +121,7 @@ export const SideBar = () => {
         >
           <MdKeyboardDoubleArrowLeft className="w-6 h-6" />
         </div>
-        <div>Action Items</div>
-        <div className="mt-4">Documents</div>
-        <div>Action Items</div>
+        <SideBarTools />
         <div
           className="opacity-0 group-hover/sidebar:opacity-100 w-[3px] h-full bg-primary/10 absolute right-0 
           top-0 cursor-col-resize"

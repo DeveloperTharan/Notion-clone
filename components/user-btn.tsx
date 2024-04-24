@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useTransition } from "react";
 import Image from "next/image";
 
-import { signOut } from "@/auth";
 import { Session } from "next-auth";
 
 import {
@@ -16,8 +17,12 @@ import {
 import { CiSettings } from "react-icons/ci";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaRegCircleUser, FaRegUser } from "react-icons/fa6";
+import { SignOut } from "@/actions/sign-out";
+import { Spinner } from "./ui/spinner";
 
-export const UserButton = ({ session }: { session: Session }) => {
+export const UserButton = ({ session, align }: { session: Session, align: "center" | "end" | "start" | undefined }) => {
+  const [isPending, startTransition] = useTransition();
+
   return (
     <DropdownMenu dir="ltr">
       <DropdownMenuTrigger>
@@ -25,9 +30,9 @@ export const UserButton = ({ session }: { session: Session }) => {
           <Image
             src={session.user?.image!}
             alt="user"
-            width={35}
-            height={35}
-            className="object-cover rounded-full"
+            width={28}
+            height={28}
+            className="object-cover rounded-lg"
           />
         ) : (
           <FaRegCircleUser className="h-10 w-10" />
@@ -37,7 +42,7 @@ export const UserButton = ({ session }: { session: Session }) => {
         side="bottom"
         sideOffset={15}
         alignOffset={15}
-        align="end"
+        align={align}
       >
         <DropdownMenuLabel>{session.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -47,17 +52,20 @@ export const UserButton = ({ session }: { session: Session }) => {
         <DropdownMenuItem className="flex items-center gap-x-3">
           <CiSettings /> Settings
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <form
-            action={async () => {
-              "use server";
-              await signOut();
-            }}
-          >
-            <button type="submit" className="flex items-center gap-x-3">
+        <DropdownMenuItem
+          className="flex items-center gap-x-3"
+          onClick={() => {
+            startTransition(() => SignOut());
+          }}
+          disabled={isPending}
+        >
+          {isPending ? (
+            <Spinner size={"lg"} />
+          ) : (
+            <>
               <AiOutlineLogout /> LogOut
-            </button>
-          </form>
+            </>
+          )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -85,7 +85,7 @@ export const NavBar = async () => {
             </AuthModel>
           </>
         )}
-        {session && <UserButton session={session} />}
+        {session && <UserButton session={session} align="end" />}
       </div>
     </div>
   );

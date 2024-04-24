@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 
 import { SideBar } from "@/components/main/sidebar";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Workspace | Notion",
@@ -21,13 +22,13 @@ export default async function Mainlayout({
   if (!session) redirect("/");
 
   return (
-    <main className="w-full h-full flex">
-      <div className="h-full sticky top-0 left-0">
-        <SideBar />
-      </div>
-      <section className="flex-1 h-full overflow-y-auto">
-        {children}
-      </section>
-    </main>
+    <SessionProvider session={session}>
+      <main className="w-full h-full flex">
+        <div className="h-full sticky top-0 left-0">
+          <SideBar />
+        </div>
+        <section className="flex-1 h-full overflow-y-auto">{children}</section>
+      </main>
+    </SessionProvider>
   );
 }
