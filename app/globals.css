@@ -75,3 +75,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body,
+.root {
+  position: relative;
+  height: 100%;
+}
