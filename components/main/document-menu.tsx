@@ -22,6 +22,7 @@ import { GoArrowUpRight, GoStar } from "react-icons/go";
 import Link from "next/link";
 import { IconPicker } from "../emoji-picker";
 import { IoIosClose } from "react-icons/io";
+import { DocumentInput } from "./document-input";
 
 interface DocumentMenuProps {
   children: React.ReactNode;
@@ -78,21 +79,6 @@ export const DocumentMenu = ({
       });
   };
 
-  const onRenameChange = debounce(
-    async (e: React.ChangeEvent<HTMLInputElement>) => {
-      await handleRename(documentId, e.target.value)
-        .then((data) => {
-          if (data.success) return toast.success(data.success);
-          if (data.error) return toast.error(data.error);
-        })
-        .finally(() => {
-          router.refresh();
-          setIsRenameInputActive(false);
-        });
-    },
-    1000
-  );
-
   const handleDeleteDoc = async () => {
     await handleDocumentAction("archive", documentId)
       .then((data) => {
@@ -111,18 +97,6 @@ export const DocumentMenu = ({
     setTimeout(() => {
       setCopied(false);
     }, 2000);
-  };
-
-  const handleIconSelect = async (icon: string) => {
-    await handleAddIcon(documentId, icon)
-      .then((data) => {
-        if (data.success) return toast.success(data.success);
-        if (data.error) return toast.error(data.error);
-      })
-      .finally(() => {
-        router.refresh();
-        setIsRenameInputActive(false);
-      });
   };
 
   return (
@@ -214,29 +188,12 @@ export const DocumentMenu = ({
         </div>
       )}
       {isRenameInputActive && (
-        <div className="absolute w-80 h-12 bg-secondary border-primary/20 shadow-md rounded-md top-0 left-0 z-[9999]">
-          <div className="relative flex items-center justify-center gap-x-2 top-3 px-3">
-            <IoIosClose
-              className="h-6 w-6 border rounded-full border-primary/10 p-[2px] absolute -top-5 -right-3"
-              role="button"
-              onClick={() => setIsRenameInputActive(false)}
-            />
-            <IconPicker onChange={handleIconSelect}>
-              <input
-                type="text"
-                role="button"
-                defaultValue={documentIcon ? documentIcon : "Icon"}
-                className="w-10 h-6 outline-none rounded-md px-2 focus:ring-1 focus:ring-gray-300"
-              />
-            </IconPicker>
-            <input
-              type="text"
-              defaultValue={documentTitle}
-              className="w-full h-6 outline-none rounded-md px-2 focus:ring-1 focus:ring-gray-300"
-              onChange={onRenameChange}
-            />
-          </div>
-        </div>
+        <DocumentInput
+          id={documentId}
+          title={documentTitle}
+          docicon={documentIcon!}
+          setClose={setIsRenameInputActive}
+        />
       )}
     </div>
   );
