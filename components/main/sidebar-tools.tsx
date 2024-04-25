@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
+import { toast } from "sonner";
 import { Document } from "@prisma/client";
 import { useSession } from "next-auth/react";
+import { createDocument } from "@/actions/document";
 import { DocumentNode, StructureData } from "@/utils/structure-data";
 
 import { Item } from "./item";
@@ -27,6 +30,7 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
     undefined
   );
   const { data } = useSession();
+  const router = useRouter();
 
   if (!data) {
     return (
@@ -41,7 +45,14 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
     setDocuments(data);
   }, [docs]);
 
-  const handleCreatePage = () => {};
+  const handleCreatePage = async () => {
+    await createDocument()
+      .then((data) => {
+        if (data.success) return toast.success(data.success);
+        if (data.error) return toast.error(data.error);
+      })
+      .finally(() => router.refresh());
+  };
 
   return (
     <div className="w-full h-full px-4 py-2 flex flex-col gap-3">
@@ -56,12 +67,18 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
       </div>
 
       <div className="mt-2">
-        <DocumentList documents={documents} />
+        {documents?.length! <= 0 ? (
+          <p className="ml-4 text-xs text-muted-foreground">No documents</p>
+        ) : (
+          <DocumentList documents={documents} />
+        )}
       </div>
 
-      <div className="mb-4">
-        <Item label="New Page" Icon={PiPlusThin} onClick={handleCreatePage} />
-      </div>
+      {documents?.length! > 0 && (
+        <div className="mb-2">
+          <Item label="New Page" Icon={PiPlusThin} onClick={handleCreatePage} />
+        </div>
+      )}
 
       <div className="w-full flex flex-col items-center gap-1 text-muted-foreground font-semibold">
         <Item label="Create a Teamspace" Icon={GoPeople} />

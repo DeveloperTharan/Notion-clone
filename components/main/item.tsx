@@ -1,5 +1,11 @@
-import { cn } from "@/lib/utils";
+"use client";
+
 import React from "react";
+import { useRouter } from "next/navigation";
+
+import { toast } from "sonner";
+import { cn } from "@/lib/utils";
+import { createDocument } from "@/actions/document";
 
 import { IconType } from "react-icons";
 import { GoPlus } from "react-icons/go";
@@ -29,11 +35,20 @@ export const Item = ({
   onClick,
   onExpand,
 }: ItemProp) => {
+  const router = useRouter();
+
   const handleExpand = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
     event.stopPropagation();
     onExpand?.();
   };
-  const handleCreateInside = () => {};
+  const handleCreateInside = async () => {
+    await createDocument(id)
+      .then((data) => {
+        if (data.success) return toast.success(data.success);
+        if (data.error) return toast.error(data.error);
+      })
+      .finally(() => router.refresh());
+  };
 
   return (
     <div

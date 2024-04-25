@@ -32,7 +32,7 @@ export default async function Mainlayout({
   return (
     <SessionProvider session={session}>
       <main className="w-full h-full flex">
-        <div className="h-full sticky top-0 left-0">
+        <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
           <SideBar docs={docs} />
         </div>
         <section className="flex-1 h-full overflow-y-auto">{children}</section>

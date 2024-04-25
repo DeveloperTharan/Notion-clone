@@ -5,7 +5,7 @@ import { Item } from "./item";
 import { Skeleton } from "../ui/skeleton";
 import { DocumentNode } from "@/utils/structure-data";
 
-import { PiFileArchiveThin } from "react-icons/pi";
+import { ImFileText2 } from "react-icons/im";
 
 interface DocumentListProps {
   documents: DocumentNode[] | undefined;
@@ -57,7 +57,7 @@ export const DocumentList = ({ documents, level = 0 }: DocumentListProps) => {
                 id={data.id}
                 onClick={() => router.push(`/workspace/${data.id}`)}
                 label={data.title!}
-                Icon={PiFileArchiveThin}
+                Icon={ImFileText2}
                 documentIcon={data.icon!}
                 active={params.document === data.id}
                 level={level}
