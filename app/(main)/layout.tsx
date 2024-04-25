@@ -26,7 +26,8 @@ export default async function Mainlayout({
   const docs = await db.document.findMany({
     where: {
       userId: session.user?.id,
-    }
+      isArchived: false,
+    },
   });
 
   return (
@@ -35,7 +36,7 @@ export default async function Mainlayout({
         <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
           <SideBar docs={docs} />
         </div>
-        <section className="flex-1 h-full overflow-y-auto">{children}</section>
+        <section className="flex-1 h-full overflow-y-auto -z-50">{children}</section>
         <Toaster
           position="top-right"
           dir="ltr"

@@ -11,6 +11,7 @@ import { IconType } from "react-icons";
 import { GoPlus } from "react-icons/go";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { MdArrowForwardIos } from "react-icons/md";
+import { DocumentMenu } from "./document-menu";
 
 interface ItemProp {
   id?: string;
@@ -20,6 +21,9 @@ interface ItemProp {
   active?: boolean;
   expanded?: boolean;
   level?: number;
+  isAchived?: boolean;
+  isFavorite?: boolean;
+  url?: string | null;
   onClick?: () => void;
   onExpand?: () => void;
 }
@@ -32,6 +36,9 @@ export const Item = ({
   active,
   expanded,
   level,
+  isAchived,
+  isFavorite,
+  url,
   onClick,
   onExpand,
 }: ItemProp) => {
@@ -99,11 +106,20 @@ export const Item = ({
             role="button"
             onClick={handleCreateInside}
           />
-          <HiDotsHorizontal
-            id={id}
-            className="opacity-0 group-hover:opacity-100 p-[2px] hover:bg-primary/10 text-muted-foreground h-5 w-5 rounded-md"
-            role="button"
-          />
+          <DocumentMenu
+            documentId={id}
+            documentIcon={documentIcon}
+            documentTitle={label}
+            isArchived={isAchived}
+            isFavorite={isFavorite}
+            url={url}
+          >
+            <HiDotsHorizontal
+              id={id}
+              className="opacity-0 group-hover:opacity-100 p-[2px] hover:bg-primary/10 text-muted-foreground h-5 w-5 rounded-md"
+              role="button"
+            />
+          </DocumentMenu>
         </div>
       )}
     </div>

@@ -63,6 +63,9 @@ export const DocumentList = ({ documents, level = 0 }: DocumentListProps) => {
                 level={level}
                 onExpand={() => onExpand(data.id)}
                 expanded={expanded[data.id]}
+                isAchived={data.isArchived}
+                isFavorite={data.isFavorite}
+                url={data.url}
               />
               {expanded[data.id] && (
                 <DocumentList documents={data.children} level={level + 1} />

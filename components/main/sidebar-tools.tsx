@@ -19,7 +19,7 @@ import { PiPlusThin } from "react-icons/pi";
 import { BsFillTrash2Fill } from "react-icons/bs";
 import { HiOutlineTemplate } from "react-icons/hi";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
-import { GoClock, GoPeople, GoPlusCircle } from "react-icons/go";
+import { GoPeople, GoPlusCircle, GoStar } from "react-icons/go";
 
 interface SideBarProps {
   docs: Document[];
@@ -39,6 +39,7 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
       </div>
     );
   }
+  
 
   useEffect(() => {
     const data = StructureData(docs);
@@ -62,7 +63,7 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
       <div className="w-full flex flex-col items-center gap-1 text-muted-foreground font-semibold">
         <Item label="Search" Icon={IoSearch} />
         <Item label="Settings" Icon={IoSettingsOutline} />
-        <Item label="Update" Icon={GoClock} />
+        <Item label="Favorites" Icon={GoStar} />
         <Item label="New Page" Icon={GoPlusCircle} onClick={handleCreatePage} />
       </div>
 

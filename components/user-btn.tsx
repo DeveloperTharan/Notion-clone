@@ -50,6 +50,7 @@ export const UserButton = ({
       <DropdownMenuContent
         side="bottom"
         align={align}
+        className="w-80"
       >
         <DropdownMenuLabel>{session.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />

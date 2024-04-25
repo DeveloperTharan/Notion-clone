@@ -75,6 +75,8 @@ model Document {
   parentDocument   Document?  @relation("ChildDocuments", fields: [parentDocumentId], references: [id])
   childDocuments   Document[] @relation("ChildDocuments")
 
+  createdAt DateTime @default(now())
+
   @@index([userId, parentDocumentId])
   @@unique([userId, parentDocumentId])
   @@map("documents")
