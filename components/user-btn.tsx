@@ -49,8 +49,6 @@ export const UserButton = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="bottom"
-        sideOffset={15}
-        alignOffset={15}
         align={align}
       >
         <DropdownMenuLabel>{session.user?.email}</DropdownMenuLabel>

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
-import { Skeleton } from "../ui/skeleton";
 import { Item } from "./item";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import { Skeleton } from "../ui/skeleton";
 import { DocumentNode } from "@/utils/structure-data";
+
+import { PiFileArchiveThin } from "react-icons/pi";
 
 interface DocumentListProps {
   documents: DocumentNode[] | undefined;
@@ -56,7 +57,7 @@ export const DocumentList = ({ documents, level = 0 }: DocumentListProps) => {
                 id={data.id}
                 onClick={() => router.push(`/workspace/${data.id}`)}
                 label={data.title!}
-                Icon={IoDocumentTextOutline}
+                Icon={PiFileArchiveThin}
                 documentIcon={data.icon!}
                 active={params.document === data.id}
                 level={level}

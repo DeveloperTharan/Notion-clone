@@ -12,6 +12,7 @@ import { UserButton } from "../user-btn";
 import { DocumentList } from "./document-list";
 
 import { CiImport } from "react-icons/ci";
+import { PiPlusThin } from "react-icons/pi";
 import { BsFillTrash2Fill } from "react-icons/bs";
 import { HiOutlineTemplate } from "react-icons/hi";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
@@ -59,7 +60,7 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
       </div>
 
       <div className="mb-4">
-        <Item label="New Page" Icon={GoPlusCircle} onClick={handleCreatePage} />
+        <Item label="New Page" Icon={PiPlusThin} onClick={handleCreatePage} />
       </div>
 
       <div className="w-full flex flex-col items-center gap-1 text-muted-foreground font-semibold">
