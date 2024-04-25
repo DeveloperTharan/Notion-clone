@@ -52,7 +52,7 @@ export const DocumentInput = ({
   );
 
   return (
-    <div className="absolute w-80 h-12 bg-secondary border-primary/20 shadow-md rounded-md top-0 left-0 z-[9999]">
+    <div className="absolute w-80 h-12 bg-secondary border-primary/20 shadow-md rounded-md top-10 left-0 z-[9999]">
       <div className="relative flex items-center justify-center gap-x-2 top-3 px-3">
         <IoIosClose
           className="h-6 w-6 border rounded-full border-primary/10 p-[2px] absolute -top-5 -right-3"

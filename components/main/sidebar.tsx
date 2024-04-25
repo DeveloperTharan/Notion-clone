@@ -143,7 +143,7 @@ export const SideBar = ({ docs, trash }: SideBarProps) => {
           isMobile && "left-0 w-full"
         )}
       >
-        <nav className="bg-transparent px-3 py-2 w-full">
+        <nav className="bg-transparent px-3 py-2 w-full z-50">
           {(isMobile || isCollapsed) && (
             <HiMenuAlt3
               className="w-6 h-6 text-muted-foreground"

@@ -84,7 +84,7 @@ export const Item = ({
         onClick={onClick}
       >
         {documentIcon ? (
-          <div className="group-hover:hidden shrink-0 mr-2 text-[18px]">
+          <div className="group-hover:hidden shrink-0 mr-2 text-sm">
             {documentIcon}
           </div>
         ) : (

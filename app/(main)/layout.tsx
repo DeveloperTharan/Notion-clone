@@ -45,7 +45,7 @@ export default async function Mainlayout({
         <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
           <SideBar docs={docs} trash={trash} />
         </div>
-        <section className="flex-1 h-full overflow-y-auto -z-50">{children}</section>
+        <section className="flex-1 h-full overflow-y-auto">{children}</section>
         <Toaster
           position="top-right"
           dir="ltr"
