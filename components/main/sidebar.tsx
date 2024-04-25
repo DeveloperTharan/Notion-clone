@@ -10,13 +10,18 @@ import React, {
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import { Document } from "@prisma/client";  
 import { useMediaQuery } from "usehooks-ts";
 import { SideBarTools } from "./sidebar-tools";
 
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
-export const SideBar = () => {
+interface SideBarProps {
+  docs: Document[]
+}
+
+export const SideBar = ({ docs } : SideBarProps) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [isResetting, setIsResetting] = useState<boolean>(false);
@@ -121,7 +126,7 @@ export const SideBar = () => {
         >
           <MdKeyboardDoubleArrowLeft className="w-6 h-6" />
         </div>
-        <SideBarTools />
+        <SideBarTools docs={docs} />
         <div
           className="opacity-0 group-hover/sidebar:opacity-100 w-[3px] h-full bg-primary/10 absolute right-0 
           top-0 cursor-col-resize"

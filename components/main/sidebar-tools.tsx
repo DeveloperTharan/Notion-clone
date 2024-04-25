@@ -1,78 +1,72 @@
-import React from "react";
+"use client";
 
+import React, { useEffect, useState } from "react";
+
+import { Document } from "@prisma/client";
 import { useSession } from "next-auth/react";
+import { DocumentNode, StructureData } from "@/utils/structure-data";
 
+import { Item } from "./item";
+import { Spinner } from "../ui/spinner";
 import { UserButton } from "../user-btn";
+import { DocumentList } from "./document-list";
 
-import { IoSearch, IoSettingsOutline } from "react-icons/io5";
-import { GoClock, GoPeople, GoPlusCircle } from "react-icons/go";
-import { HiOutlineTemplate } from "react-icons/hi";
 import { CiImport } from "react-icons/ci";
 import { BsFillTrash2Fill } from "react-icons/bs";
-import { Spinner } from "../ui/spinner";
+import { HiOutlineTemplate } from "react-icons/hi";
+import { IoSearch, IoSettingsOutline } from "react-icons/io5";
+import { GoClock, GoPeople, GoPlusCircle } from "react-icons/go";
 
-export const SideBarTools = () => {
+interface SideBarProps {
+  docs: Document[];
+}
+
+export const SideBarTools = ({ docs }: SideBarProps) => {
+  const [documents, setDocuments] = useState<DocumentNode[] | undefined>(
+    undefined
+  );
   const { data } = useSession();
 
-  if (!data)
+  if (!data) {
     return (
       <div className="h-full flex items-center justify-center">
         <Spinner size={"lg"} />
       </div>
     );
+  }
+
+  useEffect(() => {
+    const data = StructureData(docs);
+    setDocuments(data);
+  }, [docs]);
+
+  const handleCreatePage = () => {};
 
   return (
     <div className="w-full h-full px-4 py-2 flex flex-col gap-3">
-      <div className="w-[90%] flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-2 rounded-md">
+      <div className="w-[90%]">
         <UserButton session={data} align="start" />
-        <span className="text-xs font-semibold text-muted-foreground">
-          {data.user?.name}
-        </span>
       </div>
       <div className="w-full flex flex-col items-center gap-1 text-muted-foreground font-semibold">
-        <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
-          <IoSearch className="w-4 h-4" />
-          <span>Search</span>
-        </div>
-        <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
-          <IoSettingsOutline className="w-4 h-4" />
-          <span>Settings</span>
-        </div>
-        <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
-          <GoClock className="w-4 h-4" />
-          <span>Update</span>
-        </div>
-        <div
-          className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs"
-          onClick={() => {}}
-        >
-          <GoPlusCircle className="w-4 h-4" />
-          <span>New Page</span>
-        </div>
+        <Item label="Search" Icon={IoSearch} />
+        <Item label="Settings" Icon={IoSettingsOutline} />
+        <Item label="Update" Icon={GoClock} />
+        <Item label="New Page" Icon={GoPlusCircle} onClick={handleCreatePage} />
       </div>
 
-      <div className="mt-4">Documents</div>
+      <div className="mt-2">
+        <DocumentList documents={documents} />
+      </div>
+
+      <div className="mb-4">
+        <Item label="New Page" Icon={GoPlusCircle} onClick={handleCreatePage} />
+      </div>
 
       <div className="w-full flex flex-col items-center gap-1 text-muted-foreground font-semibold">
-        <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
-          <GoPeople className="w-4 h-4" />
-          <span>Create a Teamspace</span>
-        </div>
-        <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
-          <HiOutlineTemplate className="w-4 h-4" />
-          <span>Template</span>
-        </div>
-        <div className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs">
-          <CiImport className="w-4 h-4" />
-          <span>Import</span>
-        </div>
-        <div
-          className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-1.5 rounded-md text-xs"
-          onClick={() => {}}
-        >
-          <BsFillTrash2Fill className="w-4 h-4" />
-          <span>Trash</span>
-        </div>
+        <Item label="Create a Teamspace" Icon={GoPeople} />
+        <Item label="Template" Icon={HiOutlineTemplate} />
+        <Item label="Import" Icon={CiImport} />
+        <Item label="Trash" Icon={BsFillTrash2Fill} />
       </div>
     </div>
   );

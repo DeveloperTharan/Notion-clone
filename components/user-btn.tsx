@@ -20,12 +20,18 @@ import { FaRegCircleUser, FaRegUser } from "react-icons/fa6";
 import { SignOut } from "@/actions/sign-out";
 import { Spinner } from "./ui/spinner";
 
-export const UserButton = ({ session, align }: { session: Session, align: "center" | "end" | "start" | undefined }) => {
+export const UserButton = ({
+  session,
+  align,
+}: {
+  session: Session;
+  align: "center" | "end" | "start" | undefined;
+}) => {
   const [isPending, startTransition] = useTransition();
 
   return (
     <DropdownMenu dir="ltr">
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="w-full flex items-center gap-x-3 cursor-pointer hover:bg-primary/10 p-2 rounded-md">
         {session.user?.image ? (
           <Image
             src={session.user?.image!}
@@ -37,6 +43,9 @@ export const UserButton = ({ session, align }: { session: Session, align: "cente
         ) : (
           <FaRegCircleUser className="h-10 w-10" />
         )}
+        <span className="text-xs font-semibold text-muted-foreground">
+          {session.user?.name}
+        </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="bottom"

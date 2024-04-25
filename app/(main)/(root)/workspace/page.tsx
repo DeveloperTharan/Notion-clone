@@ -1,14 +1,21 @@
-import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { redirect } from "next/navigation";
+"use client";
+
 import React from "react";
+import Image from "next/image";
+import { redirect, useRouter } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+
 import { GoPlusCircle } from "react-icons/go";
+import { createDocument } from "@/actions/document";
+import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
-export default async function Workspace() {
-  const session = await auth();
+export default function Workspace() {
+  const { data } = useSession();
+  const router = useRouter();
 
-  if (!session) return redirect("/");
+  if (!data) return redirect("/");
 
   return (
     <div className="h-auto min-h-full flex flex-col space-y-2 items-center justify-center">
@@ -28,15 +35,25 @@ export default async function Workspace() {
           className="mt-20"
         />
       </div>
-      <p>Welcom to {session.user?.name}'s Notion</p>
-      <Button
-        variant={"default"}
-        className="flex gap-3 items-center"
-        size={"lg"}
+      <p>Welcom to {data.user?.name}'s Notion</p>
+      <form
+        action={async () => {
+          await createDocument().then((data) => {
+            if (data.success) return toast.success(data.success);
+            if (data.error) return toast.error(data.error);
+          }).finally(() => router.refresh());
+        }}
       >
-        <GoPlusCircle className="w-4 h-4" />
-        Create a note
-      </Button>
+        <Button
+          variant={"default"}
+          className="flex gap-3 items-center"
+          size={"lg"}
+          type="submit"
+        >
+          <GoPlusCircle className="w-4 h-4" />
+          Create a note
+        </Button>
+      </form>
     </div>
   );
 }
