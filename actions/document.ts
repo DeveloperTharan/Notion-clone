@@ -9,8 +9,6 @@ import {
   restorDocument,
 } from "@/data/document";
 import { db } from "@/lib/db";
-import { Prisma, PrismaClient } from "@prisma/client";
-import { DefaultArgs } from "@prisma/client/runtime/library";
 
 const base_url = process.env.NEXT_BASE_URL;
 
@@ -120,6 +118,34 @@ export const handleRename = async (docId: string, title: string) => {
   }
 };
 
+export const handleAddIcon = async (docId: string, icon: string) => {
+  try {
+    const session = await auth();
+    const user = session?.user;
+
+    if (!session || !user) return { error: "Unauthorized!" };
+    if (!docId) return { error: "Document missing!" };
+
+    const existingDocument = await getDocumentById(docId);
+
+    if (!existingDocument) return { error: "No such document" };
+
+    await db.document.update({
+      where: {
+        id: existingDocument.id,
+      },
+      data: {
+        icon,
+      },
+    });
+
+    return { success: `Add ${icon} to ${existingDocument.title}` };
+  } catch (error) {
+    console.log("DOCUMENT ACTION ERROR", error);
+    return { error: "Error! something went's wrong, Tryagain!" };
+  }
+};
+
 export const handleDocumentAction = async (
   action: "archive" | "delete" | "restore",
   docId: string
@@ -137,8 +163,8 @@ export const handleDocumentAction = async (
         : action == "delete"
         ? deleteDocument
         : restorDocument;
-        console.log(actionFunction);
-        
+    console.log(actionFunction);
+
     await processDocumentAndChildren(db, docId, actionFunction);
 
     return {

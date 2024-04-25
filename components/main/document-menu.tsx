@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import debounce from "debounce";
 import { useSession } from "next-auth/react";
 import {
+  handleAddIcon,
   handleDocumentAction,
   handleFavorite,
   handleRename,
@@ -19,6 +20,8 @@ import { ImFileText2 } from "react-icons/im";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { GoArrowUpRight, GoStar } from "react-icons/go";
 import Link from "next/link";
+import { IconPicker } from "../emoji-picker";
+import { IoIosClose } from "react-icons/io";
 
 interface DocumentMenuProps {
   children: React.ReactNode;
@@ -44,7 +47,6 @@ export const DocumentMenu = ({
   const [isRenameInputActive, setIsRenameInputActive] = useState(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
-  const renameRef = useRef<HTMLDivElement>(null);
 
   const { data } = useSession();
   const router = useRouter();
@@ -53,22 +55,6 @@ export const DocumentMenu = ({
     const handleOutsideClick = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
-      }
-    };
-    document.body.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.body.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        renameRef.current &&
-        !renameRef.current.contains(event.target as Node)
-      ) {
-        setIsRenameInputActive(false);
       }
     };
     document.body.addEventListener("click", handleOutsideClick);
@@ -101,6 +87,7 @@ export const DocumentMenu = ({
         })
         .finally(() => {
           router.refresh();
+          setIsRenameInputActive(false);
         });
     },
     1000
@@ -124,6 +111,18 @@ export const DocumentMenu = ({
     setTimeout(() => {
       setCopied(false);
     }, 2000);
+  };
+
+  const handleIconSelect = async (icon: string) => {
+    await handleAddIcon(documentId, icon)
+      .then((data) => {
+        if (data.success) return toast.success(data.success);
+        if (data.error) return toast.error(data.error);
+      })
+      .finally(() => {
+        router.refresh();
+        setIsRenameInputActive(false);
+      });
   };
 
   return (
@@ -215,17 +214,21 @@ export const DocumentMenu = ({
         </div>
       )}
       {isRenameInputActive && (
-        <div
-          className="absolute w-80 h-12 bg-secondary border-primary/20 shadow-md rounded-md top-0 left-0 z-[9999]"
-          ref={renameRef}
-        >
+        <div className="absolute w-80 h-12 bg-secondary border-primary/20 shadow-md rounded-md top-0 left-0 z-[9999]">
           <div className="relative flex items-center justify-center gap-x-2 top-3 px-3">
-            <input
-              type="text"
+            <IoIosClose
+              className="h-6 w-6 border rounded-full border-primary/10 p-[2px] absolute -top-5 -right-3"
               role="button"
-              defaultValue={documentIcon ? documentIcon : "I"}
-              className="w-10 h-6 outline-none rounded-md px-2 focus:ring-1 focus:ring-gray-300"
+              onClick={() => setIsRenameInputActive(false)}
             />
+            <IconPicker onChange={handleIconSelect}>
+              <input
+                type="text"
+                role="button"
+                defaultValue={documentIcon ? documentIcon : "Icon"}
+                className="w-10 h-6 outline-none rounded-md px-2 focus:ring-1 focus:ring-gray-300"
+              />
+            </IconPicker>
             <input
               type="text"
               defaultValue={documentTitle}
