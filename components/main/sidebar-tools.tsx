@@ -20,12 +20,14 @@ import { BsFillTrash2Fill } from "react-icons/bs";
 import { HiOutlineTemplate } from "react-icons/hi";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
 import { GoPeople, GoPlusCircle, GoStar } from "react-icons/go";
+import { TrashModel } from "../models/trash-model";
 
 interface SideBarProps {
   docs: Document[];
+  trash: Document[];
 }
 
-export const SideBarTools = ({ docs }: SideBarProps) => {
+export const SideBarTools = ({ docs, trash }: SideBarProps) => {
   const [documents, setDocuments] = useState<DocumentNode[] | undefined>(
     undefined
   );
@@ -39,7 +41,6 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
       </div>
     );
   }
-  
 
   useEffect(() => {
     const data = StructureData(docs);
@@ -85,7 +86,9 @@ export const SideBarTools = ({ docs }: SideBarProps) => {
         <Item label="Create a Teamspace" Icon={GoPeople} />
         <Item label="Template" Icon={HiOutlineTemplate} />
         <Item label="Import" Icon={CiImport} />
-        <Item label="Trash" Icon={BsFillTrash2Fill} />
+        <TrashModel trash={trash}>
+          <Item label="Trash" Icon={BsFillTrash2Fill} />
+        </TrashModel>
       </div>
     </div>
   );

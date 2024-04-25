@@ -1,7 +1,13 @@
 "use server";
 
 import { auth } from "@/auth";
-import { getDocumentById } from "@/data/document";
+import { processDocumentAndChildren } from "@/data/action-fun";
+import {
+  archiveDocument,
+  deleteDocument,
+  getDocumentById,
+  restorDocument,
+} from "@/data/document";
 import { db } from "@/lib/db";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { DefaultArgs } from "@prisma/client/runtime/library";
@@ -114,7 +120,10 @@ export const handleRename = async (docId: string, title: string) => {
   }
 };
 
-export const handleDelete = async (docId: string) => {
+export const handleDocumentAction = async (
+  action: "archive" | "delete" | "restore",
+  docId: string
+) => {
   try {
     const session = await auth();
     const user = session?.user;
@@ -122,37 +131,23 @@ export const handleDelete = async (docId: string) => {
     if (!session || !user) return { error: "Unauthorized!" };
     if (!docId) return { error: "Document missing!" };
 
-    await DeleteCommandAndChildrens(db, docId);
+    const actionFunction =
+      action === "archive"
+        ? archiveDocument
+        : action == "delete"
+        ? deleteDocument
+        : restorDocument;
+        console.log(actionFunction);
+        
+    await processDocumentAndChildren(db, docId, actionFunction);
 
-    return { success: "Command Deleted Sucessfully" };
+    return {
+      success: `Document ${
+        action.charAt(0).toUpperCase() + action.slice(1)
+      }d Successfully`,
+    };
   } catch (error) {
     console.log("DOCUMENT ACTION ERROR", error);
     return { error: "Error! something went's wrong, Tryagain!" };
   }
-};
-
-const DeleteCommandAndChildrens = async (
-  db: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>,
-  parentId: string
-) => {
-  // Find all children of the current command
-  const children = await db.document.findMany({
-    where: {
-      parentDocumentId: parentId,
-    },
-  });
-
-  // Recursively delete each child command
-  for (const child of children) {
-    await DeleteCommandAndChildrens(db, child.id);
-  }
-
-  await db.document.update({
-    where: {
-      id: parentId,
-    },
-    data: {
-      isArchived: true,
-    },
-  });
 };

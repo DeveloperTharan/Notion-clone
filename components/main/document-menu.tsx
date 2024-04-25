@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import debounce from "debounce";
 import { useSession } from "next-auth/react";
-import { handleDelete, handleFavorite, handleRename } from "@/actions/document";
+import {
+  handleDocumentAction,
+  handleFavorite,
+  handleRename,
+} from "@/actions/document";
 
 import { FiLink } from "react-icons/fi";
 import { CiCircleCheck, CiTrash } from "react-icons/ci";
@@ -103,7 +107,7 @@ export const DocumentMenu = ({
   );
 
   const handleDeleteDoc = async () => {
-    await handleDelete(documentId)
+    await handleDocumentAction("archive", documentId)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

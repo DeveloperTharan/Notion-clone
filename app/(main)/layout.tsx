@@ -23,18 +23,27 @@ export default async function Mainlayout({
 
   if (!session) redirect("/");
 
-  const docs = await db.document.findMany({
+  const res1 = db.document.findMany({
     where: {
       userId: session.user?.id,
       isArchived: false,
     },
   });
 
+  const res2 = db.document.findMany({
+    where: {
+      userId: session.user?.id,
+      isArchived: true,
+    }
+  })
+
+  const [docs, trash] = await Promise.all([res1, res2]);
+
   return (
     <SessionProvider session={session}>
       <main className="w-full h-full flex">
         <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
-          <SideBar docs={docs} />
+          <SideBar docs={docs} trash={trash} />
         </div>
         <section className="flex-1 h-full overflow-y-auto -z-50">{children}</section>
         <Toaster
