@@ -10,12 +10,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { cn } from "@/lib/utils";
 
 interface DeleteModelProps {
   children: React.ReactNode;
   onConfirm: () => void;
   Open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  className: string;
 }
 
 export const DeleteModel = ({
@@ -23,10 +25,11 @@ export const DeleteModel = ({
   onConfirm,
   Open,
   setOpen,
+  className
 }: DeleteModelProps) => {
   return (
     <Dialog open={Open} onOpenChange={() => setOpen(!Open)}>
-      <DialogTrigger className="w-full">{children}</DialogTrigger>
+      <DialogTrigger className={cn("w-full", className)}>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="py-2">

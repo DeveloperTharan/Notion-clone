@@ -4,13 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
-import debounce from "debounce";
 import { useSession } from "next-auth/react";
 import {
-  handleAddIcon,
   handleDocumentAction,
   handleFavorite,
-  handleRename,
 } from "@/actions/document";
 
 import { FiLink } from "react-icons/fi";
@@ -20,8 +17,6 @@ import { ImFileText2 } from "react-icons/im";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { GoArrowUpRight, GoStar } from "react-icons/go";
 import Link from "next/link";
-import { IconPicker } from "../emoji-picker";
-import { IoIosClose } from "react-icons/io";
 import { DocumentInput } from "./document-input";
 
 interface DocumentMenuProps {

@@ -1,9 +1,11 @@
-import { DocContent } from "@/components/main/doc-content";
-import { NavBar } from "@/components/main/navbat";
-import { Skeleton } from "@/components/ui/skeleton";
-import { getDocumentById } from "@/data/document";
-import { Metadata } from "next";
 import React from "react";
+import { Metadata } from "next";
+
+import { NavBar } from "@/components/main/navbat";
+import { getDocumentById } from "@/data/document";
+import { Skeleton } from "@/components/ui/skeleton";
+import { DocContent } from "@/components/main/doc-content";
+import { Notification } from "@/components/main/notification";
 
 export async function generateMetadata({
   params,
@@ -14,7 +16,7 @@ export async function generateMetadata({
   const res = await getDocumentById(document);
 
   return {
-    title: `${res?.icon} ${res?.title} | Notion`,
+    title: `${res?.icon ? res?.icon : ""} ${res?.title} | Notion`,
   };
 }
 
@@ -50,6 +52,7 @@ export default async function DocumentPage({
                   icon={res?.icon}
                   preview={false}
                 />
+                {res?.isArchived && <Notification id={res.id} />}
               </div>
               <div className="w-full h-auto overflow-auto">
                 <DocContent document={res} />
