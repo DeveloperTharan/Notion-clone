@@ -48,8 +48,8 @@ export const Item = ({
     event.stopPropagation();
     onExpand?.();
   };
-  const handleCreateInside = async () => {
-    await createDocument(id)
+  const handleCreateInside = () => {
+    createDocument(id)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

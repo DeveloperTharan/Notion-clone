@@ -44,7 +44,7 @@ export const CoverImageModel = ({
 
       const response = await edgestore.publicFiles.upload({ file });
 
-      await handleCoverImage(
+      handleCoverImage(
         "uplode",
         params.document as string,
         response.url

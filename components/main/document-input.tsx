@@ -24,8 +24,8 @@ export const DocumentInput = ({
 }: DocumentInputProps) => {
   const router = useRouter();
 
-  const handleIconSelect = async (icon: string) => {
-    await handleIcon("Add" ,id, icon)
+  const handleIconSelect = (icon: string) => {
+    handleIcon("Add" ,id, icon)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

@@ -13,7 +13,6 @@ import { GoStar } from "react-icons/go";
 import { FaStar } from "react-icons/fa6";
 import { LuClock2 } from "react-icons/lu";
 import { MdOutlineChat } from "react-icons/md";
-import { IoIosStarOutline } from "react-icons/io";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { Publish } from "./publish";
 
@@ -40,8 +39,8 @@ export const NavBar = ({
 
   const router = useRouter();
 
-  const handleFavoriteDoc = async () => {
-    await handleFavorite(id!)
+  const handleFavoriteDoc = () => {
+    handleFavorite(id!)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

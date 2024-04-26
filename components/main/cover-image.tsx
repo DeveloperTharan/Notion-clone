@@ -3,10 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useEdgeStore } from "@/lib/edgestore";
-import { CoverImageModel } from "../models/coverimage-uplode";
-import { handleCoverImage } from "@/actions/document";
+
 import { cn } from "@/lib/utils";
+import { useEdgeStore } from "@/lib/edgestore";
+import { handleCoverImage } from "@/actions/document";
+import { CoverImageModel } from "../models/coverimage-uplode";
 
 interface CoverImageProps {
   url: string | null | undefined;
@@ -29,7 +30,7 @@ export const CoverImage = ({ url, preview }: CoverImageProps) => {
       });
     }
 
-    await handleCoverImage("delete", params.document as string);
+    handleCoverImage("delete", params.document as string);
 
     router.refresh();
   };

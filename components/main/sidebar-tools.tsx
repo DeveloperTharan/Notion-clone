@@ -48,8 +48,8 @@ export const SideBarTools = ({ docs, trash }: SideBarProps) => {
     );
   }
 
-  const handleCreatePage = async () => {
-    await createDocument()
+  const handleCreatePage = () => {
+    createDocument()
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

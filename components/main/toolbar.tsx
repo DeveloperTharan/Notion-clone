@@ -37,8 +37,8 @@ export const ToolBar = ({ initialData, preview }: ToolBarProps) => {
 
   const handleDisableInput = () => setIsEditing(false);
 
-  const onInput = debounce(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    await handleRename(initialData?.id!, e.target.value)
+  const onInput = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    handleRename(initialData?.id!, e.target.value)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
@@ -46,7 +46,7 @@ export const ToolBar = ({ initialData, preview }: ToolBarProps) => {
       .finally(() => {
         router.refresh();
       });
-  }, 1000);
+  }, 3000);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -55,8 +55,8 @@ export const ToolBar = ({ initialData, preview }: ToolBarProps) => {
     }
   };
 
-  const handleOnIconSelect = async (icon: string) => {
-    await handleIcon("Add", initialData?.id!, icon)
+  const handleOnIconSelect = (icon: string) => {
+    handleIcon("Add", initialData?.id!, icon)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
@@ -66,8 +66,8 @@ export const ToolBar = ({ initialData, preview }: ToolBarProps) => {
       });
   };
 
-  const handleOnRemoveIcon = async () => {
-    await handleIcon("Remove", initialData?.id!)
+  const handleOnRemoveIcon = () => {
+    handleIcon("Remove", initialData?.id!)
     .then((data) => {
       if (data.success) return toast.success(data.success);
       if (data.error) return toast.error(data.error);

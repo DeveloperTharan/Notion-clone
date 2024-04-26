@@ -34,8 +34,8 @@ export const TrashModel = ({ children, trash }: TrashModelProps) => {
 
   const router = useRouter();
 
-  const handleRestore = async (docId: string) => {
-    await handleDocumentAction("restore", docId)
+  const handleRestore = (docId: string) => {
+    handleDocumentAction("restore", docId)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
@@ -45,8 +45,8 @@ export const TrashModel = ({ children, trash }: TrashModelProps) => {
       });
   };
 
-  const handleDelete = async (docId: string) => {
-    await handleDocumentAction("delete", docId)
+  const handleDelete = (docId: string) => {
+    handleDocumentAction("delete", docId)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

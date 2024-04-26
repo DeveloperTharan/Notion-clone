@@ -17,8 +17,8 @@ export const Notification = ({ id }: NotificationProps) => {
 
   const router = useRouter();
 
-  const handleRestore = async () => {
-    await handleDocumentAction("restore", id)
+  const handleRestore = () => {
+    handleDocumentAction("restore", id)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
@@ -28,8 +28,8 @@ export const Notification = ({ id }: NotificationProps) => {
       });
   };
 
-  const handleDelete = async () => {
-    await handleDocumentAction("delete", id)
+  const handleDelete = () => {
+    handleDocumentAction("delete", id)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

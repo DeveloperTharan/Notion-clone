@@ -62,8 +62,8 @@ export const DocumentMenu = ({
 
   if (!data) return <p>Loading...</p>;
 
-  const handleFavoriteDoc = async () => {
-    await handleFavorite(documentId)
+  const handleFavoriteDoc = () => {
+    handleFavorite(documentId)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
@@ -74,8 +74,8 @@ export const DocumentMenu = ({
       });
   };
 
-  const handleDeleteDoc = async () => {
-    await handleDocumentAction("archive", documentId)
+  const handleDeleteDoc = () => {
+    handleDocumentAction("archive", documentId)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);

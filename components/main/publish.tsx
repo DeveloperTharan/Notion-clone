@@ -25,14 +25,14 @@ export const Publish = ({ id, isPublished, url }: PublishProps) => {
 
   const router = useRouter();
 
-  const handlePublished = async (
+  const handlePublished = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
 
     setIsSubmitting(true);
 
-    await handlePublish(id!)
+    handlePublish(id!)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
