@@ -44,10 +44,10 @@ export default async function Mainlayout({
     <SessionProvider session={session}>
       <EdgeStoreProvider>
         <main className="w-full h-full flex">
-          <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
+          <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide z-50">
             <SideBar docs={docs} trash={trash} />
           </div>
-          <section className="flex-1 h-full overflow-y-auto">
+          <section className="flex-1 h-full overflow-y-auto z-10">
             {children}
           </section>
           <Toaster

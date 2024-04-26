@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEdgeStore } from "@/lib/edgestore";
 import { CoverImageModel } from "../models/coverimage-uplode";
 import { handleCoverImage } from "@/actions/document";
+import { cn } from "@/lib/utils";
 
 interface CoverImageProps {
   url: string | null | undefined;
@@ -34,9 +35,11 @@ export const CoverImage = ({ url, preview }: CoverImageProps) => {
   };
   return (
     <div
-      className={`relative w-full group/cover ${!url && "h-[25vh]"} ${
-        url && "bg-base-200 h-[35vh]"
-      }`}
+      className={cn(
+        "relative w-full group/cover z-0",
+        !url && "h-[25vh]",
+        url && "bg-secondary h-[35vh]"
+      )}
     >
       {!!url && (
         <Image
