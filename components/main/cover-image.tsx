@@ -1,7 +1,70 @@
-'use client'
+"use client";
 
 import React from "react";
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+import { useEdgeStore } from "@/lib/edgestore";
+import { CoverImageModel } from "../models/coverimage-uplode";
+import { handleCoverImage } from "@/actions/document";
 
-export const CoverImage = ({ url }: { url: string | null | undefined }) => {
-  return <div>CoverImage</div>;
+interface CoverImageProps {
+  url: string | null | undefined;
+  preview?: boolean;
+}
+
+export const CoverImage = ({ url, preview }: CoverImageProps) => {
+  const params = useParams();
+  const router = useRouter();
+  const { edgestore } = useEdgeStore();
+
+  const handleRemoveCoverImage = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+
+    if (url) {
+      await edgestore.publicFiles.delete({
+        url: url,
+      });
+    }
+
+    await handleCoverImage("delete", params.document as string);
+
+    router.refresh();
+  };
+  return (
+    <div
+      className={`relative w-full group/cover ${!url && "h-[25vh]"} ${
+        url && "bg-base-200 h-[35vh]"
+      }`}
+    >
+      {!!url && (
+        <Image
+          src={url}
+          alt="cover/image"
+          fill
+          className="object-cover object-left-top"
+          priority
+        />
+      )}
+      {url && !preview && (
+        <div
+          className="opacity-0 group-hover/cover:opacity-100 absolute bottom-5 right-20 flex 
+        items-center z-50 gap-x-2 h-fit w-fit transition-all delay-300"
+        >
+          <CoverImageModel existingUrl={url}>
+            <div className="bg-white px-3 py-1 text-xs text-base-content rounded-sm hover:bg-base-300">
+              Change Cover
+            </div>
+          </CoverImageModel>
+          <button
+            className="bg-white px-3 py-1 text-xs text-base-content rounded-sm hover:bg-base-300"
+            onClick={handleRemoveCoverImage}
+          >
+            Remove
+          </button>
+        </div>
+      )}
+    </div>
+  );
 };

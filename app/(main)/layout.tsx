@@ -3,11 +3,12 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
+import { db } from "@/lib/db";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 import { SideBar } from "@/components/main/sidebar";
-import { db } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Workspace | Notion",
@@ -34,27 +35,31 @@ export default async function Mainlayout({
     where: {
       userId: session.user?.id,
       isArchived: true,
-    }
-  })
+    },
+  });
 
   const [docs, trash] = await Promise.all([res1, res2]);
 
   return (
     <SessionProvider session={session}>
-      <main className="w-full h-full flex">
-        <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
-          <SideBar docs={docs} trash={trash} />
-        </div>
-        <section className="flex-1 h-full overflow-y-auto">{children}</section>
-        <Toaster
-          position="top-right"
-          dir="ltr"
-          closeButton
-          duration={3000}
-          expand={false}
-          theme="light"
-        />
-      </main>
+      <EdgeStoreProvider>
+        <main className="w-full h-full flex">
+          <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide">
+            <SideBar docs={docs} trash={trash} />
+          </div>
+          <section className="flex-1 h-full overflow-y-auto">
+            {children}
+          </section>
+          <Toaster
+            position="top-right"
+            dir="ltr"
+            closeButton
+            duration={3000}
+            expand={false}
+            theme="light"
+          />
+        </main>
+      </EdgeStoreProvider>
     </SessionProvider>
   );
 }

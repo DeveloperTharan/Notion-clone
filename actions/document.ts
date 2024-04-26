@@ -118,7 +118,11 @@ export const handleRename = async (docId: string, title: string) => {
   }
 };
 
-export const handleAddIcon = async (docId: string, icon: string) => {
+export const handleIcon = async (
+  action: "Add" | "Remove",
+  docId: string,
+  icon?: string
+) => {
   try {
     const session = await auth();
     const user = session?.user;
@@ -130,16 +134,29 @@ export const handleAddIcon = async (docId: string, icon: string) => {
 
     if (!existingDocument) return { error: "No such document" };
 
-    await db.document.update({
-      where: {
-        id: existingDocument.id,
-      },
-      data: {
-        icon,
-      },
-    });
+    if (action === "Add") {
+      await db.document.update({
+        where: {
+          id: existingDocument.id,
+        },
+        data: {
+          icon,
+        },
+      });
+    }
 
-    return { success: `Add ${icon} to ${existingDocument.title}` };
+    if (action === "Remove") {
+      await db.document.update({
+        where: {
+          id: existingDocument.id,
+        },
+        data: {
+          icon: null,
+        },
+      });
+    }
+
+    return { success: `${action} ${icon} to ${existingDocument.title}` };
   } catch (error) {
     console.log("DOCUMENT ACTION ERROR", error);
     return { error: "Error! something went's wrong, Tryagain!" };
@@ -172,6 +189,51 @@ export const handleDocumentAction = async (
         action.charAt(0).toUpperCase() + action.slice(1)
       }d Successfully`,
     };
+  } catch (error) {
+    console.log("DOCUMENT ACTION ERROR", error);
+    return { error: "Error! something went's wrong, Tryagain!" };
+  }
+};
+
+export const handleCoverImage = async (
+  action: "uplode" | "delete",
+  docId: string,
+  image?: string
+) => {
+  try {
+    const session = await auth();
+    const user = session?.user;
+
+    if (!session || !user) return { error: "Unauthorized!" };
+    if (!docId) return { error: "Document missing!" };
+
+    const existingDocument = await getDocumentById(docId);
+
+    if (!existingDocument) return { error: "No such document" };
+
+    if (action === "uplode") {
+      await db.document.update({
+        where: {
+          id: existingDocument.id,
+        },
+        data: {
+          coverImage: image,
+        },
+      });
+    }
+
+    if (action === "delete") {
+      await db.document.update({
+        where: {
+          id: existingDocument.id,
+        },
+        data: {
+          coverImage: null,
+        },
+      });
+    }
+
+    return { success: `coverImage ${action} to ${existingDocument.title}` };
   } catch (error) {
     console.log("DOCUMENT ACTION ERROR", error);
     return { error: "Error! something went's wrong, Tryagain!" };

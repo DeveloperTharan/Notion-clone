@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import debounce from "debounce";
 import { IoIosClose } from "react-icons/io";
 import { IconPicker } from "../emoji-picker";
-import { handleAddIcon, handleRename } from "@/actions/document";
+import { handleIcon, handleRename } from "@/actions/document";
 
 interface DocumentInputProps {
   id: string;
@@ -25,7 +25,7 @@ export const DocumentInput = ({
   const router = useRouter();
 
   const handleIconSelect = async (icon: string) => {
-    await handleAddIcon(id, icon)
+    await handleIcon("Add" ,id, icon)
       .then((data) => {
         if (data.success) return toast.success(data.success);
         if (data.error) return toast.error(data.error);
