@@ -52,16 +52,16 @@ export const CoverImage = ({ url, preview }: CoverImageProps) => {
       )}
       {url && !preview && (
         <div
-          className="opacity-0 group-hover/cover:opacity-100 absolute bottom-5 right-20 flex 
-        items-center z-50 gap-x-2 h-fit w-fit transition-all delay-300"
+          className="lg:opacity-0 group-hover/cover:opacity-100 absolute bottom-5 right-20 flex 
+          items-center z-50 gap-x-2 h-fit w-fit transition-all delay-300"
         >
           <CoverImageModel existingUrl={url}>
-            <div className="bg-white px-3 py-1 text-xs text-base-content rounded-sm hover:bg-base-300">
+            <div className="bg-white px-3 py-1 text-xs text-muted-foreground rounded-sm hover:bg-secondary cursor-pointer">
               Change Cover
             </div>
           </CoverImageModel>
           <button
-            className="bg-white px-3 py-1 text-xs text-base-content rounded-sm hover:bg-base-300"
+            className="bg-white px-3 py-1 text-xs text-muted-foreground rounded-sm hover:bg-secondary"
             onClick={handleRemoveCoverImage}
           >
             Remove

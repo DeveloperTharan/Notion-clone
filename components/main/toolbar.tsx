@@ -121,7 +121,7 @@ export const ToolBar = ({ initialData, preview }: ToolBarProps) => {
           ref={inputRef}
           onBlur={handleDisableInput}
           onKeyDown={onKeyDown}
-          defaultValue={value!}
+          defaultValue={initialData?.title!}
           onChange={onInput}
           className="text-[40px] bg-transparent font-bold outline-none text-[#3F3F3F] truncate w-full"
         />
