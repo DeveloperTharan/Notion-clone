@@ -1,62 +1,40 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { signIn } from "@/auth";
 import Image from "next/image";
-import {
-  GetNotionFreeHero,
-  TryNotion,
-  RequestNotion,
-} from "./components/Buttons";
-import heroblack from "../../public/home-hero.svg";
-import NotionParade from "../../public/notion-parade.svg";
-import MarketingCard from "./components/MarketingCard";
-import MarketingSlide from "./components/MarketingSlide";
+import React from "react";
 
-const MarketingPage = () => {
+export default function page() {
   return (
-    <>
-      <div className="px-3 xl:px-16 3xl:px-44 mt-20">
-        <div className="text-center mt-10">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold">
-            Write, plan, share.
-          </h1>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold">
-            With AI at your side.
-          </h1>
-          <p className="text-sm md:text-ms lg:text-xl font-semibold mt-4">
-            Notion is the connected workspace where better, faster work happens.
-          </p>
-          <GetNotionFreeHero />
-        </div>
-        <aside className="mt-10">
-          <Image
-            src={heroblack}
-            alt="img"
-            className="m-auto block h-auto w-[75%] object-contain"
-          />
-        </aside>
-        <MarketingCard />
-        <MarketingSlide />
-        <div className="text-center mt-32">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold">
-            Get started for free.
-          </h1>
-          <p className="text-sm md:text-md lg:text-lg font-medium mt-4">
-            Play around with it first. Pay and add your team later.
-          </p>
-          <div className="flex justify-center items-center mt-5 gap-8">
-            <TryNotion />
-            <RequestNotion />
-          </div>
-        </div>
-        <aside className="mt-10">
-          <Image
-            src={NotionParade}
-            alt="img"
-            className="m-auto block h-auto w-[75%] object-contain"
-          />
-        </aside>
+    <div className="relative h-auto min-h-screen px-3 xl:px-16 3xl:px-44 mt-20 flex flex-col gap-7 items-center text-center">
+      <div className="text-center mt-10">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold">
+          Write, plan, share.
+        </h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold">
+          With AI at your side.
+        </h1>
+        <p className="text-sm md:text-ms lg:text-xl font-semibold my-4 text-wrap">
+          Notion is the connected workspace where better, faster work happens.
+        </p>
+        <Button variant={"default"}>
+          Get Notion free
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 448 512"
+            className="ms-4 mt-1"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+          </svg>
+        </Button>
       </div>
-    </>
+      <aside className="mt-10">
+        <Image src={"/home-hero.svg"} alt="hero" width={800} height={800} />
+      </aside>
+    </div>
   );
-};
-
-export default MarketingPage;
+}

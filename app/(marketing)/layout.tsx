@@ -1,20 +1,23 @@
+import { Footer } from "@/components/marketing/footer";
+import { NavBar } from "@/components/marketing/navbar";
 import { Metadata } from "next";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Your connected workspace for wiki, docs & projects | Notion",
   description: "Your connected workspace for wiki, docs & projects | Notion",
 };
 
-const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
+export default function Mainlayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <>
-      <Navbar />   
-      <main className="container mx-auto">{children}</main>
+    <div className="w-full h-auto min-h-screen">
+      <NavBar />
+      {children}
       <Footer />
-    </>
+    </div>
   );
-};
-
-export default MarketingLayout;
+}

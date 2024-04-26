@@ -1,18 +1,19 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { ConvexClientProvider } from "@/providers/convex-provider";
-import { Toaster } from "sonner";
+import { Inter as FontSans } from "next/font/google";
+
+import { cn } from "@/lib/utils";
+import { Metadata } from "next";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: "600",
+});
 
 export const metadata: Metadata = {
-  title: {
-    default: "Workspace | Notion",
-    template: "%s | Notion",
-  },
-  description: "Getting Started | Notion",
+  title: "Notion",
+  description: "Notion",
   icons: {
     icon: [
       {
@@ -29,15 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="light">
-      <body className={inter.className}>
-        <ConvexClientProvider>
-          <EdgeStoreProvider>
-            <Toaster position="top-center" />
-            {children}
-          </EdgeStoreProvider>
-        </ConvexClientProvider>
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <EdgeStoreProvider>
+        <body
+          className={cn(
+            "h-full bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          {children}
+        </body>
+      </EdgeStoreProvider>
     </html>
   );
 }
