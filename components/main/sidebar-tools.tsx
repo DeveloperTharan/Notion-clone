@@ -31,6 +31,12 @@ export const SideBarTools = ({ docs, trash }: SideBarProps) => {
   const [documents, setDocuments] = useState<DocumentNode[] | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    const data = StructureData(docs);
+    setDocuments(data);
+  }, [docs]);
+
   const { data } = useSession();
   const router = useRouter();
 
@@ -41,11 +47,6 @@ export const SideBarTools = ({ docs, trash }: SideBarProps) => {
       </div>
     );
   }
-
-  useEffect(() => {
-    const data = StructureData(docs);
-    setDocuments(data);
-  }, [docs]);
 
   const handleCreatePage = async () => {
     await createDocument()
