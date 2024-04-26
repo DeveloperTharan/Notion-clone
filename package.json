@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.0.0",
+    "@blocknote/core": "^0.12.4",
+    "@blocknote/react": "^0.12.4",
     "@edgestore/react": "^0.1.6",
     "@edgestore/server": "^0.1.6",
     "@prisma/client": "^5.13.0",

@@ -43,7 +43,7 @@ export default async function DocumentPage({
             </div>
           ) : (
             <>
-              <div className="w-[92%] lg:w-[96%] xl:w-[97%] h-10 sticky top-0 left-20 bg-background z-50">
+              <div className="w-full h-10 sticky top-0 left-20 bg-background z-50">
                 <NavBar
                   id={res?.id}
                   title={res?.title}

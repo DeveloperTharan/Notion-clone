@@ -17,15 +17,18 @@ interface NavBarProps {
 
 export const NavBar = ({ preview, id, icon, title }: NavBarProps) => {
   const [Open, setOpen] = useState(false);
+
   return (
     <>
       {!preview && (
-        <nav className="w-full h-full flex items-center justify-between pr-1 py-2">
+        <nav
+          className="w-full h-full flex items-center justify-between p-2 shadow-sm"
+        >
           <Button
             variant={"ghost"}
             size={"sm"}
             onClick={() => setOpen(true)}
-            className="text-muted-foreground"
+            className="text-muted-foreground ml-5"
           >
             {icon} {title}
           </Button>

@@ -1,19 +1,35 @@
 "use client";
 
 import { Document } from "@prisma/client";
-import React from "react";
+import React, { useMemo } from "react";
 import { CoverImage } from "./cover-image";
 import { ToolBar } from "./toolbar";
-import { Editor } from "./editor";
+import dynamic from "next/dynamic";
+import debounce from "debounce";
+import { handleBody } from "@/actions/document";
 
 export const DocContent = ({ document }: { document: Document | null }) => {
-  const handleOnChange = () => {};
+  const Editor = useMemo(
+    () =>
+      dynamic(() => import("./editor").then((mod) => mod.Editor), {
+        ssr: false,
+      }),
+    []
+  );
+
+  const handleOnChange = debounce(async (body: string) => {
+    await handleBody(document?.id!, body);
+  }, 1000);
   return (
     <div className="pb-40 w-full">
       <CoverImage url={document?.coverImage} />
       <div className="max-w-xl lg:max-w-2xl xl:mxa-w-3xl 2xl:max-w-4xl mx-auto relative -mt-6 z-30 px-5">
         <ToolBar initialData={document} />
-        <Editor onChange={handleOnChange} initialData={document?.body} />
+        <Editor
+          onChange={handleOnChange}
+          initialData={document?.body}
+          editable={true}
+        />
       </div>
     </div>
   );

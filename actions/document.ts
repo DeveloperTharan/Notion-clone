@@ -239,3 +239,31 @@ export const handleCoverImage = async (
     return { error: "Error! something went's wrong, Tryagain!" };
   }
 };
+
+export const handleBody = async (docId: string, body: string) => {
+  try {
+    const session = await auth();
+    const user = session?.user;
+
+    if (!session || !user) return { error: "Unauthorized!" };
+    if (!docId) return { error: "Document missing!" };
+
+    const existingDocument = await getDocumentById(docId);
+
+    if (!existingDocument) return { error: "No such document" };
+
+    await db.document.update({
+      where: {
+        id: existingDocument.id,
+      },
+      data: {
+        body,
+      },
+    });
+
+    return { success: "body content" };
+  } catch (error) {
+    console.log("DOCUMENT ACTION ERROR", error);
+    return { error: "Error! something went's wrong, Tryagain!" };
+  }
+};
