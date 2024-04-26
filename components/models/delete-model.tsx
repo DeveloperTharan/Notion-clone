@@ -17,7 +17,7 @@ interface DeleteModelProps {
   onConfirm: () => void;
   Open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  className: string;
+  className?: string;
 }
 
 export const DeleteModel = ({

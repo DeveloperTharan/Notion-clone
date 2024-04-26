@@ -35,7 +35,7 @@ export default function Workspace() {
           className="mt-20"
         />
       </div>
-      <p>Welcom to {data.user?.name}'s Notion</p>
+      <p>Welcom to {data.user?.name}&apos;s Notion</p>
       <form
         action={async () => {
           await createDocument().then((data) => {

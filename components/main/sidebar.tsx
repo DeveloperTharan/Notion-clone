@@ -7,7 +7,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Document } from "@prisma/client";
@@ -32,8 +31,6 @@ export const SideBar = ({ docs, trash }: SideBarProps) => {
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
 
-  const pathname = usePathname();
-
   useEffect(() => {
     if (isMobile) {
       collapse();
@@ -41,12 +38,6 @@ export const SideBar = ({ docs, trash }: SideBarProps) => {
       resetWidth();
     }
   }, [isMobile]);
-
-  useEffect(() => {
-    if (isMobile) {
-      collapse();
-    }
-  }, [pathname, isMobile]);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
