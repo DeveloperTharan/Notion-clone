@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,12 +31,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "h-full bg-background font-sans antialiased",
-          fontSans.variable
-        )}>{children}
-      </body>
+      <EdgeStoreProvider>
+        <body
+          className={cn(
+            "h-full bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          {children}
+        </body>
+      </EdgeStoreProvider>
     </html>
   );
 }

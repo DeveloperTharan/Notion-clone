@@ -21,7 +21,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function DocumentPage({
+export default async function DocumentPreviewPage({
   params,
 }: {
   params: { document: string };
@@ -48,20 +48,8 @@ export default async function DocumentPage({
             </div>
           ) : (
             <>
-              <div className="w-full h-10 sticky top-0 left-20 bg-background z-50">
-                <NavBar
-                  id={res?.id}
-                  title={res?.title}
-                  icon={res?.icon}
-                  preview={false}
-                  isFavorite={res?.isFavorite}
-                  isPublished={res?.isPublished}
-                  url={res?.url}
-                />
-                {res?.isArchived && <Notification id={res.id} />}
-              </div>
               <div className="w-full h-auto overflow-auto">
-                <DocContent document={res} editable={true} preview={false} />
+                <DocContent document={res} editable={false} preview={true} />
               </div>
             </>
           )}

@@ -6,7 +6,6 @@ import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
-import { EdgeStoreProvider } from "@/lib/edgestore";
 
 import { SideBar } from "@/components/main/sidebar";
 
@@ -42,24 +41,22 @@ export default async function Mainlayout({
 
   return (
     <SessionProvider session={session}>
-      <EdgeStoreProvider>
-        <main className="w-full h-full flex">
-          <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide z-50">
-            <SideBar docs={docs} trash={trash} />
-          </div>
-          <section className="flex-1 h-full overflow-y-auto z-10">
-            {children}
-          </section>
-          <Toaster
-            position="top-right"
-            dir="ltr"
-            closeButton
-            duration={3000}
-            expand={false}
-            theme="light"
-          />
-        </main>
-      </EdgeStoreProvider>
+      <main className="w-full h-full flex">
+        <div className="h-full sticky top-0 left-0 bg-secondary scrollbar-hide z-50">
+          <SideBar docs={docs} trash={trash} />
+        </div>
+        <section className="flex-1 h-full overflow-y-auto z-10">
+          {children}
+        </section>
+        <Toaster
+          position="top-right"
+          dir="ltr"
+          closeButton
+          duration={3000}
+          expand={false}
+          theme="light"
+        />
+      </main>
     </SessionProvider>
   );
 }
