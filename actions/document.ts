@@ -29,7 +29,7 @@ export const createDocument = async (parentId?: string) => {
       },
     });
 
-    const url = `${base_url}/preview/${res.id}?isPublished=${res.isPublished}`;
+    const url = `${base_url}/preview/${res.id}?user=${res.userId}&&isPublished=${res.isPublished}`;
 
     await db.document.update({
       where: {
@@ -262,6 +262,69 @@ export const handleBody = async (docId: string, body: string) => {
     });
 
     return { success: "body content" };
+  } catch (error) {
+    console.log("DOCUMENT ACTION ERROR", error);
+    return { error: "Error! something went's wrong, Tryagain!" };
+  }
+};
+
+export const handlePublish = async (docId: string) => {
+  try {
+    const session = await auth();
+    const user = session?.user;
+
+    if (!session || !user) return { error: "Unauthorized!" };
+    if (!docId) return { error: "Document missing!" };
+
+    const existingDocument = await getDocumentById(docId);
+
+    if (!existingDocument) return { error: "No such document" };
+
+    if (existingDocument.isPublished === true) {
+      const res = await db.document.update({
+        where: {
+          id: existingDocument.id,
+        },
+        data: {
+          isPublished: false,
+        },
+      });
+
+      const url = `${base_url}/preview/${res.id}?user=${res.userId}&&isPublished=${res.isPublished}`;
+
+      await db.document.update({
+        where: {
+          id: existingDocument.id,
+        },
+        data: {
+          url,
+        },
+      });
+
+      return { success: "Document unPublished" };
+    }
+
+    const res = await db.document.update({
+      where: {
+        id: existingDocument.id,
+      },
+      data: {
+        isPublished: true,
+      },
+    });
+
+    const url = `${base_url}/preview/${res.id}?user=${res.userId}&&isPublished=${res.isPublished}`;
+
+    await db.document.update({
+      where: {
+        id: existingDocument.id,
+      },
+      data: {
+        url,
+      },
+    });
+
+    return { success: "Document Published" };
   } catch (error) {
     console.log("DOCUMENT ACTION ERROR", error);
     return { error: "Error! something went's wrong, Tryagain!" };

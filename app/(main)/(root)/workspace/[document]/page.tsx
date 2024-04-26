@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 import { NavBar } from "@/components/main/navbat";
 import { getDocumentById } from "@/data/document";
@@ -28,6 +29,8 @@ export default async function DocumentPage({
   const { document } = params;
   const res = await getDocumentById(document);
 
+  if(!res) return redirect("/workspace")
+
   return (
     <>
       {!document ? (
@@ -51,6 +54,9 @@ export default async function DocumentPage({
                   title={res?.title}
                   icon={res?.icon}
                   preview={false}
+                  isFavorite={res?.isFavorite}
+                  isPublished={res?.isPublished}
+                  url={res?.url}
                 />
                 {res?.isArchived && <Notification id={res.id} />}
               </div>
